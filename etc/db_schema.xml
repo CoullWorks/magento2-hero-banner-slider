@@ -1,0 +1,32 @@
+<?xml version="1.0" ?>
+<!--
+  ~   @author     Daniel Coull <hello@boxleafdigital.com>
+  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @version   1.0.0
+  -->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table comment="boxleafdigital_bannerslider_bannerslider Table" engine="innodb" name="boxleafdigital_bannerslider_bannerslider" resource="default">
+		<column comment="Entity Id" identity="true" name="bannerslider_id" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="bannerslider_id"/>
+		</constraint>
+		<column name="enabled" nullable="true" xsi:type="boolean"/>
+		<column length="255" name="slider_name" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="slides" nullable="true" xsi:type="varchar"/>
+		<column name="full_width" nullable="true" xsi:type="boolean"/>
+	</table>
+	<table comment="boxleafdigital_bannerslider_banners Table" engine="innodb" name="boxleafdigital_bannerslider_banners" resource="default">
+		<column comment="Entity Id" identity="true" name="banners_id" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
+		<constraint referenceId="PRIMARY" xsi:type="primary">
+			<column name="banners_id"/>
+		</constraint>
+		<column name="enabled" nullable="false" xsi:type="boolean"/>
+		<column length="255" name="banner_name" nullable="true" xsi:type="varchar"/>
+		<column name="show_banner_overlay" nullable="true" xsi:type="boolean"/>
+		<column name="full_width" nullable="true" xsi:type="boolean"/>
+		<column name="banner_overlay_content" nullable="true" xsi:type="text"/>
+		<column length="255" name="banner_image" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="banner_image_mobile" nullable="true" xsi:type="varchar"/>
+		<column length="255" name="banner_link" nullable="true" xsi:type="varchar"/>
+	</table>
+</schema>

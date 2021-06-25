@@ -1,0 +1,85 @@
+<?php
+/**
+ *   @author     Daniel Coull <hello@boxleafdigital.com>
+ *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @version   1.0.0
+ *
+ */
+
+/**
+ * @var $block \BoxLeafDigital\BannerSlider\Block\Widget\BannerSlider
+ */
+$slider = $block->getSlider();
+
+?>
+<?php if($slider): ?>
+    <?php if($slider->getEnabled()) : ?>
+        <div class="slider <?= $block->getClass(); ?>">
+
+            <?php $slides = $block->getSliderSlides($slider); ?>
+            <?php if($slides != false) : ?>
+
+                <?php foreach ($slides as $slide) : ?>
+                <?php
+                /**
+                 * @var $slide \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+                 */
+                $slide = $block->getSlide($slide) ; ?>
+
+
+                <div class="slide">
+                    <?php if($slide->getBannerLink()) :?>
+                    <a href="<?= $slide->getBannerLink();?>" title="<?= $slide->getBannerName(); ?>">
+                        <?php endif; ?>
+                        <picture class="<?= $block->getImageClass(); ?>">
+                            <source media="(min-width: 650px)" srcset="<?= $slide->getImageUrl('banner_image'); ?>">
+                            <source media="(min-width: 465px)" srcset="<?= $slide->getImageUrl('banner_image_mobile'); ?>">
+                            <img loading="lazy" src="<?= $slide->getImageUrl('banner_image_mobile'); ?>" alt="<?= $slide->getBannerName(); ?>" style="width:auto;">
+                        </picture>
+
+                        <?php if($slide->getShowBannerOverlay()) : ?>
+                            <div class="overlay">
+                                <div class="inner">
+                                    <?= $block->processContent($slide->getBannerOverlayContent()); ?>
+                                </div>
+                            </div>
+                        <?php endif; ?>
+                        <?php if($slide->getBannerLink()) :?>
+                    </a>
+                <?php endif; ?>
+                </div>
+            <?php endforeach; ?>
+
+                <script type="text/x-magento-init">
+                {
+                   ".slider": {
+                      "slider": <?= $block->getSliderConfig(); ?>
+                   }
+                }
+                </script>
+            <?php endif; ?>
+        </div>
+        <?php if($block->showTabs()) : ?>
+            <div class="tabs full-width">
+                <?php foreach ($slides as $slide) : ?>
+
+                    <?php
+                    /**
+                     * @var $slide \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+                     */
+                    $slide = $block->getSlide($slide) ; ?>
+                    <div class="tab">
+                        <h4><?= $slide->getBannerName();?></h4>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+            <script type="text/x-magento-init">
+                {
+                   ".tabs": {
+                       "slider": <?= $block->getTabsConfig(); ?>
+                   }
+                }
+                </script>
+        <?php endif; ?>
+    <?php endif; ?>
+<?php endif; ?>

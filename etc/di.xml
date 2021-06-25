@@ -1,0 +1,70 @@
+<?xml version="1.0" ?>
+<!--
+  ~   @author     Daniel Coull <hello@boxleafdigital.com>
+  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @version   1.0.0
+  ~
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+	<preference for="BoxLeafDigital\BannerSlider\Api\BannerSliderRepositoryInterface" type="BoxLeafDigital\BannerSlider\Model\BannerSliderRepository"/>
+	<preference for="BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface" type="BoxLeafDigital\BannerSlider\Model\Data\BannerSlider"/>
+
+	<!-- Seperation Logic Banners -->
+	<preference for="BoxLeafDigital\BannerSlider\Api\Command\Banners\DeleteByIdInterface" type="BoxLeafDigital\BannerSlider\Model\Command\Banners\DeleteById"/>
+	<preference for="BoxLeafDigital\BannerSlider\Api\Command\Banners\DeleteInterface" type="BoxLeafDigital\BannerSlider\Model\Command\Banners\Delete"/>
+	<preference for="BoxLeafDigital\BannerSlider\Api\Command\Banners\GetInterface" type="BoxLeafDigital\BannerSlider\Model\Command\Banners\Get"/>
+	<preference for="BoxLeafDigital\BannerSlider\Api\Command\Banners\SaveInterface" type="BoxLeafDigital\BannerSlider\Model\Command\Banners\Save"/>
+	<preference for="BoxLeafDigital\BannerSlider\Api\Command\Banners\GetListInterface" type="BoxLeafDigital\BannerSlider\Model\Command\Banners\GetList"/>
+	<!-- END Seperation Logic Banners -->
+
+	<!-- Seperation Logic BannerSlider -->
+	<preference for="BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\DeleteByIdInterface" type="BoxLeafDigital\BannerSlider\Model\Command\BannerSlider\DeleteById"/>
+	<preference for="BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\DeleteInterface" type="BoxLeafDigital\BannerSlider\Model\Command\BannerSlider\Delete"/>
+	<preference for="BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\GetInterface" type="BoxLeafDigital\BannerSlider\Model\Command\BannerSlider\Get"/>
+	<preference for="BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\SaveInterface" type="BoxLeafDigital\BannerSlider\Model\Command\BannerSlider\Save"/>
+	<preference for="BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\GetListInterface" type="BoxLeafDigital\BannerSlider\Model\Command\BannerSlider\GetList"/>
+	<!-- END Seperation Logic BannerSlider -->
+
+	<preference for="BoxLeafDigital\BannerSlider\Api\Data\BannerSliderSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">boxleafdigital_bannerslider_bannerslider</argument>
+			<argument name="resourceModel" xsi:type="string">BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider\Collection</argument>
+		</arguments>
+	</virtualType>
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="boxleafdigital_bannerslider_bannerslider_listing_data_source" xsi:type="string">BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider\Grid\Collection</item>
+				<item name="boxleafdigital_bannerslider_banners_listing_data_source" xsi:type="string">BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners\Grid\Collection</item>
+			</argument>
+		</arguments>
+	</type>
+	<preference for="BoxLeafDigital\BannerSlider\Api\BannersRepositoryInterface" type="BoxLeafDigital\BannerSlider\Model\BannersRepository"/>
+	<preference for="BoxLeafDigital\BannerSlider\Api\Data\BannersInterface" type="BoxLeafDigital\BannerSlider\Model\Data\Banners"/>
+	<preference for="BoxLeafDigital\BannerSlider\Api\Data\BannersSearchResultsInterface" type="Magento\Framework\Api\SearchResults"/>
+	<virtualType name="BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">boxleafdigital_bannerslider_banners</argument>
+			<argument name="resourceModel" xsi:type="string">BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners\Collection</argument>
+		</arguments>
+	</virtualType>
+
+	<type name="BoxLeafDigital\BannerSlider\Controller\Adminhtml\Upload\Image">
+		<arguments>
+			<argument name="imageUploader" xsi:type="object">BoxLeafDigital\BannerSlider\Model\ImageUpload</argument>
+		</arguments>
+	</type>
+	<virtualType name="BoxLeafDigital\BannerSlider\Model\ImageUpload" type="Magento\Catalog\Model\ImageUploader">
+		<arguments>
+			<argument name="baseTmpPath" xsi:type="string">banner/tmp/image</argument>
+			<argument name="basePath" xsi:type="string">banner/image</argument>
+			<argument name="allowedExtensions" xsi:type="array">
+				<item name="jpg" xsi:type="string">jpg</item>
+				<item name="jpeg" xsi:type="string">jpeg</item>
+				<item name="gif" xsi:type="string">gif</item>
+				<item name="png" xsi:type="string">png</item>
+			</argument>
+		</arguments>
+	</virtualType>
+</config>

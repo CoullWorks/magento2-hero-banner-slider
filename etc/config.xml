@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!--
+  ~   @author     Daniel Coull <hello@boxleafdigital.com>
+  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @version   1.0.0
+  ~
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+	<default>
+		<banner_slider>
+			<general>
+				<enable>1</enable>
+			</general>
+		</banner_slider>
+	</default>
+</config>

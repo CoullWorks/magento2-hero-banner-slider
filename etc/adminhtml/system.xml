@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+<!--
+  ~   @author     Daniel Coull <hello@boxleafdigital.com>
+  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @version   1.0.0
+  ~
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+	<system>
+		<section id="banner_slider" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+			<label>Banner Slider</label>
+			<tab>boxleafdigital</tab>
+			<resource>BoxLeafDigital_BannerSlider::config_boxleaf_bannerslider</resource>
+			<group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+				<label>General</label>
+				<field id="enable" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select">
+					<label>Enable</label>
+					<comment/>
+					<source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+				</field>
+			</group>
+		</section>
+	</system>
+</config>

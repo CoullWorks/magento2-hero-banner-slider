@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!--
+  ~   @author     Daniel Coull <hello@boxleafdigital.com>
+  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @version   1.0.0
+  ~
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+	<module name="BoxLeafDigital_BannerSlider" setup_version="1.0.3">
+		<sequence>
+			<module name="Magento_StoreGraphQl"/>
+            <module name="BoxLeafDigital_Core"/>
+		</sequence>
+	</module>
+</config>

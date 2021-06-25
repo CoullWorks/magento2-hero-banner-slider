@@ -1,0 +1,15 @@
+<?xml version="1.0" ?>
+<!--
+  ~   @author     Daniel Coull <hello@boxleafdigital.com>
+  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @version   1.0.0
+  ~
+  -->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+	<router id="admin">
+		<route frontName="boxleafdigital_bannerslider" id="boxleafdigital_bannerslider">
+			<module before="Magento_Backend" name="BoxLeafDigital_BannerSlider"/>
+		</route>
+	</router>
+</config>

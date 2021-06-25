@@ -1,0 +1,46 @@
+<?php
+/**
+ *   @author     Daniel Coull <hello@boxleafdigital.com>
+ *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @version   1.0.1
+ */
+
+/**
+ * @var $block \BoxLeafDigital\BannerSlider\Block\Widget\HeroBanner
+ */
+$slide = $block->getSlide();
+?>
+<?php if($slide): ?>
+    <?php if($slide->getEnabled()) : ?>
+        <div class="hero <?= $block->getClass(); ?>">
+            <div class="banner">
+                <?php if($slide->getBannerLink()) :?>
+                    <a href="<?= $slide->getBannerLink();?>" title="<?= $slide->getBannerName(); ?>">
+                <?php endif; ?>
+                <picture  class="<?= $block->getImageClass(); ?>">
+                    <source media="(min-width: 650px)" srcset="<?=  $slide->getImageUrl('banner_image'); ?>">
+                    <source media="(min-width: 465px)" srcset="<?= $slide->getImageUrl('banner_image_mobile'); ?>">
+                    <img loading="lazy" src="<?= $slide->getImageUrl('banner_image_mobile'); ?>" alt="<?= $slide->getBannerName(); ?>" >
+                </picture>
+
+                <?php if($slide->getShowBannerOverlay()) : ?>
+                    <div class="overlay">
+                        <div class="inner">
+                            <?= $block->processContent($slide->getBannerOverlayContent()); ?>
+                        </div>
+                    </div>
+                <?php endif; ?>
+                <?php if($slide->getBannerLink()) :?>
+                    </a>
+                <?php endif; ?>
+            </div>
+        </div>
+        <script type="text/x-magento-init">
+        {
+           ".img-parallax": {
+               "parallax": {}
+           }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

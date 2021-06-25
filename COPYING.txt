@@ -1,0 +1,5 @@
+Copyright © 2020-present BoxLeafDigital
+
+This file included in BoxLeafDigital/BannerSlider is licensed under BoxLeafDigital
+
+Please see LICENSE.txt for the full text

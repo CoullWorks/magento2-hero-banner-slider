@@ -1,0 +1,216 @@
+<?xml version="1.0" ?>
+<!--
+  ~   @author     Daniel Coull <hello@boxleafdigital.com>
+  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @version   1.0.0
+  ~
+  -->
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">boxleafdigital_bannerslider_banners_form.banners_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\Banners\Edit\BackButton" name="back"/>
+			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\Banners\Edit\DeleteButton" name="delete"/>
+			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\Banners\Edit\SaveButton" name="save"/>
+			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\Banners\Edit\SaveAndContinueButton" name="save_and_continue"/>
+		</buttons>
+		<namespace>boxleafdigital_bannerslider_banners_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>boxleafdigital_bannerslider_banners_form.banners_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="banners_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider class="BoxLeafDigital\BannerSlider\Model\Banners\DataProvider" name="banners_form_data_source">
+			<settings>
+				<requestFieldName>banners_id</requestFieldName>
+				<primaryFieldName>banners_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+		<field name="enabled"  component="Magento_Ui/js/form/element/single-checkbox-toggle-notice" formElement="checkbox" sortOrder="10">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Banners</item>
+				</item>
+				<item name="default" xsi:type="number">0</item>
+				<item name="notices" xsi:type="array">
+					<item name="0" xsi:type="string" translate="true">No</item>
+					<item name="1" xsi:type="string" translate="true">Yes</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>boolean</dataType>
+				<label translate="true">Hero Banner enabled</label>
+				<dataScope>enabled</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">true</rule>
+				</validation>
+			</settings>
+			<formElements>
+				<checkbox>
+					<settings>
+						<valueMap>
+							<map name="false" xsi:type="number">0</map>
+							<map name="true" xsi:type="number">1</map>
+						</valueMap>
+						<prefer>toggle</prefer>
+					</settings>
+				</checkbox>
+			</formElements>
+		</field>
+		<field formElement="input" name="banner_name" sortOrder="30">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Banners</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">Banner Name</label>
+				<dataScope>banner_name</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+        <field formElement="input" name="banner_link" sortOrder="30">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Banners</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>text</dataType>
+                <label translate="true">Banner Link</label>
+                <dataScope>banner_link</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">false</rule>
+                </validation>
+            </settings>
+        </field>
+
+		<field name="banner_image" formElement="imageUploader"  sortOrder="60">
+			<settings>
+				<notice translate="true">Some notice.</notice>
+				<label translate="true">Banner Image</label>
+				<componentType>imageUploader</componentType>
+				<dataScope>banner_image</dataScope>
+			</settings>
+			<formElements>
+				<imageUploader>
+					<settings>
+						<allowedExtensions>jpg jpeg gif png</allowedExtensions>
+						<maxFileSize>2097152</maxFileSize>
+						<uploaderConfig>
+							<param xsi:type="string" name="url">boxleafdigital_bannerslider/upload/image</param>
+						</uploaderConfig>
+						<initialMediaGalleryOpenSubpath>banner/images</initialMediaGalleryOpenSubpath>
+					</settings>
+				</imageUploader>
+			</formElements>
+		</field>
+
+
+		<field name="banner_image_mobile" formElement="imageUploader"  sortOrder="70">
+			<settings>
+				<notice translate="true">Some notice.</notice>
+				<label translate="true">Mobile Banner Image</label>
+				<componentType>imageUploader</componentType>
+				<dataScope>banner_image_mobile</dataScope>
+			</settings>
+			<formElements>
+				<imageUploader>
+					<settings>
+						<allowedExtensions>jpg jpeg gif png</allowedExtensions>
+						<maxFileSize>2097152</maxFileSize>
+						<uploaderConfig>
+							<param xsi:type="string" name="url">boxleafdigital_bannerslider/upload/image</param>
+						</uploaderConfig>
+					</settings>
+				</imageUploader>
+			</formElements>
+		</field>
+	</fieldset>
+	<fieldset name="content">
+		<settings>
+			<label>Content</label>
+		</settings>
+		<field name="show_banner_overlay"  component="Magento_Ui/js/form/element/single-checkbox-toggle-notice" formElement="checkbox" sortOrder="40">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">Banners</item>
+				</item>
+				<item name="default" xsi:type="number">0</item>
+				<item name="notices" xsi:type="array">
+					<item name="0" xsi:type="string" translate="true">No</item>
+					<item name="1" xsi:type="string" translate="true">Yes</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>boolean</dataType>
+				<label translate="true">Show Banner overlay</label>
+				<dataScope>show_banner_overlay</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+			<formElements>
+				<checkbox>
+					<settings>
+						<valueMap>
+							<map name="false" xsi:type="number">0</map>
+							<map name="true" xsi:type="number">1</map>
+						</valueMap>
+						<prefer>toggle</prefer>
+					</settings>
+				</checkbox>
+			</formElements>
+		</field>
+
+		<field name="banner_overlay_content" sortOrder="50" formElement="wysiwyg">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="wysiwygConfigData" xsi:type="array">
+						<item name="height" xsi:type="string">100px</item>
+						<item name="add_variables" xsi:type="boolean">true</item>
+						<item name="add_widgets" xsi:type="boolean">true</item>
+						<item name="add_images" xsi:type="boolean">true</item>
+						<item name="add_directives" xsi:type="boolean">true</item>
+					</item>
+				</item>
+			</argument>
+			<settings>
+				<dataScope>banner_overlay_content</dataScope>
+				<label>Banner Overlay Content</label>
+			</settings>
+			<formElements>
+				<wysiwyg>
+					<settings>
+						<rows>8</rows>
+						<wysiwyg>true</wysiwyg>
+					</settings>
+				</wysiwyg>
+			</formElements>
+		</field>
+	</fieldset>
+</form>

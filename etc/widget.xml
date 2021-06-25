@@ -1,0 +1,49 @@
+<?xml version="1.0" ?>
+<!--
+  ~   @author     Daniel Coull <hello@boxleafdigital.com>
+  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @version   1.0.0
+-->
+
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+	<widget class="BoxLeafDigital\BannerSlider\Block\Widget\HeroBanner" id="boxleafdigital_bannerslider_herobanner">
+		<label>Hero Banner</label>
+		<description>heroBanner</description>
+		<parameters>
+			<parameter name="banner_id" sort_order="10" source_model="BoxLeafDigital\BannerSlider\Model\Config\Source\Banners" visible="true" xsi:type="select">
+				<label>Banner Id</label>
+			</parameter>
+			<parameter name="full_width" sort_order="10" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Full Width</label>
+			</parameter>
+			<parameter name="is_parallax" sort_order="10" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Parallax</label>
+			</parameter>
+
+			<parameter name="full_height" sort_order="10" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Full Page Height</label>
+			</parameter>
+		</parameters>
+	</widget>
+	<widget class="BoxLeafDigital\BannerSlider\Block\Widget\BannerSlider" id="boxleafdigital_bannerslider_bannerslider">
+		<label>Banner Slider</label>
+		<description>bannerSlider</description>
+		<parameters>
+			<parameter name="slider_id" sort_order="10" source_model="BoxLeafDigital\BannerSlider\Model\Config\Source\BannerSlider" visible="true" xsi:type="select">
+				<label>Slider Id</label>
+			</parameter>
+			<parameter name="full_width" sort_order="10" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Full Width</label>
+			</parameter>
+			<parameter name="full_height" sort_order="10" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Full Page Height</label>
+			</parameter>
+			<parameter name="show_tabs" sort_order="10" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Show Tabs under banner</label>
+			</parameter>
+			<parameter name="is_parallax" sort_order="10" source_model="Magento\Config\Model\Config\Source\Yesno" visible="true" xsi:type="select">
+				<label>Parallax</label>
+			</parameter>
+		</parameters>
+	</widget>
+</widgets>

@@ -1,0 +1,118 @@
+<?xml version="1.0" ?>
+<!--
+  ~   @author     Daniel Coull <hello@boxleafdigital.com>
+  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @version   1.0.0
+  ~
+  -->
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">boxleafdigital_bannerslider_bannerslider_form.bannerslider_form_data_source</item>
+		</item>
+		<item name="label" translate="true" xsi:type="string">General Information</item>
+		<item name="template" xsi:type="string">templates/form/collapsible</item>
+	</argument>
+	<settings>
+		<buttons>
+			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\BannerSlider\Edit\BackButton" name="back"/>
+			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\BannerSlider\Edit\DeleteButton" name="delete"/>
+			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\BannerSlider\Edit\SaveButton" name="save"/>
+			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\BannerSlider\Edit\SaveAndContinueButton" name="save_and_continue"/>
+		</buttons>
+		<namespace>boxleafdigital_bannerslider_bannerslider_form</namespace>
+		<dataScope>data</dataScope>
+		<deps>
+			<dep>boxleafdigital_bannerslider_bannerslider_form.bannerslider_form_data_source</dep>
+		</deps>
+	</settings>
+	<dataSource name="bannerslider_form_data_source">
+		<argument name="data" xsi:type="array">
+			<item name="js_config" xsi:type="array">
+				<item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+			</item>
+		</argument>
+		<settings>
+			<submitUrl path="*/*/save"/>
+		</settings>
+		<dataProvider class="BoxLeafDigital\BannerSlider\Model\BannerSlider\DataProvider" name="bannerslider_form_data_source">
+			<settings>
+				<requestFieldName>bannerslider_id</requestFieldName>
+				<primaryFieldName>bannerslider_id</primaryFieldName>
+			</settings>
+		</dataProvider>
+	</dataSource>
+	<fieldset name="general">
+		<settings>
+			<label>General</label>
+		</settings>
+        <field name="enabled"  component="Magento_Ui/js/form/element/single-checkbox-toggle-notice" formElement="checkbox" sortOrder="1">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="source" xsi:type="string">Banners</item>
+                </item>
+                <item name="default" xsi:type="number">0</item>
+                <item name="notices" xsi:type="array">
+                    <item name="0" xsi:type="string" translate="true">No</item>
+                    <item name="1" xsi:type="string" translate="true">Yes</item>
+                </item>
+            </argument>
+            <settings>
+                <dataType>boolean</dataType>
+                <label translate="true">Banner Slider enabled</label>
+                <dataScope>enabled</dataScope>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+		<field formElement="input" name="slider_name" sortOrder="2">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">BannerSlider</item>
+				</item>
+			</argument>
+			<settings>
+				<label translate="true">Banner Slider Name</label>
+				<dataScope>slider_name</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+		</field>
+		<field formElement="multiselect" name="slides" sortOrder="3">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="source" xsi:type="string">BannerSlider</item>
+				</item>
+			</argument>
+			<settings>
+				<dataType>text</dataType>
+				<label translate="true">slides</label>
+				<dataScope>slides</dataScope>
+				<validation>
+					<rule name="required-entry" xsi:type="boolean">false</rule>
+				</validation>
+			</settings>
+			<formElements>
+				<multiselect>
+					<settings>
+						<options class="BoxLeafDigital\BannerSlider\Model\Config\Source\Banners"/>
+					</settings>
+				</multiselect>
+			</formElements>
+		</field>
+	</fieldset>
+</form>

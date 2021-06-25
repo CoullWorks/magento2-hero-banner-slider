@@ -1,0 +1,15 @@
+This software is Licensed for use by BoxLeaf Digital.
+
+1) All are welcome to use and modify the source of this project for individual projects
+
+2) No Party can use this module as part of a commercial project without the consent or purchase of rights from BoxLeafDigital, as is not royalty free.
+
+3) BoxLeafDigital holds no responsibility if you choose to use this module for your personal projects
+    3a) Boxleaf Digital Is exempt from any damages
+    3b) Boxleaf Digital is exempt from any business loss from result of using this software
+    3c) Boxleaf Digital is exempt for fixing any issues that result of using this software
+
+4) Boxleaf Digital has no writes to the underline framework only  the software the utalises it.
+
+4) No party worldwide has the right to redistribute this works as there own, altered or unique.
+
