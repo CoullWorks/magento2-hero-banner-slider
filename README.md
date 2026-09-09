@@ -35,6 +35,9 @@ thumbnail navigation.
   onto the stage and pick which one to show, no code.
 - **Two widgets** — the same banners/sliders as classic widgets for layout XML, CMS pages
   and static blocks.
+- **Fast LCP** — banner images are auto-resized (desktop + mobile) and served as **WebP**
+  with an original-format fallback via `<picture>`; the hero loads eagerly with
+  `fetchpriority="high"`, and overlay typography is responsive on phones.
 - **Responsive images** — separate desktop and mobile images via `<picture>`.
 - **Layouts** — full width, full page height, and a **parallax** effect, per placement.
 - **Overlay content** — a WYSIWYG overlay per banner (headings, copy, buttons).

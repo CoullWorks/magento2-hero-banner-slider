@@ -12,6 +12,12 @@ DB tables are renamed, so it installs as a new module. Existing banner data is m
 automatically (see below).
 
 ### Added
+- **Responsive, WebP banner images for fast LCP.** Hero/slider images are resized to
+  desktop (1920px) and mobile (828px) widths and re-encoded as **WebP** (with an
+  original-format fallback), generated on demand and cached under
+  `media/banner/image/cache/`. The `<picture>` serves the right size per breakpoint, the
+  hero image loads eagerly with `fetchpriority="high"` (it was `loading="lazy"`, which
+  delayed LCP), and the overlay typography is now responsive on phones.
 - **Page Builder content types** — drag-and-drop **Hero Banner** and **Banner Slider**
   content types, reusing the widget rendering, so banners/sliders can be placed directly
   on a Page Builder stage.

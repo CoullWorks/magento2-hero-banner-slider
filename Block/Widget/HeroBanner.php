@@ -12,6 +12,7 @@ namespace CoullWorks\BannerSlider\Block\Widget;
 
 use CoullWorks\BannerSlider\Api\BannerSliderRepositoryInterface;
 use CoullWorks\BannerSlider\Api\BannersRepositoryInterface;
+use CoullWorks\BannerSlider\Model\Image\Optimizer;
 use Magento\Framework\Api\SearchCriteriaBuilderFactory;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\View\Element\Template;
@@ -61,6 +62,7 @@ class HeroBanner extends Template implements IdentityInterface
         BannersRepositoryInterface $bannersRepository,
         SearchCriteriaBuilderFactory $searchCriteriaBuilderFactory,
         \Magento\Cms\Model\Template\FilterProvider $contentProcessor,
+        Optimizer $optimizer,
         Template\Context $context,
         array $data = []
     ) {
@@ -70,6 +72,25 @@ class HeroBanner extends Template implements IdentityInterface
         $this->bannersRepository = $bannersRepository;
         $this->searchCriteriaBuilderFactory = $searchCriteriaBuilderFactory;
         $this->contentProcessor = $contentProcessor;
+        $this->optimizer = $optimizer;
+    }
+
+    /**
+     * @var Optimizer
+     */
+    private $optimizer;
+
+    /**
+     * Optimized (resized + optionally WebP) URL for a stored banner image path.
+     *
+     * @param string|null $path
+     * @param int $width
+     * @param string $format
+     * @return string
+     */
+    public function getOptimizedUrl(?string $path, int $width, string $format = 'webp'): string
+    {
+        return $this->optimizer->getUrl($path, $width, $format);
     }
 
     /**

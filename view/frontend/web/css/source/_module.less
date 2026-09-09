@@ -227,4 +227,54 @@
         z-index: 1 !important;
     }
 
+    //  Image safety: never overflow the container, keep the natural aspect.
+    .hero, .slider {
+        .banner, .slide {
+            picture {
+                display: block;
+                width: 100%;
+            }
+
+            picture img {
+                max-width: 100%;
+            }
+        }
+    }
+}
+
+//
+//  Responsive overlay typography (the desktop sizes are far too large on phones)
+//  ---------------------------------------------
+.media-width('max', @screen__m) {
+    .hero, .slider {
+        .banner, .slide {
+            .overlay .inner {
+                padding-left: 20px;
+                padding-right: 20px;
+
+                h1, h2 {
+                    font-size: 32px;
+                    line-height: 1.2;
+                    max-width: 100%;
+                }
+
+                h3, h4, h5 {
+                    font-size: 20px;
+                    max-width: 100%;
+                }
+
+                a {
+                    width: auto;
+                    padding: 0 18px;
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+
+    .is-parallax {
+        .banner, .slide {
+            height: 300px;
+        }
+    }
 }

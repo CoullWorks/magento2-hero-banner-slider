@@ -20,22 +20,23 @@ $slider = $block->getSlider();
             <?php $slides = $block->getSliderSlides($slider); ?>
             <?php if($slides != false) : ?>
 
-                <?php foreach ($slides as $slide) : ?>
+                <?php foreach ($slides as $slideIndex => $slideId) : ?>
                 <?php
-                /**
-                 * @var $slide \CoullWorks\BannerSlider\Api\Data\BannersInterface
-                 */
-                $slide = $block->getSlide($slide) ; ?>
-
-
+                /** @var $slide \CoullWorks\BannerSlider\Api\Data\BannersInterface */
+                $slide = $block->getSlide($slideId);
+                $desktopImg = (string)$slide->getBannerImage();
+                $mobileImg = $slide->getBannerImageMobile() ? (string)$slide->getBannerImageMobile() : $desktopImg;
+                $eager = $slideIndex === 0;
+                ?>
                 <div class="slide">
                     <?php if($slide->getBannerLink()) :?>
                     <a href="<?= $escaper->escapeUrl($slide->getBannerLink());?>" title="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>">
                         <?php endif; ?>
                         <picture class="<?= $escaper->escapeHtmlAttr($block->getImageClass()); ?>">
-                            <source media="(min-width: 650px)" srcset="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image')); ?>">
-                            <source media="(min-width: 465px)" srcset="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image_mobile')); ?>">
-                            <img loading="lazy" src="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image_mobile')); ?>" alt="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>" style="width:auto;">
+                            <source media="(min-width: 768px)" type="image/webp" srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($desktopImg, 1920, 'webp')); ?>">
+                            <source media="(min-width: 768px)" srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($desktopImg, 1920, '')); ?>">
+                            <source type="image/webp" srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($mobileImg, 828, 'webp')); ?>">
+                            <img src="<?= $escaper->escapeUrl($block->getOptimizedUrl($mobileImg, 828, '')); ?>" alt="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>" loading="<?= $eager ? 'eager' : 'lazy' ?>"<?= $eager ? ' fetchpriority="high"' : '' ?> decoding="async" style="width:auto;">
                         </picture>
 
                         <?php if($slide->getShowBannerOverlay()) : ?>

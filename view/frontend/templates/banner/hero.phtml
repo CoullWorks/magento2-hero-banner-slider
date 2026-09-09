@@ -18,10 +18,20 @@ $slide = $block->getSlide();
                 <?php if($slide->getBannerLink()) :?>
                     <a href="<?= $escaper->escapeUrl($slide->getBannerLink());?>" title="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>">
                 <?php endif; ?>
-                <picture  class="<?= $escaper->escapeHtmlAttr($block->getImageClass()); ?>">
-                    <source media="(min-width: 650px)" srcset="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image')); ?>">
-                    <source media="(min-width: 465px)" srcset="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image_mobile')); ?>">
-                    <img loading="lazy" src="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image_mobile')); ?>" alt="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>" >
+                <?php
+                $desktopImg = (string)$slide->getBannerImage();
+                $mobileImg = $slide->getBannerImageMobile() ? (string)$slide->getBannerImageMobile() : $desktopImg;
+                ?>
+                <picture class="<?= $escaper->escapeHtmlAttr($block->getImageClass()); ?>">
+                    <source media="(min-width: 768px)" type="image/webp"
+                            srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($desktopImg, 1920, 'webp')); ?>">
+                    <source media="(min-width: 768px)"
+                            srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($desktopImg, 1920, '')); ?>">
+                    <source type="image/webp"
+                            srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($mobileImg, 828, 'webp')); ?>">
+                    <img src="<?= $escaper->escapeUrl($block->getOptimizedUrl($mobileImg, 828, '')); ?>"
+                         alt="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>"
+                         loading="eager" fetchpriority="high" decoding="async">
                 </picture>
 
                 <?php if($slide->getShowBannerOverlay()) : ?>
