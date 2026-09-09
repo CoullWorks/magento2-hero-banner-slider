@@ -47,7 +47,7 @@ abstract class Banners extends \Magento\Backend\App\Action
     public function initPage($resultPage)
     {
         $resultPage->setActiveMenu(self::ADMIN_RESOURCE)
-            ->addBreadcrumb(__('BoxLeaf'), __('BoxLeaf'))
+            ->addBreadcrumb(__('CoullWorks'), __('CoullWorks'))
             ->addBreadcrumb(__('Banners'), __('Banners'));
         return $resultPage;
     }
