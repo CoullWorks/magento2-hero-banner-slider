@@ -53,7 +53,33 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with: { node-version: '20' }
-      - run: |
-          node --check view/frontend/web/js/slider.js
-          node --check view/frontend/web/js/parallax.js
+      - name: Syntax-check all first-party JS (excludes bundled vendor libs)
+        run: |
+          find view -type f -name '*.js' -not -path '*/vendor/*' -print0 \
+            | xargs -0 -n1 node --check
           node --check view/frontend/requirejs-config.js
+
+  unit-tests:
+    name: Unit tests (needs Magento keys)
+    runs-on: ubuntu-latest
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check for Magento repo keys
+        id: keys
+        env:
+          PUB: ${{ secrets.MAGENTO_PUBLIC_KEY }}
+        run: |
+          if [ -z "$PUB" ]; then echo "run=false" >> "$GITHUB_OUTPUT"; else echo "run=true" >> "$GITHUB_OUTPUT"; fi
+      - uses: shivammathur/setup-php@v2
+        if: steps.keys.outputs.run == 'true'
+        with: { php-version: '8.3', coverage: none }
+      - name: Install magento/framework + PHPUnit
+        if: steps.keys.outputs.run == 'true'
+        run: |
+          composer config --global http-basic.repo.magento.com "${{ secrets.MAGENTO_PUBLIC_KEY }}" "${{ secrets.MAGENTO_PRIVATE_KEY }}"
+          composer config repositories.magento composer https://repo.magento.com/
+          composer require --no-interaction --no-progress --dev "magento/framework:>=103.0.0" "phpunit/phpunit:^10.5"
+      - name: Run PHPUnit
+        if: steps.keys.outputs.run == 'true'
+        run: vendor/bin/phpunit --testdox
