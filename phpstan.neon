@@ -1,0 +1,10 @@
+# Run from a Magento root that has this module installed (magento/framework must resolve):
+#   vendor/bin/phpstan analyse -c app/code/CoullWorks/BannerSlider/phpstan.neon
+parameters:
+    level: 4
+    paths:
+        - Block
+        - Model
+        - Controller
+    excludePaths:
+        - view/frontend/web/js/vendor/*

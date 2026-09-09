@@ -1,15 +1,19 @@
-This software is Licensed for use by BoxLeaf Digital.
+CoullWorks Proprietary License
 
-1) All are welcome to use and modify the source of this project for individual projects
+Copyright (c) 2020-2026 CoullWorks. All rights reserved.
 
-2) No Party can use this module as part of a commercial project without the consent or purchase of rights from BoxLeafDigital, as is not royalty free.
+This software ("CoullWorks Banner Slider") is licensed, not sold, and remains the
+property of CoullWorks.
 
-3) BoxLeafDigital holds no responsibility if you choose to use this module for your personal projects
-    3a) Boxleaf Digital Is exempt from any damages
-    3b) Boxleaf Digital is exempt from any business loss from result of using this software
-    3c) Boxleaf Digital is exempt for fixing any issues that result of using this software
+1. You may install, use and modify this software for a single Magento store that you
+   own or operate.
+2. You may NOT use this software, in whole or in part, as part of a commercial product
+   or paid service, nor resell, sublicense or redistribute it, without the prior written
+   consent of CoullWorks or the purchase of a commercial license. It is not royalty-free.
+3. This software is provided "AS IS", without warranty of any kind, express or implied.
+   CoullWorks accepts no liability for any damages arising from its use.
+4. Redistribution of modified copies is not permitted without prior written consent.
 
-4) Boxleaf Digital has no writes to the underline framework only  the software the utalises it.
+For commercial licensing enquiries: ttechitsolutions@gmail.com  |  https://coullworks.com
 
-4) No party worldwide has the right to redistribute this works as there own, altered or unique.
-
+Bundled third-party libraries retain their own licenses; see THIRD-PARTY-LICENSES.md.

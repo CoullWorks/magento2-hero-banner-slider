@@ -1,5 +1,5 @@
-Copyright © 2020-present BoxLeafDigital
+Copyright (c) 2020-2026 CoullWorks
 
-This file included in BoxLeafDigital/BannerSlider is licensed under BoxLeafDigital
-
-Please see LICENSE.txt for the full text
+CoullWorks Banner Slider is licensed under the CoullWorks Proprietary License.
+See LICENSE.txt for the full terms. It is source-available but not royalty-free:
+commercial use requires consent or a commercial license from CoullWorks.

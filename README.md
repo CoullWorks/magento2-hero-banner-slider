@@ -1,82 +1,113 @@
-# Mage2 Module BoxLeafDigital BannerSlider
+<p align="center">
+  <img src="assets/banner.png" alt="CoullWorks Banner Slider for Magento 2" width="820">
+</p>
 
-From  [boxleaf Digital](https://www.boxleafdigital.com)
-Read our article [boxleaf Digital hero banner module](https://www.boxleafdigital.com/magento-2-hero-banner-and-slider/)
+<h1 align="center">Banner Slider</h1>
 
-    ``boxleafdigital/module-bannerslider``
+<p align="center">
+  <b>Hero banners &amp; sliders for Magento 2 — managed in the admin, placed anywhere.</b><br>
+  Build responsive hero banners and multi-slide carousels, then drop them onto any page
+  with native <b>Page Builder content types</b> or classic widgets — with parallax,
+  full-width / full-height layouts, an overlay WYSIWYG, and a self-hosted Slick carousel.
+</p>
 
- - [Main Functionalities](#markdown-header-main-functionalities)
- - [Installation](#markdown-header-installation)
- - [Configuration](#markdown-header-configuration)
- - [Specifications](#markdown-header-specifications)
- - [Attributes](#markdown-header-attributes)
+<p align="center">
+  <a href="https://github.com/CoullWorks/magento2-hero-banner-slider/releases/latest"><img src="https://img.shields.io/github/v/release/CoullWorks/magento2-hero-banner-slider?label=version&color=ff6a2c" alt="latest release"></a>
+  <img src="https://img.shields.io/badge/Magento-2.4.7%20–%202.4.9-f46f25" alt="Magento 2.4.7–2.4.9">
+  <img src="https://img.shields.io/badge/PHP-8.2%20|%208.3%20|%208.4-777bb4" alt="PHP 8.2–8.4">
+  <img src="https://img.shields.io/badge/license-proprietary-lightgrey" alt="proprietary">
+</p>
 
+> **Proprietary — © CoullWorks.** Source-available for a single store you own; not
+> royalty-free. Commercial redistribution or resale needs a licence. See [LICENSE.txt](LICENSE.txt).
 
-## Main Functionalities
+---
 
-Magento 2 banner slider gives you the abillity to add bother banners and sliders to page content using widgets.
+Manage a library of banners and sliders in the Magento admin, then place them wherever you
+need them — the homepage, a category, a CMS page, a static block — using **Page Builder**
+or widgets. Every banner supports a desktop and a mobile image, an optional link, and an
+optional WYSIWYG overlay; sliders group banners into an autoplaying carousel with optional
+thumbnail navigation.
 
-Both Sliders and Hero banners, can be parallax, full width or full height or NOT. Configure the widgets to suit your needs.
+## Features
 
-The sliders also give you the ability to show the banner names below the slider as a linked slider.. 
+- **Two Page Builder content types** — drag a **Hero Banner** or **Banner Slider** straight
+  onto the stage and pick which one to show, no code.
+- **Two widgets** — the same banners/sliders as classic widgets for layout XML, CMS pages
+  and static blocks.
+- **Responsive images** — separate desktop and mobile images via `<picture>`.
+- **Layouts** — full width, full page height, and a **parallax** effect, per placement.
+- **Overlay content** — a WYSIWYG overlay per banner (headings, copy, buttons).
+- **Slider carousel** — autoplay, fade, and optional thumbnail tabs (Slick), **self-hosted
+  — no third-party CDN**.
+- Built for **Magento 2.4.7–2.4.9 / PHP 8.2–8.4** with typed, DI-clean code.
 
-## Installation
+## Install
 
-
-### Type 1: Zip file
-
-  - Go to releases download the lates.
- - Unzip the zip file in `app/code/BoxLeafDigital`
- - Enable the module by running `php bin/magento module:enable BoxLeafDigital_BannerSlider`
- - Apply database updates by running `php bin/magento setup:upgrade`\*
- - Flush the cache by running `php bin/magento cache:flush`
-
-### Type 2: Composer
-
- -  Run the following commands
-```bash
-composer config repositories.productpricelist vcs https://github.com/danrcoull/magento2-hero-banner-slider.git
-composer require boxleafdigital/module-bannerslider:^1.0.1
+```sh
+composer require coullworks/module-banner-slider
+bin/magento module:enable CoullWorks_BannerSlider
+bin/magento setup:upgrade
+bin/magento setup:di:compile            # production mode only
+bin/magento setup:static-content:deploy -f   # production mode only
+bin/magento cache:flush
 ```
- -  Followed by the below to enable the module in magento 2
-```bash
-php bin/magento module:enable BoxLeafDigital_BannerSlider
-php bin/magento setup:upgrade
-php bin/magento setup:di:compile #yes do this we use extension attributes so you can see the original price and the custom price.
-php bin/magento setup:static-content:deploy en_GB en_US -f 
-php bin/magento cache:flush
-```
- 
 
+Upgrading from the old `boxleafdigital/module-bannerslider`? See
+[CHANGELOG.md](CHANGELOG.md) — your existing banners are migrated automatically on
+`setup:upgrade`.
+
+## Managing banners &amp; sliders
+
+**Content → CoullWorks Banner Slider → Banners** — create a banner: name, enable, desktop
+image, mobile image, link, and (optionally) an overlay with WYSIWYG content.
+
+**Content → CoullWorks Banner Slider → Banner Sliders** — create a slider: name, enable,
+and pick the banners it contains (in order).
+
+## Placing them
+
+**Page Builder** — in the editor's left panel, drag **Hero Banner** or **Banner Slider**
+onto the stage, then choose the banner/slider and options (full width/height, parallax,
+tabs) in the panel.
+
+**Widget** — Content → Widgets → Add Widget → *Hero Banner (CoullWorks)* or
+*Banner Slider (CoullWorks)*; or via layout XML / a `{{widget}}` directive in a CMS block.
+
+| Option | Applies to | What it does |
+|---|---|---|
+| **Full Width** | banner, slider | Break the banner out to the full viewport width. |
+| **Full Page Height** | banner, slider | Make the banner fill the viewport height. |
+| **Parallax** | banner, slider | Apply a scroll parallax to the image. |
+| **Show Tabs** | slider | Show a thumbnail-name strip under the slider as navigation. |
 
 ## Configuration
 
- - Enable (banner_slider/general/enable)
+**Stores → Configuration → CoullWorks → Banner Slider** — a global enable toggle. Everything
+else is per banner/slider in the admin grids.
 
+## Compatibility
 
-## Specifications
+| | |
+|---|---|
+| **Magento** | Open Source / Adobe Commerce 2.4.7, 2.4.8, 2.4.9 |
+| **PHP** | 8.2, 8.3, 8.4 |
+| **Page Builder** | Content types for Magento_PageBuilder (bundled with 2.4.x) |
 
- - Widget
-	- heroBanner
+## Third-party
 
- - Widget
-	- bannerSlider
+Bundles the **Slick** carousel (v1.9.0, MIT, © Ken Wheeler), self-hosted under
+`view/frontend/web/js/vendor/`. See [THIRD-PARTY-LICENSES.md](THIRD-PARTY-LICENSES.md).
 
- - Block
-	- Banner\Slider > banner/slider.phtml
+## License
 
- - Block
-	- Banner\Hero > banner/hero.phtml
+**Proprietary © CoullWorks.** Source-available for a single store you own or operate; not
+royalty-free. Commercial use, resale or redistribution requires a licence — enquiries:
+**ttechitsolutions@gmail.com**. Full terms in [LICENSE.txt](LICENSE.txt).
 
+---
 
-
-Yes i work hard, plenty more modules to come feel free to by me a coffee below. 
-
-[![Buy Me A Coffee](https://cdn.buymeacoffee.com/buttons/lato-black.png)](https://www.buymeacoffee.com/BHaNOMl)
-
-
-Other Modules:
-
-[Magento 2 - Custom Customer Quote Lists](https://github.com/danrcoull/Magento2-Product-Price-List)
-[Magento 2 - Infinate Scroll](https://github.com/danrcoull/magento2-catalog-infinite-scroll)
-
+<p align="center">
+  <a href="https://coullworks.com"><b>⚓ Powered by CoullWorks</b></a><br>
+  <sub>Built by <a href="https://coullworks.com">CoullWorks</a> — web &amp; software engineering. <a href="https://coullworks.com">coullworks.com</a></sub>
+</p>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<ruleset name="CoullWorks Banner Slider">
+    <description>Magento 2 coding standard for CoullWorks Banner Slider.</description>
+    <file>.</file>
+    <exclude-pattern>*/view/frontend/web/js/vendor/*</exclude-pattern>
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+    <arg name="extensions" value="php,phtml,xml,js,less"/>
+    <arg value="sp"/>
+    <rule ref="Magento2"/>
+</ruleset>

@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  php-lint:
+    name: PHP lint (${{ matrix.php }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        php: ['8.2', '8.3', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with: { php-version: '${{ matrix.php }}', coverage: none }
+      - run: find . -type f -name '*.php' -not -path './vendor/*' -print0 | xargs -0 -n1 -P4 php -l
+
+  coding-standard:
+    name: Magento 2 coding standard
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with: { php-version: '8.3', tools: cs2pr, coverage: none }
+      - name: Install phpcs + Magento standard
+        run: |
+          composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+          composer global require --no-interaction --no-progress squizlabs/php_codesniffer "magento/magento-coding-standard:>=32"
+          echo "${COMPOSER_HOME:-$HOME/.composer}/vendor/bin" >> "$GITHUB_PATH"
+      - run: phpcs --standard=phpcs.xml --report=full . || true
+
+  composer-validate:
+    name: composer validate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with: { php-version: '8.3', coverage: none }
+      - run: composer validate --strict --no-check-all
+
+  js-syntax:
+    name: JS syntax
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
+      - run: |
+          node --check view/frontend/web/js/slider.js
+          node --check view/frontend/web/js/parallax.js
+          node --check view/frontend/requirejs-config.js
