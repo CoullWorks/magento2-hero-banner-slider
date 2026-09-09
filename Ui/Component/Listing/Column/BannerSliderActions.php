@@ -1,19 +1,21 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Ui\Component\Listing\Column;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Ui\Component\Listing\Column;
 
 class BannerSliderActions extends \Magento\Ui\Component\Listing\Columns\Column
 {
 
-    const URL_PATH_EDIT = 'boxleafdigital_bannerslider/bannerslider/edit';
-    const URL_PATH_DELETE = 'boxleafdigital_bannerslider/bannerslider/delete';
-    const URL_PATH_DETAILS = 'boxleafdigital_bannerslider/bannerslider/details';
+    const URL_PATH_EDIT = 'coullworks_banner_slider/bannerslider/edit';
+    const URL_PATH_DELETE = 'coullworks_banner_slider/bannerslider/delete';
+    const URL_PATH_DETAILS = 'coullworks_banner_slider/bannerslider/details';
     protected $urlBuilder;
 
     /**

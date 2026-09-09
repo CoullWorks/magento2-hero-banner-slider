@@ -1,13 +1,15 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
+declare(strict_types=1);
+
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::MODULE,
-    'BoxLeafDigital_BannerSlider',
+    'CoullWorks_BannerSlider',
     __DIR__
 );

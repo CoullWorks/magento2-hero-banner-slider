@@ -1,32 +1,33 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.1
  */
 
 /**
- * @var $block \BoxLeafDigital\BannerSlider\Block\Widget\HeroBanner
+ * @var $block \CoullWorks\BannerSlider\Block\Widget\HeroBanner
+ * @var \Magento\Framework\Escaper $escaper
  */
 $slide = $block->getSlide();
 ?>
 <?php if($slide): ?>
     <?php if($slide->getEnabled()) : ?>
-        <div class="hero <?= $block->getClass(); ?>">
+        <div class="hero <?= $escaper->escapeHtmlAttr($block->getClass()); ?>">
             <div class="banner">
                 <?php if($slide->getBannerLink()) :?>
-                    <a href="<?= $slide->getBannerLink();?>" title="<?= $slide->getBannerName(); ?>">
+                    <a href="<?= $escaper->escapeUrl($slide->getBannerLink());?>" title="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>">
                 <?php endif; ?>
-                <picture  class="<?= $block->getImageClass(); ?>">
-                    <source media="(min-width: 650px)" srcset="<?=  $slide->getImageUrl('banner_image'); ?>">
-                    <source media="(min-width: 465px)" srcset="<?= $slide->getImageUrl('banner_image_mobile'); ?>">
-                    <img loading="lazy" src="<?= $slide->getImageUrl('banner_image_mobile'); ?>" alt="<?= $slide->getBannerName(); ?>" >
+                <picture  class="<?= $escaper->escapeHtmlAttr($block->getImageClass()); ?>">
+                    <source media="(min-width: 650px)" srcset="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image')); ?>">
+                    <source media="(min-width: 465px)" srcset="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image_mobile')); ?>">
+                    <img loading="lazy" src="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image_mobile')); ?>" alt="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>" >
                 </picture>
 
                 <?php if($slide->getShowBannerOverlay()) : ?>
                     <div class="overlay">
                         <div class="inner">
-                            <?= $block->processContent($slide->getBannerOverlayContent()); ?>
+                            <?= /* @noEscape */ $block->processContent($slide->getBannerOverlayContent()); ?>
                         </div>
                     </div>
                 <?php endif; ?>

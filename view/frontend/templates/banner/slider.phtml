@@ -1,20 +1,21 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
 /**
- * @var $block \BoxLeafDigital\BannerSlider\Block\Widget\BannerSlider
+ * @var $block \CoullWorks\BannerSlider\Block\Widget\BannerSlider
+ * @var \Magento\Framework\Escaper $escaper
  */
 $slider = $block->getSlider();
 
 ?>
 <?php if($slider): ?>
     <?php if($slider->getEnabled()) : ?>
-        <div class="slider <?= $block->getClass(); ?>">
+        <div class="slider <?= $escaper->escapeHtmlAttr($block->getClass()); ?>">
 
             <?php $slides = $block->getSliderSlides($slider); ?>
             <?php if($slides != false) : ?>
@@ -22,25 +23,25 @@ $slider = $block->getSlider();
                 <?php foreach ($slides as $slide) : ?>
                 <?php
                 /**
-                 * @var $slide \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+                 * @var $slide \CoullWorks\BannerSlider\Api\Data\BannersInterface
                  */
                 $slide = $block->getSlide($slide) ; ?>
 
 
                 <div class="slide">
                     <?php if($slide->getBannerLink()) :?>
-                    <a href="<?= $slide->getBannerLink();?>" title="<?= $slide->getBannerName(); ?>">
+                    <a href="<?= $escaper->escapeUrl($slide->getBannerLink());?>" title="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>">
                         <?php endif; ?>
-                        <picture class="<?= $block->getImageClass(); ?>">
-                            <source media="(min-width: 650px)" srcset="<?= $slide->getImageUrl('banner_image'); ?>">
-                            <source media="(min-width: 465px)" srcset="<?= $slide->getImageUrl('banner_image_mobile'); ?>">
-                            <img loading="lazy" src="<?= $slide->getImageUrl('banner_image_mobile'); ?>" alt="<?= $slide->getBannerName(); ?>" style="width:auto;">
+                        <picture class="<?= $escaper->escapeHtmlAttr($block->getImageClass()); ?>">
+                            <source media="(min-width: 650px)" srcset="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image')); ?>">
+                            <source media="(min-width: 465px)" srcset="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image_mobile')); ?>">
+                            <img loading="lazy" src="<?= $escaper->escapeUrl($slide->getImageUrl('banner_image_mobile')); ?>" alt="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>" style="width:auto;">
                         </picture>
 
                         <?php if($slide->getShowBannerOverlay()) : ?>
                             <div class="overlay">
                                 <div class="inner">
-                                    <?= $block->processContent($slide->getBannerOverlayContent()); ?>
+                                    <?= /* @noEscape */ $block->processContent($slide->getBannerOverlayContent()); ?>
                                 </div>
                             </div>
                         <?php endif; ?>
@@ -53,7 +54,7 @@ $slider = $block->getSlider();
                 <script type="text/x-magento-init">
                 {
                    ".slider": {
-                      "slider": <?= $block->getSliderConfig(); ?>
+                      "slider": <?= /* @noEscape */ $block->getSliderConfig(); ?>
                    }
                 }
                 </script>
@@ -65,18 +66,18 @@ $slider = $block->getSlider();
 
                     <?php
                     /**
-                     * @var $slide \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+                     * @var $slide \CoullWorks\BannerSlider\Api\Data\BannersInterface
                      */
                     $slide = $block->getSlide($slide) ; ?>
                     <div class="tab">
-                        <h4><?= $slide->getBannerName();?></h4>
+                        <h4><?= $escaper->escapeHtml($slide->getBannerName());?></h4>
                     </div>
                 <?php endforeach; ?>
             </div>
             <script type="text/x-magento-init">
                 {
                    ".tabs": {
-                       "slider": <?= $block->getTabsConfig(); ?>
+                       "slider": <?= /* @noEscape */ $block->getTabsConfig(); ?>
                    }
                 }
                 </script>

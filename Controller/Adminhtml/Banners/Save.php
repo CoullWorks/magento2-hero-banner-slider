@@ -1,52 +1,43 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Controller\Adminhtml\Banners;
+declare(strict_types=1);
 
-use BoxLeafDigital\BannerSlider\Model\Banners;
+namespace CoullWorks\BannerSlider\Controller\Adminhtml\Banners;
+
+use CoullWorks\BannerSlider\Model\BannersFactory;
 use Magento\Backend\App\Action\Context;
+use Magento\Catalog\Model\ImageUploader;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * Class Save
- * @package BoxLeafDigital\BannerSlider\Controller\Adminhtml\Banners
+ * @package CoullWorks\BannerSlider\Controller\Adminhtml\Banners
  */
 class Save extends \Magento\Backend\App\Action
 {
 
     /**
-     * @var DataPersistorInterface
-     */
-    protected $dataPersistor;
-
-    /**
-     * @var \BoxLeafDigital\BannerSlider\Model\ImageUpload
-     */
-    private $imageUpload;
-    /**
-     * @var StoreManagerInterface
-     */
-    private $storeManager;
-
-    /**
      * @param Context $context
      * @param DataPersistorInterface $dataPersistor
      * @param StoreManagerInterface $storeManager
+     * @param BannersFactory $bannersFactory
+     * @param ImageUploader $imageUpload
      */
     public function __construct(
         Context $context,
-        DataPersistorInterface $dataPersistor,
-        StoreManagerInterface $storeManager
+        private readonly DataPersistorInterface $dataPersistor,
+        private readonly StoreManagerInterface $storeManager,
+        private readonly BannersFactory $bannersFactory,
+        private readonly ImageUploader $imageUpload
     ) {
-        $this->dataPersistor = $dataPersistor;
-        $this->storeManager = $storeManager;
         parent::__construct($context);
     }
 
@@ -56,7 +47,7 @@ class Save extends \Magento\Backend\App\Action
      * @return \Magento\Framework\Controller\ResultInterface
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function execute()
+    public function execute(): \Magento\Framework\Controller\ResultInterface
     {
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
@@ -65,36 +56,31 @@ class Save extends \Magento\Backend\App\Action
         if ($data) {
             $id = $this->getRequest()->getParam('banners_id');
 
-            $model = $this->_objectManager->create(Banners::class)->load($id);
+            $model = $this->bannersFactory->create()->load($id);
             if (!$model->getBannersId() && $id) {
                 $this->messageManager->addErrorMessage(__('This Banners no longer exists.'));
                 return $resultRedirect->setPath('*/*/');
             }
 
-            $this->imageUpload = \Magento\Framework\App\ObjectManager::getInstance()->get(\BoxLeafDigital\BannerSlider\Model\ImageUpload::class);
             $mediaUrl = $this->storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
 
-            if (isset($data['banner_image'][0]['name']) && isset($data['banner_image'][0]['tmp_name'])) {
-                $data['banner_image'] = 'banner/image/' . $this->imageUpload->moveFileFromTmp($data['banner_image'][0]['name']);
-            } elseif (isset($data['banner_image'][0]['name']) && !isset($data['banner_image'][0]['tmp_name'])) {
-                $data['banner_image'] = ltrim(str_replace([$mediaUrl,'/media/'], '', $data['banner_image'][0]['url']), '/');
-            } else {
-                $data['banner_image'] = ltrim($model->getBannerImage(), '/');
-            }
+            $data['banner_image'] = $this->resolveImagePath(
+                $data['banner_image'] ?? null,
+                (string)$model->getBannerImage(),
+                $mediaUrl
+            );
 
-            if (isset($data['banner_image_mobile'][0]['name']) && isset($data['banner_image_mobile'][0]['tmp_name'])) {
-                $data['banner_image_mobile'] = 'banner/image/' . $this->imageUpload->moveFileFromTmp($data['banner_image_mobile'][0]['name']);
-            } elseif (isset($data['banner_image_mobile'][0]['name']) && !isset($data['banner_image_mobile'][0]['tmp_name'])) {
-                $data['banner_image_mobile'] = ltrim(str_replace([$mediaUrl,'/media/'], '', $data['banner_image_mobile'][0]['url']));
-            } else {
-                $data['banner_image_mobile'] =  ltrim($model->getBannerImageMobile(), '/');
-            }
+            $data['banner_image_mobile'] = $this->resolveImagePath(
+                $data['banner_image_mobile'] ?? null,
+                (string)$model->getBannerImageMobile(),
+                $mediaUrl
+            );
 
             $model->setData($data);
             try {
                 $model->save();
                 $this->messageManager->addSuccessMessage(__('You saved the Banners.'));
-                $this->dataPersistor->clear('boxleaf_bannerslider_banners');
+                $this->dataPersistor->clear('coullworks_banner_slider_banners');
 
                 if ($this->getRequest()->getParam('back')) {
                     return $resultRedirect->setPath('*/*/edit', ['banners_id' => $model->getId()]);
@@ -109,5 +95,38 @@ class Save extends \Magento\Backend\App\Action
             return $resultRedirect->setPath('*/*/edit', ['banners_id' => $this->getRequest()->getParam('banners_id')]);
         }
         return $resultRedirect->setPath('*/*/');
+    }
+
+    /**
+     * Resolve the UI-component image uploader payload to a stored relative media path.
+     *
+     * Handles all three cases consistently for both desktop and mobile images:
+     *  (a) a newly uploaded temp file  -> move it out of tmp and store banner/image/<name>
+     *  (b) an existing image kept      -> strip the media URL prefix to a clean relative path
+     *  (c) no image                    -> fall back to the currently persisted value
+     *
+     * The relative path is always returned with no leading slash so that
+     * \CoullWorks\BannerSlider\Model\Data\Banners::getImageUrl() prepends the media base URL.
+     *
+     * @param array|string|null $field The raw uploader field value from the POST payload.
+     * @param string $existingImage The value currently stored on the model.
+     * @param string $mediaUrl The store media base URL.
+     * @return string
+     */
+    private function resolveImagePath(array|string|null $field, string $existingImage, string $mediaUrl): string
+    {
+        // (a) newly uploaded temp file
+        if (isset($field[0]['name'], $field[0]['tmp_name'])) {
+            return 'banner/image/' . $this->imageUpload->moveFileFromTmp($field[0]['name']);
+        }
+
+        // (b) existing image kept unchanged
+        if (isset($field[0]['name']) && !isset($field[0]['tmp_name'])) {
+            $url = $field[0]['url'] ?? '';
+            return ltrim(str_replace([$mediaUrl, '/media/'], '', $url), '/');
+        }
+
+        // (c) no image in the payload
+        return ltrim($existingImage, '/');
     }
 }

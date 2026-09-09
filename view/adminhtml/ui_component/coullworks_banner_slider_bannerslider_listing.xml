@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
-  ~   @author     Daniel Coull <hello@boxleafdigital.com>
-  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @author     danrcoull <ttechitsolutions@gmail.com>
+  ~   @copyright  27/01/2020, 19:29 danrcoull
   ~   @version   1.0.0
   ~
   -->
@@ -9,13 +9,13 @@
 <listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
 	<argument name="data" xsi:type="array">
 		<item name="js_config" xsi:type="array">
-			<item name="provider" xsi:type="string">boxleafdigital_bannerslider_bannerslider_listing.boxleafdigital_bannerslider_bannerslider_listing_data_source</item>
+			<item name="provider" xsi:type="string">coullworks_banner_slider_bannerslider_listing.coullworks_banner_slider_bannerslider_listing_data_source</item>
 		</item>
 	</argument>
 	<settings>
-		<spinner>boxleafdigital_bannerslider_bannerslider_columns</spinner>
+		<spinner>coullworks_banner_slider_bannerslider_columns</spinner>
 		<deps>
-			<dep>boxleafdigital_bannerslider_bannerslider_listing.boxleafdigital_bannerslider_bannerslider_listing_data_source</dep>
+			<dep>coullworks_banner_slider_bannerslider_listing.coullworks_banner_slider_bannerslider_listing_data_source</dep>
 		</deps>
 		<buttons>
 			<button name="add">
@@ -25,12 +25,12 @@
 			</button>
 		</buttons>
 	</settings>
-	<dataSource component="Magento_Ui/js/grid/provider" name="boxleafdigital_bannerslider_bannerslider_listing_data_source">
+	<dataSource component="Magento_Ui/js/grid/provider" name="coullworks_banner_slider_bannerslider_listing_data_source">
 		<settings>
 			<updateUrl path="mui/index/render"/>
 		</settings>
-		<aclResource>BoxLeafDigital_BannerSlider::BannerSlider</aclResource>
-		<dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="boxleafdigital_bannerslider_bannerslider_listing_data_source">
+		<aclResource>CoullWorks_BannerSlider::BannerSlider</aclResource>
+		<dataProvider class="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider" name="coullworks_banner_slider_bannerslider_listing_data_source">
 			<settings>
 				<requestFieldName>id</requestFieldName>
 				<primaryFieldName>bannerslider_id</primaryFieldName>
@@ -46,20 +46,20 @@
 		<filters name="listing_filters"/>
 		<paging name="listing_paging"/>
 	</listingToolbar>
-	<columns name="boxleafdigital_bannerslider_bannerslider_columns">
+	<columns name="coullworks_banner_slider_bannerslider_columns">
 		<settings>
 			<editorConfig>
-				<param name="selectProvider" xsi:type="string">boxleafdigital_bannerslider_bannerslider_listing.boxleafdigital_bannerslider_bannerslider_listing.boxleaf_bannerslider_bannerslider_columns.ids</param>
+				<param name="selectProvider" xsi:type="string">coullworks_banner_slider_bannerslider_listing.coullworks_banner_slider_bannerslider_listing.coullworks_banner_slider_bannerslider_columns.ids</param>
 				<param name="enabled" xsi:type="boolean">true</param>
 				<param name="indexField" xsi:type="string">bannerslider_id</param>
 				<param name="clientConfig" xsi:type="array">
-					<item name="saveUrl" path="boxleafdigital_bannerslider/BannerSlider/inlineEdit" xsi:type="url"/>
+					<item name="saveUrl" path="coullworks_banner_slider/BannerSlider/inlineEdit" xsi:type="url"/>
 					<item name="validateBeforeSave" xsi:type="boolean">false</item>
 				</param>
 			</editorConfig>
 			<childDefaults>
 				<param name="fieldAction" xsi:type="array">
-					<item name="provider" xsi:type="string">boxleafdigital_bannerslider_bannerslider_listing.boxleafdigital_bannerslider_bannerslider_listing.boxleaf_bannerslider_bannerslider_columns_editor</item>
+					<item name="provider" xsi:type="string">coullworks_banner_slider_bannerslider_listing.coullworks_banner_slider_bannerslider_listing.coullworks_banner_slider_bannerslider_columns_editor</item>
 					<item name="target" xsi:type="string">startEdit</item>
 					<item name="params" xsi:type="array">
 						<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
@@ -117,7 +117,7 @@
 				</editor>
 			</settings>
 		</column>
-		<actionsColumn class="BoxLeafDigital\BannerSlider\Ui\Component\Listing\Column\BannerSliderActions" name="actions">
+		<actionsColumn class="CoullWorks\BannerSlider\Ui\Component\Listing\Column\BannerSliderActions" name="actions">
 			<settings>
 				<indexField>bannerslider_id</indexField>
 				<resizeEnabled>false</resizeEnabled>

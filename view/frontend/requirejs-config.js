@@ -1,22 +1,19 @@
-/*
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  29/01/2020, 18:20 Daniel Coull
- *   @version   1.0.0
+/**
+ * CoullWorks Banner Slider for Magento 2.
  *
+ * @author    danrcoull <ttechitsolutions@gmail.com>
+ * @copyright Copyright (c) 2020-2026 CoullWorks
+ * @license   Proprietary — see LICENSE.txt
+ * @link      https://github.com/CoullWorks/magento2-hero-banner-slider
  */
-
 var config = {
     paths: {
-        parallax: 'BoxLeafDigital_BannerSlider/js/parallax',
-        slider: 'BoxLeafDigital_BannerSlider/js/slider',
-        slick : '//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.9.0/slick.min'
+        parallax: 'CoullWorks_BannerSlider/js/parallax',
+        slider: 'CoullWorks_BannerSlider/js/slider',
+        slick: 'CoullWorks_BannerSlider/js/vendor/slick.min'
     },
     shim: {
-        parallax: {
-            deps: ['jquery']
-        },
-        slick: {
-            deps: ['jquery']
-        }
+        parallax: { deps: ['jquery'] },
+        slick: { deps: ['jquery'] }
     }
 };

@@ -1,25 +1,27 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\BannerSlider;
+declare(strict_types=1);
 
-use BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider\CollectionFactory;
+namespace CoullWorks\BannerSlider\Model\BannerSlider;
+
+use CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider\CollectionFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
 
 /**
  * Class DataProvider
- * @package BoxLeafDigital\BannerSlider\Model\BannerSlider
+ * @package CoullWorks\BannerSlider\Model\BannerSlider
  */
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
 
     /**
-     * @var \BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider\Collection
+     * @var \CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider\Collection
      */
     protected $collection;
 
@@ -60,7 +62,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      *
      * @return array
      */
-    public function getData()
+    public function getData(): array
     {
         if (isset($this->loadedData)) {
             return $this->loadedData;
@@ -68,16 +70,30 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
         $items = $this->collection->getItems();
         foreach ($items as $model) {
             $this->loadedData[$model->getId()] = $model->getData();
-            $this->loadedData[$model->getId()]['slides'] = json_decode($model->getSlides(), true);
+            $this->loadedData[$model->getId()]['slides'] = $this->decodeSlides($model->getSlides());
         }
 
         if (!empty($data)) {
             $model = $this->collection->getNewEmptyItem();
             $model->setData($data);
             $this->loadedData[$model->getId()] = $model->getData();
-            $this->loadedData[$model->getId()]['slides'] = json_decode($model->getSlides(), true);
+            $this->loadedData[$model->getId()]['slides'] = $this->decodeSlides($model->getSlides());
         }
 
-        return $this->loadedData;
+        return $this->loadedData ?? [];
+    }
+
+    /**
+     * Null-safe decode of the stored slides JSON.
+     *
+     * @param mixed $slides
+     * @return array
+     */
+    private function decodeSlides($slides): array
+    {
+        if (!is_string($slides) || $slides === '') {
+            return [];
+        }
+        return json_decode($slides, true) ?? [];
     }
 }

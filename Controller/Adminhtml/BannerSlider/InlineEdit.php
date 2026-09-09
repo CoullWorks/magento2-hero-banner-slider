@@ -1,16 +1,20 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlider;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider;
+
+use CoullWorks\BannerSlider\Model\BannerSliderFactory;
 
 /**
  * Class InlineEdit
- * @package BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlider
+ * @package CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider
  */
 class InlineEdit extends \Magento\Backend\App\Action
 {
@@ -21,15 +25,23 @@ class InlineEdit extends \Magento\Backend\App\Action
     protected $jsonFactory;
 
     /**
+     * @var BannerSliderFactory
+     */
+    private $bannerSliderFactory;
+
+    /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+     * @param BannerSliderFactory $bannerSliderFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory
+        \Magento\Framework\Controller\Result\JsonFactory $jsonFactory,
+        BannerSliderFactory $bannerSliderFactory
     ) {
         parent::__construct($context);
         $this->jsonFactory = $jsonFactory;
+        $this->bannerSliderFactory = $bannerSliderFactory;
     }
 
     /**
@@ -37,7 +49,7 @@ class InlineEdit extends \Magento\Backend\App\Action
      *
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function execute()
+    public function execute(): \Magento\Framework\Controller\ResultInterface
     {
         /** @var \Magento\Framework\Controller\Result\Json $resultJson */
         $resultJson = $this->jsonFactory->create();
@@ -51,8 +63,8 @@ class InlineEdit extends \Magento\Backend\App\Action
                 $error = true;
             } else {
                 foreach (array_keys($postItems) as $modelid) {
-                    /** @var \BoxLeafDigital\BannerSlider\Model\BannerSlider $model */
-                    $model = $this->_objectManager->create(\BoxLeafDigital\BannerSlider\Model\BannerSlider::class)->load($modelid);
+                    /** @var \CoullWorks\BannerSlider\Model\BannerSlider $model */
+                    $model = $this->bannerSliderFactory->create()->load($modelid);
                     try {
                         $model->setData(array_merge($model->getData(), $postItems[$modelid]));
                         $model->save();

@@ -1,26 +1,51 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlider;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider;
+
+use CoullWorks\BannerSlider\Model\BannerSliderFactory;
+use Magento\Backend\App\Action\Context;
+use Magento\Framework\App\Request\DataPersistorInterface;
 
 /**
  * Class Delete
- * @package BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlider
+ * @package CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider
  */
-class Delete extends \BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlider
+class Delete extends \CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider
 {
+
+    /**
+     * @var BannerSliderFactory
+     */
+    private $bannerSliderFactory;
+
+    /**
+     * @param Context $context
+     * @param DataPersistorInterface $coreRegistry
+     * @param BannerSliderFactory $bannerSliderFactory
+     */
+    public function __construct(
+        Context $context,
+        DataPersistorInterface $coreRegistry,
+        BannerSliderFactory $bannerSliderFactory
+    ) {
+        $this->bannerSliderFactory = $bannerSliderFactory;
+        parent::__construct($context, $coreRegistry);
+    }
 
     /**
      * Delete action
      *
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function execute()
+    public function execute(): \Magento\Framework\Controller\ResultInterface
     {
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
@@ -29,7 +54,7 @@ class Delete extends \BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSli
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create(\BoxLeafDigital\BannerSlider\Model\BannerSlider::class);
+                $model = $this->bannerSliderFactory->create();
                 $model->load($id);
                 $model->delete();
                 // display success message

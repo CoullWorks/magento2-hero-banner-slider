@@ -1,18 +1,20 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\Data;
+declare(strict_types=1);
 
-use BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface;
+namespace CoullWorks\BannerSlider\Model\Data;
+
+use CoullWorks\BannerSlider\Api\Data\BannerSliderInterface;
 
 /**
  * Class BannerSlider
- * @package BoxLeafDigital\BannerSlider\Model\Data
+ * @package CoullWorks\BannerSlider\Model\Data
  */
 class BannerSlider extends \Magento\Framework\Api\AbstractExtensibleObject implements BannerSliderInterface
 {
@@ -29,7 +31,7 @@ class BannerSlider extends \Magento\Framework\Api\AbstractExtensibleObject imple
     /**
      * Set bannerslider_id
      * @param string $bannersliderId
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface
      */
     public function setBannersliderId($bannersliderId)
     {
@@ -48,7 +50,7 @@ class BannerSlider extends \Magento\Framework\Api\AbstractExtensibleObject imple
     /**
      * Set enabled
      * @param string $bannerEnabled
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface
      */
     public function setEnabled($bannerSliderEnabled)
     {
@@ -67,7 +69,7 @@ class BannerSlider extends \Magento\Framework\Api\AbstractExtensibleObject imple
     /**
      * Set slider_name
      * @param string $sliderName
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface
      */
     public function setSliderName($sliderName)
     {
@@ -76,7 +78,7 @@ class BannerSlider extends \Magento\Framework\Api\AbstractExtensibleObject imple
 
     /**
      * Retrieve existing extension attributes object or create a new one.
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderExtensionInterface|null
+     * @return \CoullWorks\BannerSlider\Api\Data\BannerSliderExtensionInterface|null
      */
     public function getExtensionAttributes()
     {
@@ -85,11 +87,11 @@ class BannerSlider extends \Magento\Framework\Api\AbstractExtensibleObject imple
 
     /**
      * Set an extension attributes object.
-     * @param \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderExtensionInterface $extensionAttributes
+     * @param \CoullWorks\BannerSlider\Api\Data\BannerSliderExtensionInterface $extensionAttributes
      * @return $this
      */
     public function setExtensionAttributes(
-        \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderExtensionInterface $extensionAttributes
+        \CoullWorks\BannerSlider\Api\Data\BannerSliderExtensionInterface $extensionAttributes
     ) {
         return $this->_setExtensionAttributes($extensionAttributes);
     }
@@ -106,7 +108,7 @@ class BannerSlider extends \Magento\Framework\Api\AbstractExtensibleObject imple
     /**
      * Set slides
      * @param string $slides
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface
      */
     public function setSlides($slides)
     {

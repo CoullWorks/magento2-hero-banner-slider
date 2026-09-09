@@ -1,23 +1,25 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\Command\Banners;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Model\Command\Banners;
 
 use Magento\Framework\Exception\CouldNotSaveException;
-use BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners as ResourceBanners;
-use BoxLeafDigital\BannerSlider\Model\BannersFactory ;
+use CoullWorks\BannerSlider\Model\ResourceModel\Banners as ResourceBanners;
+use CoullWorks\BannerSlider\Model\BannersFactory ;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 /**
  * Class Get
- * @package BoxLeafDigital\BannerSlider\Model\Command\Banners
+ * @package CoullWorks\BannerSlider\Model\Command\Banners
  */
-class Get implements \BoxLeafDigital\BannerSlider\Api\Command\Banners\GetInterface {
+class Get implements \CoullWorks\BannerSlider\Api\Command\Banners\GetInterface {
 
     /**
      * @var ResourceBanners
@@ -44,7 +46,7 @@ class Get implements \BoxLeafDigital\BannerSlider\Api\Command\Banners\GetInterfa
 
     /**
      * @param $bannersId
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      * @throws NoSuchEntityException
      */
     public function execute($bannersId) {

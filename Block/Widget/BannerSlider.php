@@ -1,15 +1,17 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  */
 
-namespace BoxLeafDigital\BannerSlider\Block\Widget;
+declare(strict_types=1);
 
-use BoxLeafDigital\BannerSlider\Api\BannerSliderRepositoryInterface;
-use BoxLeafDigital\BannerSlider\Api\BannersRepositoryInterface;
-use BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface;
+namespace CoullWorks\BannerSlider\Block\Widget;
+
+use CoullWorks\BannerSlider\Api\BannerSliderRepositoryInterface;
+use CoullWorks\BannerSlider\Api\BannersRepositoryInterface;
+use CoullWorks\BannerSlider\Api\Data\BannerSliderInterface;
 use Magento\Cms\Model\Template\FilterProvider;
 use Magento\Framework\Api\SearchCriteriaBuilderFactory;
 use Magento\Framework\DataObject\IdentityInterface;
@@ -18,7 +20,7 @@ use Magento\Framework\View\Element\Template;
 
 /**
  * Class BannerSlider
- * @package BoxLeafDigital\BannerSlider\Block\Widget
+ * @package CoullWorks\BannerSlider\Block\Widget
  */
 class BannerSlider extends Template implements IdentityInterface
 {

@@ -1,37 +1,36 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlider;
+declare(strict_types=1);
 
+namespace CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider;
+
+use CoullWorks\BannerSlider\Model\BannerSliderFactory;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\Exception\LocalizedException;
 
 /**
  * Class Save
- * @package BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlider
+ * @package CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider
  */
 class Save extends \Magento\Backend\App\Action
 {
 
     /**
-     * @var DataPersistorInterface
-     */
-    protected $dataPersistor;
-
-    /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param DataPersistorInterface $dataPersistor
+     * @param BannerSliderFactory $bannerSliderFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        DataPersistorInterface $dataPersistor
+        private readonly DataPersistorInterface $dataPersistor,
+        private readonly BannerSliderFactory $bannerSliderFactory
     ) {
-        $this->dataPersistor = $dataPersistor;
         parent::__construct($context);
     }
 
@@ -40,7 +39,7 @@ class Save extends \Magento\Backend\App\Action
      *
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function execute()
+    public function execute(): \Magento\Framework\Controller\ResultInterface
     {
         /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
@@ -48,8 +47,8 @@ class Save extends \Magento\Backend\App\Action
 
         if ($data) {
             $id = $this->getRequest()->getParam('bannerslider_id');
-            $data['slides'] = json_encode($data['slides']);
-            $model = $this->_objectManager->create(\BoxLeafDigital\BannerSlider\Model\BannerSlider::class)->load($id);
+            $data['slides'] = json_encode($data['slides'] ?? []);
+            $model = $this->bannerSliderFactory->create()->load($id);
             if (!$model->getId() && $id) {
                 $this->messageManager->addErrorMessage(__('This Bannerslider no longer exists.'));
                 return $resultRedirect->setPath('*/*/');

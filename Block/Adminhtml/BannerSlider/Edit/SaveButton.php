@@ -1,18 +1,20 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Block\Adminhtml\BannerSlider\Edit;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Block\Adminhtml\BannerSlider\Edit;
 
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 /**
  * Class SaveButton
- * @package BoxLeafDigital\BannerSlider\Block\Adminhtml\BannerSlider\Edit
+ * @package CoullWorks\BannerSlider\Block\Adminhtml\BannerSlider\Edit
  */
 class SaveButton extends GenericButton implements ButtonProviderInterface
 {

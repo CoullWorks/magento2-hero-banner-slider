@@ -1,14 +1,16 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\Banners;
+declare(strict_types=1);
 
-use BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners\CollectionFactory;
+namespace CoullWorks\BannerSlider\Model\Banners;
+
+use CoullWorks\BannerSlider\Model\ResourceModel\Banners\CollectionFactory;
 use Magento\Catalog\Model\Category\Attribute\Backend\Image as ImageBackendModel;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\App\Request\DataPersistorInterface;
@@ -17,13 +19,13 @@ use Magento\Framework\Filesystem;
 
 /**
  * Class DataProvider
- * @package BoxLeafDigital\BannerSlider\Model\Banners
+ * @package CoullWorks\BannerSlider\Model\Banners
  */
 class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
 {
 
     /**
-     * @var \BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners\Collection
+     * @var \CoullWorks\BannerSlider\Model\ResourceModel\Banners\Collection
      */
     protected $collection;
 
@@ -94,7 +96,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
      *
      * @return array
      */
-    public function getData()
+    public function getData(): array
     {
         if (isset($this->loadedData)) {
             return $this->loadedData;
@@ -105,7 +107,7 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             $this->loadedData[$model->getId()] = $this->convertValues($model, $this->loadedData[$model->getId()]);
 
         }
-        $data = $this->dataPersistor->get('boxleafdigital_bannerslider_banners');
+        $data = $this->dataPersistor->get('coullworks_banner_slider_banners');
 
         if (!empty($data)) {
             $model = $this->collection->getNewEmptyItem();
@@ -113,19 +115,19 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
             $this->loadedData[$model->getId()] = $model->getData();
             $this->loadedData[$model->getId()] = $this->convertValues($model, $this->loadedData[$model->getId()]);
 
-            $this->dataPersistor->clear('boxleafdigital_bannerslider_banners');
+            $this->dataPersistor->clear('coullworks_banner_slider_banners');
         }
 
 
-        return $this->loadedData;
+        return $this->loadedData ?? [];
     }
 
     /**
-     * @param $model
-     * @param $data
-     * @return mixed
+     * @param \CoullWorks\BannerSlider\Model\Banners $model
+     * @param array $data
+     * @return array
      */
-    private function convertValues($model, $data)
+    private function convertValues($model, array $data): array
     {
         $imageAttributes = [
             'banner_image_mobile',
@@ -163,11 +165,11 @@ class DataProvider extends \Magento\Ui\DataProvider\AbstractDataProvider
     }
 
     /**
-     * @param $name
+     * @param string $name
      * @return string
      * @throws \Magento\Framework\Exception\NoSuchEntityException
      */
-    public function getImageUrl($name)
+    public function getImageUrl(string $name): string
     {
         $mediaUrl = $this->_storeManager->getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
         return 'media/banner/image/'.$name;

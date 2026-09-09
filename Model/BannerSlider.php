@@ -1,27 +1,29 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model;
+declare(strict_types=1);
 
-use BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface;
+namespace CoullWorks\BannerSlider\Model;
+
+use CoullWorks\BannerSlider\Api\Data\BannerSliderInterface;
 use Magento\Framework\Api\DataObjectHelper;
-use BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterfaceFactory;
+use CoullWorks\BannerSlider\Api\Data\BannerSliderInterfaceFactory;
 
 /**
  * Class BannerSlider
- * @package BoxLeafDigital\BannerSlider\Model
+ * @package CoullWorks\BannerSlider\Model
  */
 class BannerSlider extends \Magento\Framework\Model\AbstractModel
 {
 
     protected $dataObjectHelper;
 
-    protected $_eventPrefix = 'boxleafdigital_bannerslider_bannerslider';
+    protected $_eventPrefix = 'coullworks_banner_slider_bannerslider';
     protected $bannersliderDataFactory;
 
 
@@ -30,8 +32,8 @@ class BannerSlider extends \Magento\Framework\Model\AbstractModel
      * @param \Magento\Framework\Registry $registry
      * @param BannerSliderInterfaceFactory $bannersliderDataFactory
      * @param DataObjectHelper $dataObjectHelper
-     * @param \BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider $resource
-     * @param \BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider\Collection $resourceCollection
+     * @param \CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider $resource
+     * @param \CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider\Collection $resourceCollection
      * @param array $data
      */
     public function __construct(
@@ -39,8 +41,8 @@ class BannerSlider extends \Magento\Framework\Model\AbstractModel
         \Magento\Framework\Registry $registry,
         BannerSliderInterfaceFactory $bannersliderDataFactory,
         DataObjectHelper $dataObjectHelper,
-        \BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider $resource,
-        \BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider\Collection $resourceCollection,
+        \CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider $resource,
+        \CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider\Collection $resourceCollection,
         array $data = []
     ) {
         $this->bannersliderDataFactory = $bannersliderDataFactory;

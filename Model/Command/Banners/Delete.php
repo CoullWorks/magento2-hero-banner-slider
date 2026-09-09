@@ -1,25 +1,27 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\Command\Banners;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Model\Command\Banners;
 
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\CouldNotSaveException;
-use BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners as ResourceBanners;
-use BoxLeafDigital\BannerSlider\Model\BannersFactory ;
+use CoullWorks\BannerSlider\Model\ResourceModel\Banners as ResourceBanners;
+use CoullWorks\BannerSlider\Model\BannersFactory ;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 
 /**
  * Class Delete
- * @package BoxLeafDigital\BannerSlider\Model\Command\Banners
+ * @package CoullWorks\BannerSlider\Model\Command\Banners
  */
-class Delete implements \BoxLeafDigital\BannerSlider\Api\Command\Banners\DeleteInterface {
+class Delete implements \CoullWorks\BannerSlider\Api\Command\Banners\DeleteInterface {
 
     /**
      * @var BannersFactory
@@ -45,12 +47,12 @@ class Delete implements \BoxLeafDigital\BannerSlider\Api\Command\Banners\DeleteI
     }
 
     /**
-     * @param \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface $banners
-     * @return bool|\BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @param \CoullWorks\BannerSlider\Api\Data\BannersInterface $banners
+     * @return bool|\CoullWorks\BannerSlider\Api\Data\BannersInterface
      * @throws CouldNotDeleteException
      */
     public function execute(
-        \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface $banners
+        \CoullWorks\BannerSlider\Api\Data\BannersInterface $banners
     ) {
 
         try {

@@ -1,25 +1,27 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\Command\BannerSlider;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Model\Command\BannerSlider;
 
 use Magento\Framework\Api\ExtensionAttribute\JoinProcessorInterface;
 use Magento\Framework\Api\SearchCriteria\CollectionProcessorInterface;
-use BoxLeafDigital\BannerSlider\Model\BannerSliderFactory ;
-use BoxLeafDigital\BannerSlider\Api\Data\BannerSliderSearchResultsInterfaceFactory;
+use CoullWorks\BannerSlider\Model\BannerSliderFactory ;
+use CoullWorks\BannerSlider\Api\Data\BannerSliderSearchResultsInterfaceFactory;
 
-use BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider\CollectionFactory as BannerSliderCollectionFactory;
+use CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider\CollectionFactory as BannerSliderCollectionFactory;
 
 /**
  * Class GetList
- * @package BoxLeafDigital\BannerSlider\Model\Command\BannerSlider
+ * @package CoullWorks\BannerSlider\Model\Command\BannerSlider
  */
-class GetList implements \BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\GetListInterface {
+class GetList implements \CoullWorks\BannerSlider\Api\Command\BannerSlider\GetListInterface {
 
 
     /**
@@ -64,7 +66,7 @@ class GetList implements \BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\G
 
     /**
      * @param \Magento\Framework\Api\SearchCriteriaInterface $criteria
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface|\BoxLeafDigital\BannerSlider\Api\Data\BannerSliderSearchResultsInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface|\CoullWorks\BannerSlider\Api\Data\BannerSliderSearchResultsInterface
      */
     public function execute(\Magento\Framework\Api\SearchCriteriaInterface $criteria) {
 
@@ -72,7 +74,7 @@ class GetList implements \BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\G
 
         $this->_extensionAttributesJoinProcessor->process(
             $collection,
-            \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface::class
+            \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface::class
         );
 
         $this->_collectionProcessor->process($criteria, $collection);

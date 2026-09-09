@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
-  ~   @author     Daniel Coull <hello@boxleafdigital.com>
-  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @author     danrcoull <ttechitsolutions@gmail.com>
+  ~   @copyright  27/01/2020, 19:29 danrcoull
   ~   @version   1.0.0
   ~
   -->
@@ -10,7 +10,7 @@
 	<update handle="styles"/>
 	<body>
 		<referenceContainer name="content">
-			<uiComponent name="boxleafdigital_bannerslider_banners_listing"/>
+			<uiComponent name="coullworks_banner_slider_banners_listing"/>
 		</referenceContainer>
 	</body>
 </page>

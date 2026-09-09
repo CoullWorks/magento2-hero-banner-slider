@@ -1,12 +1,14 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Controller\Adminhtml;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Controller\Adminhtml;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
@@ -14,12 +16,12 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 
 /**
  * Class BannerSlider
- * @package BoxLeafDigital\BannerSlider\Controller\Adminhtml
+ * @package CoullWorks\BannerSlider\Controller\Adminhtml
  */
 abstract class BannerSlider extends \Magento\Backend\App\Action
 {
 
-    const ADMIN_RESOURCE = 'BoxLeafDigital_BannerSlider::top_level';
+    const ADMIN_RESOURCE = 'CoullWorks_BannerSlider::top_level';
     /**
      * @var DataPersistorInterface|Registry
      */
@@ -46,7 +48,7 @@ abstract class BannerSlider extends \Magento\Backend\App\Action
     public function initPage($resultPage)
     {
         $resultPage->setActiveMenu(self::ADMIN_RESOURCE)
-            ->addBreadcrumb(__('BoxLeafDigital'), __('BoxLeafDigital'))
+            ->addBreadcrumb(__('CoullWorks'), __('CoullWorks'))
             ->addBreadcrumb(__('Bannerslider'), __('Bannerslider'));
         return $resultPage;
     }

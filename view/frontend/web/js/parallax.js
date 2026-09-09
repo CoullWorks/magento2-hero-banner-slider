@@ -1,51 +1,51 @@
-/*
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  29/01/2020, 18:15 Daniel Coull
- *   @version   1.0.0
+/**
+ * CoullWorks Banner Slider for Magento 2.
  *
+ * @author    danrcoull <ttechitsolutions@gmail.com>
+ * @copyright Copyright (c) 2020-2026 CoullWorks
+ * @license   Proprietary — see LICENSE.txt
+ * @link      https://github.com/CoullWorks/magento2-hero-banner-slider
  */
+define(['uiComponent', 'jquery'], function (Component, $) {
+    'use strict';
 
-define(['uiComponent', 'jquery'],
-    function (Component, $) {
-        'use strict';
-        return Component.extend({
-            initialize: function (config, node) {
-                let self = this;
-                var img = $(node);
-                var imgParent = $(node).parent();
-                $(document).on({
-                    scroll: function () {
-                        self.parallaxImage(img, imgParent);
-                    },
-                    ready: function () {
-                        self.parallaxImage(img, imgParent);
-                    }
-                });
-            },
-            parallaxImage: function (img, imgParent) {
-                var speed = img.data('speed') || -1;
-                var imgY = imgParent.offset().top;
-                var winY = $(document).scrollTop();
-                var winH = $(document).height();
-                var parentH = imgParent.innerHeight();
+    return Component.extend({
+        initialize: function (config, node) {
+            var self = this,
+                img = $(node),
+                imgParent = img.parent();
 
-
-                // The next pixel to show on screen
-                var winBottom = winY + winH;
-
-                // If block is shown on screen
-                if (winBottom > imgY && winY < imgY + parentH) {
-                    // Number of pixels shown after block appear
-                    var imgBottom = ((winBottom - imgY) * speed);
-                    // Max number of pixels until block disappear
-                    var imgTop = winH + parentH;
-                    // percentage between start showing until disappearing
-                    var imgPercent = ((imgBottom / imgTop) * 100) + (50 - (speed * 50));
+            $(document).on({
+                scroll: function () {
+                    self.parallaxImage(img, imgParent);
+                },
+                ready: function () {
+                    self.parallaxImage(img, imgParent);
                 }
-                img.css({
-                    top: imgPercent + '%',
-                    transform: 'translate(-50%, -' + imgPercent + '%)'
-                });
+            });
+        },
+
+        parallaxImage: function (img, imgParent) {
+            var speed = img.data('speed') || -1,
+                imgY = imgParent.offset().top,
+                winY = $(document).scrollTop(),
+                winH = $(document).height(),
+                parentH = imgParent.innerHeight(),
+                winBottom = winY + winH,
+                imgPercent = 0;
+
+            // Only transform while the block is within the viewport.
+            if (winBottom > imgY && winY < imgY + parentH) {
+                var imgBottom = (winBottom - imgY) * speed,
+                    imgTop = winH + parentH;
+
+                imgPercent = ((imgBottom / imgTop) * 100) + (50 - (speed * 50));
             }
-        });
+
+            img.css({
+                top: imgPercent + '%',
+                transform: 'translate(-50%, -' + imgPercent + '%)'
+            });
+        }
     });
+});

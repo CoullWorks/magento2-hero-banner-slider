@@ -1,20 +1,22 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\Config\Source;
+declare(strict_types=1);
 
-use BoxLeafDigital\BannerSlider\Api\BannersRepositoryInterface;
+namespace CoullWorks\BannerSlider\Model\Config\Source;
+
+use CoullWorks\BannerSlider\Api\BannersRepositoryInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Data\OptionSourceInterface;
 
 /**
  * Class Banners
- * @package BoxLeafDigital\BannerSlider\Model\Source\Config
+ * @package CoullWorks\BannerSlider\Model\Source\Config
  */
 class Banners implements OptionSourceInterface {
 

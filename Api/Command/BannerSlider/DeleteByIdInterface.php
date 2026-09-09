@@ -1,19 +1,21 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace   BoxLeafDigital\BannerSlider\Api\Command\BannerSlider;
+declare(strict_types=1);
+
+namespace   CoullWorks\BannerSlider\Api\Command\BannerSlider;
 
 
-use BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface;
+use CoullWorks\BannerSlider\Api\Data\BannerSliderInterface;
 
 /**
  * Interface DeleteByIdInterface
- * @package BoxLeafDigital\BannerSlider\Api\Command\BannerSlider
+ * @package CoullWorks\BannerSlider\Api\Command\BannerSlider
  */
 interface DeleteByIdInterface {
 

@@ -1,23 +1,25 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\Command\Banners;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Model\Command\Banners;
 
 use Magento\Framework\Api\ExtensibleDataObjectConverter;
 use Magento\Framework\Exception\CouldNotSaveException;
-use BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners as ResourceBanners;
-use BoxLeafDigital\BannerSlider\Model\BannersFactory ;
+use CoullWorks\BannerSlider\Model\ResourceModel\Banners as ResourceBanners;
+use CoullWorks\BannerSlider\Model\BannersFactory ;
 
 /**
  * Class Save
- * @package BoxLeafDigital\BannerSlider\Model\Command\Banners
+ * @package CoullWorks\BannerSlider\Model\Command\Banners
  */
-class Save implements \BoxLeafDigital\BannerSlider\Api\Command\Banners\SaveInterface {
+class Save implements \CoullWorks\BannerSlider\Api\Command\Banners\SaveInterface {
 
     /**
      * @var ExtensibleDataObjectConverter
@@ -49,18 +51,18 @@ class Save implements \BoxLeafDigital\BannerSlider\Api\Command\Banners\SaveInter
     }
 
     /**
-     * @param \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface $banners
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @param \CoullWorks\BannerSlider\Api\Data\BannersInterface $banners
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      * @throws CouldNotSaveException
      */
     public function execute(
-        \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface $banners
+        \CoullWorks\BannerSlider\Api\Data\BannersInterface $banners
     ) {
 
         $bannersData = $this->_extensibleDataObjectConverter->toNestedArray(
             $banners,
             [],
-            \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface::class
+            \CoullWorks\BannerSlider\Api\Data\BannersInterface::class
         );
 
         $bannersModel = $this->_bannersFactory->create()->setData($bannersData);

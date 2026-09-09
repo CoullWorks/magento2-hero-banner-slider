@@ -1,6 +1,6 @@
 /*
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  31/01/2020, 21:31 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  31/01/2020, 21:31 danrcoull
  *   @version   1.0.0
  *
  */

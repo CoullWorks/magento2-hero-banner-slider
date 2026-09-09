@@ -1,16 +1,18 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider;
 
 /**
  * Class Collection
- * @package BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider
+ * @package CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider
  */
 class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection
 {
@@ -23,8 +25,8 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
     protected function _construct()
     {
         $this->_init(
-            \BoxLeafDigital\BannerSlider\Model\BannerSlider::class,
-            \BoxLeafDigital\BannerSlider\Model\ResourceModel\BannerSlider::class
+            \CoullWorks\BannerSlider\Model\BannerSlider::class,
+            \CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider::class
         );
     }
 }

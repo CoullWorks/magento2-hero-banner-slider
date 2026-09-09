@@ -1,16 +1,18 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Api\Data;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Api\Data;
 
 /**
  * Interface BannersInterface
- * @package BoxLeafDigital\BannerSlider\Api\Data
+ * @package CoullWorks\BannerSlider\Api\Data
  */
 interface BannersInterface extends \Magento\Framework\Api\ExtensibleDataInterface
 {
@@ -33,7 +35,7 @@ interface BannersInterface extends \Magento\Framework\Api\ExtensibleDataInterfac
     /**
      * Set banners_id
      * @param string $bannersId
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannersId($bannersId);
 
@@ -46,7 +48,7 @@ interface BannersInterface extends \Magento\Framework\Api\ExtensibleDataInterfac
     /**
      * Set enabled
      * @param string $bannerEnabled
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setEnabled($bannerEnabled);
 
@@ -59,23 +61,23 @@ interface BannersInterface extends \Magento\Framework\Api\ExtensibleDataInterfac
     /**
      * Set banner_name
      * @param string $bannerName
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannerName($bannerName);
 
     /**
      * Retrieve existing extension attributes object or create a new one.
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersExtensionInterface|null
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersExtensionInterface|null
      */
     public function getExtensionAttributes();
 
     /**
      * Set an extension attributes object.
-     * @param \BoxLeafDigital\BannerSlider\Api\Data\BannersExtensionInterface $extensionAttributes
+     * @param \CoullWorks\BannerSlider\Api\Data\BannersExtensionInterface $extensionAttributes
      * @return $this
      */
     public function setExtensionAttributes(
-        \BoxLeafDigital\BannerSlider\Api\Data\BannersExtensionInterface $extensionAttributes
+        \CoullWorks\BannerSlider\Api\Data\BannersExtensionInterface $extensionAttributes
     );
 
     /**
@@ -87,7 +89,7 @@ interface BannersInterface extends \Magento\Framework\Api\ExtensibleDataInterfac
     /**
      * Set show_banner_overlay
      * @param string $showBannerOverlay
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setShowBannerOverlay($showBannerOverlay);
 
@@ -100,7 +102,7 @@ interface BannersInterface extends \Magento\Framework\Api\ExtensibleDataInterfac
     /**
      * Set banner_overlay_content
      * @param string $bannerOverlayContent
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannerOverlayContent($bannerOverlayContent);
 
@@ -113,7 +115,7 @@ interface BannersInterface extends \Magento\Framework\Api\ExtensibleDataInterfac
     /**
      * Set banner_image
      * @param string $bannerImage
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannerImage($bannerImage);
 
@@ -126,14 +128,14 @@ interface BannersInterface extends \Magento\Framework\Api\ExtensibleDataInterfac
     /**
      * Set banner_image_mobile
      * @param string $bannerImageMobile
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannerImageMobile($bannerImageMobile);
 
     /**
      * Set banner_link
      * @param string $bannerLink
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannerLink($bannerLink);
 

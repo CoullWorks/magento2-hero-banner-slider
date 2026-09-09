@@ -1,36 +1,38 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Api;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 /**
  * Interface BannersRepositoryInterface
- * @package BoxLeafDigital\BannerSlider\Api
+ * @package CoullWorks\BannerSlider\Api
  */
 interface BannersRepositoryInterface
 {
 
     /**
      * Save Banners
-     * @param \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface $banners
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @param \CoullWorks\BannerSlider\Api\Data\BannersInterface $banners
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function save(
-        \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface $banners
+        \CoullWorks\BannerSlider\Api\Data\BannersInterface $banners
     );
 
     /**
      * Retrieve Banners
      * @param string $bannersId
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function get($bannersId);
@@ -38,7 +40,7 @@ interface BannersRepositoryInterface
     /**
      * Retrieve Banners matching the specified criteria.
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersSearchResultsInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersSearchResultsInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getList(
@@ -47,12 +49,12 @@ interface BannersRepositoryInterface
 
     /**
      * Delete Banners
-     * @param \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface $banners
+     * @param \CoullWorks\BannerSlider\Api\Data\BannersInterface $banners
      * @return bool true on success
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function delete(
-        \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface $banners
+        \CoullWorks\BannerSlider\Api\Data\BannersInterface $banners
     );
 
     /**

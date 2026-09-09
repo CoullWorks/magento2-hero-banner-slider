@@ -1,21 +1,23 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\Data;
+declare(strict_types=1);
 
-use BoxLeafDigital\BannerSlider\Api\Data\BannersInterface;
+namespace CoullWorks\BannerSlider\Model\Data;
+
+use CoullWorks\BannerSlider\Api\Data\BannersInterface;
 use Magento\Framework\Api\AttributeValueFactory;
 use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Store\Model\StoreManagerInterface;
 
 /**
  * Class Banners
- * @package BoxLeafDigital\BannerSlider\Model\Data
+ * @package CoullWorks\BannerSlider\Model\Data
  */
 class Banners extends \Magento\Framework\Api\AbstractExtensibleObject implements BannersInterface
 {
@@ -48,7 +50,7 @@ class Banners extends \Magento\Framework\Api\AbstractExtensibleObject implements
     /**
      * Set banners_id
      * @param string $bannersId
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannersId($bannersId)
     {
@@ -68,7 +70,7 @@ class Banners extends \Magento\Framework\Api\AbstractExtensibleObject implements
     /**
      * Set enabled
      * @param string $bannerEnabled
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setEnabled($bannerEnabled)
     {
@@ -87,7 +89,7 @@ class Banners extends \Magento\Framework\Api\AbstractExtensibleObject implements
     /**
      * Set banner_name
      * @param string $bannerName
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannerName($bannerName)
     {
@@ -96,7 +98,7 @@ class Banners extends \Magento\Framework\Api\AbstractExtensibleObject implements
 
     /**
      * Retrieve existing extension attributes object or create a new one.
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersExtensionInterface|null
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersExtensionInterface|null
      */
     public function getExtensionAttributes()
     {
@@ -105,11 +107,11 @@ class Banners extends \Magento\Framework\Api\AbstractExtensibleObject implements
 
     /**
      * Set an extension attributes object.
-     * @param \BoxLeafDigital\BannerSlider\Api\Data\BannersExtensionInterface $extensionAttributes
+     * @param \CoullWorks\BannerSlider\Api\Data\BannersExtensionInterface $extensionAttributes
      * @return $this
      */
     public function setExtensionAttributes(
-        \BoxLeafDigital\BannerSlider\Api\Data\BannersExtensionInterface $extensionAttributes
+        \CoullWorks\BannerSlider\Api\Data\BannersExtensionInterface $extensionAttributes
     ) {
         return $this->_setExtensionAttributes($extensionAttributes);
     }
@@ -126,7 +128,7 @@ class Banners extends \Magento\Framework\Api\AbstractExtensibleObject implements
     /**
      * Set show_banner_overlay
      * @param string $showBannerOverlay
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setShowBannerOverlay($showBannerOverlay)
     {
@@ -145,7 +147,7 @@ class Banners extends \Magento\Framework\Api\AbstractExtensibleObject implements
     /**
      * Set banner_overlay_content
      * @param string $bannerOverlayContent
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannerOverlayContent($bannerOverlayContent)
     {
@@ -164,7 +166,7 @@ class Banners extends \Magento\Framework\Api\AbstractExtensibleObject implements
     /**
      * Set banner_image
      * @param string $bannerImage
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannerImage($bannerImage)
     {
@@ -183,7 +185,7 @@ class Banners extends \Magento\Framework\Api\AbstractExtensibleObject implements
     /**
      * Set banner_image_mobile
      * @param string $bannerImageMobile
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannerImageMobile($bannerImageMobile)
     {
@@ -236,7 +238,7 @@ class Banners extends \Magento\Framework\Api\AbstractExtensibleObject implements
     /**
      * Set banner_link
      * @param $bannerLink
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface
      */
     public function setBannerLink($bannerLink)
     {

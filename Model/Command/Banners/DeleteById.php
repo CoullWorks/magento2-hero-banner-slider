@@ -1,18 +1,20 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\Command\Banners;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Model\Command\Banners;
 
 /**
  * Class DeleteById
- * @package BoxLeafDigital\BannerSlider\Model\Command\Banners
+ * @package CoullWorks\BannerSlider\Model\Command\Banners
  */
-class DeleteById implements \BoxLeafDigital\BannerSlider\Api\Command\Banners\DeleteByIdInterface {
+class DeleteById implements \CoullWorks\BannerSlider\Api\Command\Banners\DeleteByIdInterface {
 
 
     /**
@@ -35,7 +37,7 @@ class DeleteById implements \BoxLeafDigital\BannerSlider\Api\Command\Banners\Del
 
     /**
      * @param $bannersId
-     * @return bool|\BoxLeafDigital\BannerSlider\Api\Data\BannersInterface
+     * @return bool|\CoullWorks\BannerSlider\Api\Data\BannersInterface
      * @throws \Magento\Framework\Exception\CouldNotDeleteException
      * @throws \Magento\Framework\Exception\LocalizedException
      */

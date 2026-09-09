@@ -1,37 +1,51 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Controller\Adminhtml\Banners;
+declare(strict_types=1);
 
+namespace CoullWorks\BannerSlider\Controller\Adminhtml\Banners;
+
+use CoullWorks\BannerSlider\Model\BannersFactory;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\View\Result\PageFactory;
 
 /**
  * Class Edit
- * @package BoxLeafDigital\BannerSlider\Controller\Adminhtml\Banners
+ * @package CoullWorks\BannerSlider\Controller\Adminhtml\Banners
  */
-class Edit extends \BoxLeafDigital\BannerSlider\Controller\Adminhtml\Banners
+class Edit extends \CoullWorks\BannerSlider\Controller\Adminhtml\Banners
 {
 
+    /**
+     * @var PageFactory
+     */
     protected $resultPageFactory;
+
+    /**
+     * @var BannersFactory
+     */
+    private $bannersFactory;
 
     /**
      * @param Context $context
      * @param DataPersistorInterface $coreRegistry
      * @param PageFactory $resultPageFactory
+     * @param BannersFactory $bannersFactory
      */
     public function __construct(
         Context $context,
         DataPersistorInterface $coreRegistry,
-        PageFactory $resultPageFactory
+        PageFactory $resultPageFactory,
+        BannersFactory $bannersFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
+        $this->bannersFactory = $bannersFactory;
         parent::__construct($context, $coreRegistry);
     }
 
@@ -40,11 +54,11 @@ class Edit extends \BoxLeafDigital\BannerSlider\Controller\Adminhtml\Banners
      *
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function execute()
+    public function execute(): \Magento\Framework\Controller\ResultInterface
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('banners_id');
-        $model = $this->_objectManager->create(\BoxLeafDigital\BannerSlider\Model\Banners::class);
+        $model = $this->bannersFactory->create();
 
         // 2. Initial checking
         if ($id) {

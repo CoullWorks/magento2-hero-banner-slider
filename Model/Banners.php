@@ -1,20 +1,22 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model;
+declare(strict_types=1);
 
-use BoxLeafDigital\BannerSlider\Api\Data\BannersInterface;
+namespace CoullWorks\BannerSlider\Model;
+
+use CoullWorks\BannerSlider\Api\Data\BannersInterface;
 use Magento\Framework\Api\DataObjectHelper;
-use BoxLeafDigital\BannerSlider\Api\Data\BannersInterfaceFactory;
+use CoullWorks\BannerSlider\Api\Data\BannersInterfaceFactory;
 
 /**
  * Class Banners
- * @package BoxLeafDigital\BannerSlider\Model
+ * @package CoullWorks\BannerSlider\Model
  */
 class Banners extends \Magento\Framework\Model\AbstractModel
 {
@@ -23,15 +25,15 @@ class Banners extends \Magento\Framework\Model\AbstractModel
 
     protected $bannersDataFactory;
 
-    protected $_eventPrefix = 'boxleafdigital_bannerslider_banners';
+    protected $_eventPrefix = 'coullworks_banner_slider_banners';
 
     /**
      * @param \Magento\Framework\Model\Context $context
      * @param \Magento\Framework\Registry $registry
      * @param BannersInterfaceFactory $bannersDataFactory
      * @param DataObjectHelper $dataObjectHelper
-     * @param \BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners $resource
-     * @param \BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners\Collection $resourceCollection
+     * @param \CoullWorks\BannerSlider\Model\ResourceModel\Banners $resource
+     * @param \CoullWorks\BannerSlider\Model\ResourceModel\Banners\Collection $resourceCollection
      * @param array $data
      */
     public function __construct(
@@ -39,8 +41,8 @@ class Banners extends \Magento\Framework\Model\AbstractModel
         \Magento\Framework\Registry $registry,
         BannersInterfaceFactory $bannersDataFactory,
         DataObjectHelper $dataObjectHelper,
-        \BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners $resource,
-        \BoxLeafDigital\BannerSlider\Model\ResourceModel\Banners\Collection $resourceCollection,
+        \CoullWorks\BannerSlider\Model\ResourceModel\Banners $resource,
+        \CoullWorks\BannerSlider\Model\ResourceModel\Banners\Collection $resourceCollection,
         array $data = []
     ) {
         $this->bannersDataFactory = $bannersDataFactory;

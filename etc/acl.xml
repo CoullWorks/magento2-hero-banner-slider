@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
-  ~   @author     Daniel Coull <hello@boxleafdigital.com>
-  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @author     danrcoull <ttechitsolutions@gmail.com>
+  ~   @copyright  27/01/2020, 19:29 danrcoull
   ~   @version   1.0.0
   ~
   -->
@@ -10,22 +10,22 @@
 	<acl>
 		<resources>
 			<resource id="Magento_Backend::admin">
-				<resource id="BoxLeaf_BannerSlider::BannerSlider" sortOrder="10" title="BannerSlider">
-					<resource id="BoxLeaf_BannerSlider::BannerSlider_save" sortOrder="10" title="Save BannerSlider"/>
-					<resource id="BoxLeaf_BannerSlider::BannerSlider_delete" sortOrder="20" title="Delete BannerSlider"/>
-					<resource id="BoxLeaf_BannerSlider::BannerSlider_update" sortOrder="30" title="Update BannerSlider"/>
-					<resource id="BoxLeaf_BannerSlider::BannerSlider_view" sortOrder="40" title="View BannerSlider"/>
+				<resource id="CoullWorks_BannerSlider::BannerSlider" sortOrder="10" title="BannerSlider">
+					<resource id="CoullWorks_BannerSlider::BannerSlider_save" sortOrder="10" title="Save BannerSlider"/>
+					<resource id="CoullWorks_BannerSlider::BannerSlider_delete" sortOrder="20" title="Delete BannerSlider"/>
+					<resource id="CoullWorks_BannerSlider::BannerSlider_update" sortOrder="30" title="Update BannerSlider"/>
+					<resource id="CoullWorks_BannerSlider::BannerSlider_view" sortOrder="40" title="View BannerSlider"/>
 				</resource>
-				<resource id="BoxLeaf_BannerSlider::Banners" sortOrder="10" title="Banners">
-					<resource id="BoxLeaf_BannerSlider::Banners_save" sortOrder="10" title="Save Banners"/>
-					<resource id="BoxLeaf_BannerSlider::Banners_delete" sortOrder="20" title="Delete Banners"/>
-					<resource id="BoxLeaf_BannerSlider::Banners_update" sortOrder="30" title="Update Banners"/>
-					<resource id="BoxLeaf_BannerSlider::Banners_view" sortOrder="40" title="View Banners"/>
+				<resource id="CoullWorks_BannerSlider::Banners" sortOrder="10" title="Banners">
+					<resource id="CoullWorks_BannerSlider::Banners_save" sortOrder="10" title="Save Banners"/>
+					<resource id="CoullWorks_BannerSlider::Banners_delete" sortOrder="20" title="Delete Banners"/>
+					<resource id="CoullWorks_BannerSlider::Banners_update" sortOrder="30" title="Update Banners"/>
+					<resource id="CoullWorks_BannerSlider::Banners_view" sortOrder="40" title="View Banners"/>
 				</resource>
 				<resource id="Magento_Backend::stores">
 					<resource id="Magento_Backend::stores_settings">
 						<resource id="Magento_Config::config">
-							<resource id="BoxLeaf_BannerSlider::config_boxleafdigital_bannerslider" title="banner_slider"/>
+							<resource id="CoullWorks_BannerSlider::config_coullworks_banner_slider" title="banner_slider"/>
 						</resource>
 					</resource>
 				</resource>

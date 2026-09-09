@@ -1,11 +1,11 @@
 <?xml version="1.0" ?>
 <!--
-  ~   @author     Daniel Coull <hello@boxleafdigital.com>
-  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @author     danrcoull <ttechitsolutions@gmail.com>
+  ~   @copyright  27/01/2020, 19:29 danrcoull
   ~   @version   1.0.0
   -->
 <schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
-	<table comment="boxleafdigital_bannerslider_bannerslider Table" engine="innodb" name="boxleafdigital_bannerslider_bannerslider" resource="default">
+	<table comment="coullworks_banner_slider_bannerslider Table" engine="innodb" name="coullworks_banner_slider_bannerslider" resource="default">
 		<column comment="Entity Id" identity="true" name="bannerslider_id" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
 		<constraint referenceId="PRIMARY" xsi:type="primary">
 			<column name="bannerslider_id"/>
@@ -15,7 +15,7 @@
 		<column length="255" name="slides" nullable="true" xsi:type="varchar"/>
 		<column name="full_width" nullable="true" xsi:type="boolean"/>
 	</table>
-	<table comment="boxleafdigital_bannerslider_banners Table" engine="innodb" name="boxleafdigital_bannerslider_banners" resource="default">
+	<table comment="coullworks_banner_slider_banners Table" engine="innodb" name="coullworks_banner_slider_banners" resource="default">
 		<column comment="Entity Id" identity="true" name="banners_id" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
 		<constraint referenceId="PRIMARY" xsi:type="primary">
 			<column name="banners_id"/>

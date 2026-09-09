@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <!--
-  ~   @author     Daniel Coull <hello@boxleafdigital.com>
-  ~   @copyright  27/01/2020, 19:29 Daniel Coull
+  ~   @author     danrcoull <ttechitsolutions@gmail.com>
+  ~   @copyright  27/01/2020, 19:29 danrcoull
   ~   @version   1.0.0
   ~
   -->
@@ -9,22 +9,22 @@
 <form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
 	<argument name="data" xsi:type="array">
 		<item name="js_config" xsi:type="array">
-			<item name="provider" xsi:type="string">boxleafdigital_bannerslider_bannerslider_form.bannerslider_form_data_source</item>
+			<item name="provider" xsi:type="string">coullworks_banner_slider_bannerslider_form.bannerslider_form_data_source</item>
 		</item>
 		<item name="label" translate="true" xsi:type="string">General Information</item>
 		<item name="template" xsi:type="string">templates/form/collapsible</item>
 	</argument>
 	<settings>
 		<buttons>
-			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\BannerSlider\Edit\BackButton" name="back"/>
-			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\BannerSlider\Edit\DeleteButton" name="delete"/>
-			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\BannerSlider\Edit\SaveButton" name="save"/>
-			<button class="BoxLeafDigital\BannerSlider\Block\Adminhtml\BannerSlider\Edit\SaveAndContinueButton" name="save_and_continue"/>
+			<button class="CoullWorks\BannerSlider\Block\Adminhtml\BannerSlider\Edit\BackButton" name="back"/>
+			<button class="CoullWorks\BannerSlider\Block\Adminhtml\BannerSlider\Edit\DeleteButton" name="delete"/>
+			<button class="CoullWorks\BannerSlider\Block\Adminhtml\BannerSlider\Edit\SaveButton" name="save"/>
+			<button class="CoullWorks\BannerSlider\Block\Adminhtml\BannerSlider\Edit\SaveAndContinueButton" name="save_and_continue"/>
 		</buttons>
-		<namespace>boxleafdigital_bannerslider_bannerslider_form</namespace>
+		<namespace>coullworks_banner_slider_bannerslider_form</namespace>
 		<dataScope>data</dataScope>
 		<deps>
-			<dep>boxleafdigital_bannerslider_bannerslider_form.bannerslider_form_data_source</dep>
+			<dep>coullworks_banner_slider_bannerslider_form.bannerslider_form_data_source</dep>
 		</deps>
 	</settings>
 	<dataSource name="bannerslider_form_data_source">
@@ -36,7 +36,7 @@
 		<settings>
 			<submitUrl path="*/*/save"/>
 		</settings>
-		<dataProvider class="BoxLeafDigital\BannerSlider\Model\BannerSlider\DataProvider" name="bannerslider_form_data_source">
+		<dataProvider class="CoullWorks\BannerSlider\Model\BannerSlider\DataProvider" name="bannerslider_form_data_source">
 			<settings>
 				<requestFieldName>bannerslider_id</requestFieldName>
 				<primaryFieldName>bannerslider_id</primaryFieldName>
@@ -109,7 +109,7 @@
 			<formElements>
 				<multiselect>
 					<settings>
-						<options class="BoxLeafDigital\BannerSlider\Model\Config\Source\Banners"/>
+						<options class="CoullWorks\BannerSlider\Model\Config\Source\Banners"/>
 					</settings>
 				</multiselect>
 			</formElements>

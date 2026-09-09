@@ -1,12 +1,14 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Controller\Adminhtml\Banners;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Controller\Adminhtml\Banners;
 
 use Magento\Backend\App\Action\Context;
 use Magento\Backend\Model\View\Result\ForwardFactory;
@@ -14,9 +16,9 @@ use Magento\Framework\App\Request\DataPersistorInterface;
 
 /**
  * Class NewAction
- * @package BoxLeafDigital\BannerSlider\Controller\Adminhtml\Banners
+ * @package CoullWorks\BannerSlider\Controller\Adminhtml\Banners
  */
-class NewAction extends \BoxLeafDigital\BannerSlider\Controller\Adminhtml\Banners
+class NewAction extends \CoullWorks\BannerSlider\Controller\Adminhtml\Banners
 {
 
     /**

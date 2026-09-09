@@ -1,26 +1,28 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model;
+declare(strict_types=1);
 
-use BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\DeleteByIdInterface;
-use BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\DeleteInterface;
-use BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\GetInterface;
-use BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\GetListInterface;
-use BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\SaveInterface;
+namespace CoullWorks\BannerSlider\Model;
 
-use BoxLeafDigital\BannerSlider\Api\BannerSliderRepositoryInterface;
-use BoxLeafDigital\BannerSlider\Api\Data\BannerSliderSearchResultsInterfaceFactory;
-use BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterfaceFactory;
+use CoullWorks\BannerSlider\Api\Command\BannerSlider\DeleteByIdInterface;
+use CoullWorks\BannerSlider\Api\Command\BannerSlider\DeleteInterface;
+use CoullWorks\BannerSlider\Api\Command\BannerSlider\GetInterface;
+use CoullWorks\BannerSlider\Api\Command\BannerSlider\GetListInterface;
+use CoullWorks\BannerSlider\Api\Command\BannerSlider\SaveInterface;
+
+use CoullWorks\BannerSlider\Api\BannerSliderRepositoryInterface;
+use CoullWorks\BannerSlider\Api\Data\BannerSliderSearchResultsInterfaceFactory;
+use CoullWorks\BannerSlider\Api\Data\BannerSliderInterfaceFactory;
 
 /**
  * Class BannerSliderRepository
- * @package BoxLeafDigital\BannerSlider\Model
+ * @package CoullWorks\BannerSlider\Model
  */
 class BannerSliderRepository implements BannerSliderRepositoryInterface
 {
@@ -72,7 +74,7 @@ class BannerSliderRepository implements BannerSliderRepositoryInterface
      * {@inheritdoc}
      */
     public function save(
-        \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface $banners
+        \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface $banners
     ) {
         return $this->_save->execute($banners);
     }
@@ -98,7 +100,7 @@ class BannerSliderRepository implements BannerSliderRepositoryInterface
      * {@inheritdoc}
      */
     public function delete(
-        \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface $banners
+        \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface $banners
     ) {
         $this->_delete->execute($banners);
     }

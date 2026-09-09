@@ -1,36 +1,38 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Api;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Api;
 
 use Magento\Framework\Api\SearchCriteriaInterface;
 
 /**
  * Interface BannerSliderRepositoryInterface
- * @package BoxLeafDigital\BannerSlider\Api
+ * @package CoullWorks\BannerSlider\Api
  */
 interface BannerSliderRepositoryInterface
 {
 
     /**
      * Save BannerSlider
-     * @param \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface $bannerSlider
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface
+     * @param \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface $bannerSlider
+     * @return \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function save(
-        \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface $bannerSlider
+        \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface $bannerSlider
     );
 
     /**
      * Retrieve BannerSlider
      * @param string $bannersliderId
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function get($bannersliderId);
@@ -38,7 +40,7 @@ interface BannerSliderRepositoryInterface
     /**
      * Retrieve BannerSlider matching the specified criteria.
      * @param \Magento\Framework\Api\SearchCriteriaInterface $searchCriteria
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderSearchResultsInterface
+     * @return \CoullWorks\BannerSlider\Api\Data\BannerSliderSearchResultsInterface
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function getList(
@@ -47,12 +49,12 @@ interface BannerSliderRepositoryInterface
 
     /**
      * Delete BannerSlider
-     * @param \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface $bannerSlider
+     * @param \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface $bannerSlider
      * @return bool true on success
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function delete(
-        \BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface $bannerSlider
+        \CoullWorks\BannerSlider\Api\Data\BannerSliderInterface $bannerSlider
     );
 
     /**

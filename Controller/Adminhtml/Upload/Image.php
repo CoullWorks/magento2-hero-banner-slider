@@ -1,12 +1,14 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace  BoxLeafDigital\BannerSlider\Controller\Adminhtml\Upload;
+declare(strict_types=1);
+
+namespace  CoullWorks\BannerSlider\Controller\Adminhtml\Upload;
 
 
 use Magento\Backend\App\Action\Context;
@@ -21,7 +23,7 @@ use Psr\Log\LoggerInterface;
 
 /**
  * Class Image
- * @package BoxLeafDigital\BannerSlider\Controller\Adminhtml\Upload
+ * @package CoullWorks\BannerSlider\Controller\Adminhtml\Upload
  */
 class Image extends \Magento\Backend\App\Action {
     /**

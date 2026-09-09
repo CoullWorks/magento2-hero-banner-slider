@@ -1,29 +1,31 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Api\Data;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Api\Data;
 
 /**
  * Interface BannersSearchResultsInterface
- * @package BoxLeafDigital\BannerSlider\Api\Data
+ * @package CoullWorks\BannerSlider\Api\Data
  */
 interface BannersSearchResultsInterface extends \Magento\Framework\Api\SearchResultsInterface
 {
 
     /**
      * Get Banners list.
-     * @return \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface[]
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface[]
      */
     public function getItems();
 
     /**
      * Set banner_name list.
-     * @param \BoxLeafDigital\BannerSlider\Api\Data\BannersInterface[] $items
+     * @param \CoullWorks\BannerSlider\Api\Data\BannersInterface[] $items
      * @return $this
      */
     public function setItems(array $items);

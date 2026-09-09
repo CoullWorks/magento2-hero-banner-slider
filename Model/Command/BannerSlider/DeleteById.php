@@ -1,24 +1,26 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Model\Command\BannerSlider;
+declare(strict_types=1);
+
+namespace CoullWorks\BannerSlider\Model\Command\BannerSlider;
 
 
 
-use BoxLeafDigital\BannerSlider\Api\Data\BannerSliderInterface;
+use CoullWorks\BannerSlider\Api\Data\BannerSliderInterface;
 use Magento\Framework\Exception\CouldNotDeleteException;
 use Magento\Framework\Exception\NoSuchEntityException;
 
 /**
  * Class DeleteById
- * @package BoxLeafDigital\BannerSlider\Model\Command\BannerSlider
+ * @package CoullWorks\BannerSlider\Model\Command\BannerSlider
  */
-class DeleteById implements \BoxLeafDigital\BannerSlider\Api\Command\BannerSlider\DeleteByIdInterface {
+class DeleteById implements \CoullWorks\BannerSlider\Api\Command\BannerSlider\DeleteByIdInterface {
 
 
     /**

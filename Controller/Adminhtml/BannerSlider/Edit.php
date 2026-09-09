@@ -1,22 +1,25 @@
 <?php
 /**
- *   @author     Daniel Coull <hello@boxleafdigital.com>
- *   @copyright  27/01/2020, 19:29 Daniel Coull
+ *   @author     danrcoull <ttechitsolutions@gmail.com>
+ *   @copyright  27/01/2020, 19:29 danrcoull
  *   @version   1.0.0
  *
  */
 
-namespace BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlider;
+declare(strict_types=1);
 
+namespace CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider;
+
+use CoullWorks\BannerSlider\Model\BannerSliderFactory;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\App\Request\DataPersistorInterface;
 use Magento\Framework\View\Result\PageFactory;
 
 /**
  * Class Edit
- * @package BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlider
+ * @package CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider
  */
-class Edit extends \BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlider
+class Edit extends \CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider
 {
 
     /**
@@ -25,16 +28,24 @@ class Edit extends \BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlide
     protected $resultPageFactory;
 
     /**
+     * @var BannerSliderFactory
+     */
+    private $bannerSliderFactory;
+
+    /**
      * @param Context $context
      * @param DataPersistorInterface $coreRegistry
      * @param PageFactory $resultPageFactory
+     * @param BannerSliderFactory $bannerSliderFactory
      */
     public function __construct(
         Context $context,
         DataPersistorInterface $coreRegistry,
-        PageFactory $resultPageFactory
+        PageFactory $resultPageFactory,
+        BannerSliderFactory $bannerSliderFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
+        $this->bannerSliderFactory = $bannerSliderFactory;
         parent::__construct($context, $coreRegistry);
     }
 
@@ -43,11 +54,11 @@ class Edit extends \BoxLeafDigital\BannerSlider\Controller\Adminhtml\BannerSlide
      *
      * @return \Magento\Framework\Controller\ResultInterface
      */
-    public function execute()
+    public function execute(): \Magento\Framework\Controller\ResultInterface
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('bannerslider_id');
-        $model = $this->_objectManager->create(\BoxLeafDigital\BannerSlider\Model\BannerSlider::class);
+        $model = $this->bannerSliderFactory->create();
 
         // 2. Initial checking
         if ($id) {
