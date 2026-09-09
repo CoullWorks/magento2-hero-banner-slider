@@ -115,9 +115,12 @@ class Save extends \Magento\Backend\App\Action
      */
     private function resolveImagePath(array|string|null $field, string $existingImage, string $mediaUrl): string
     {
-        // (a) newly uploaded temp file
+        // (a) newly uploaded temp file. Passing $returnRelativePath = true returns the
+        // full "banner/image/<name>" path, which also lets Magento's media-gallery
+        // synchronization plugin (on the shared Catalog ImageUploader) find the moved
+        // file at the correct location instead of the media root (2.4.6+).
         if (isset($field[0]['name'], $field[0]['tmp_name'])) {
-            return 'banner/image/' . $this->imageUpload->moveFileFromTmp($field[0]['name']);
+            return ltrim($this->imageUpload->moveFileFromTmp($field[0]['name'], true), '/');
         }
 
         // (b) existing image kept unchanged

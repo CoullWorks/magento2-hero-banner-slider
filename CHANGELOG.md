@@ -37,10 +37,19 @@ automatically (see below).
   terms). Still source-available, not royalty-free.
 
 ### Fixed
+- **Banner images now save on Magento 2.4.6+.** The admin controllers use Magento's shared
+  Catalog `ImageUploader`, whose media-gallery synchronization plugin stat-ed the moved file
+  at the media root and aborted the whole save with a `stat failed` error. Moving the file
+  with `moveFileFromTmp($name, true)` returns the full `banner/image/...` path so the plugin
+  finds it — saves complete and both images persist. (Found in live 2.4.7 testing.)
 - **Mobile banner image now saves.** The "keep existing image" path for the mobile image
   omitted the `/` from `ltrim`, storing a leading-slash path that then resolved to the site
   root (404) on the frontend. Desktop + mobile now share one `resolveImagePath()` helper and
   always store a correct relative path. (Resolves the long-standing report.)
+- **Admin grids now open.** The controllers referenced an `ADMIN_RESOURCE` of
+  `CoullWorks_BannerSlider::top_level` that was never declared in `acl.xml`, so Magento denied
+  access and redirected to the dashboard. Declared it (as the parent ACL resource) and aligned
+  the menu, so the grids open and permissions apply. (Found in live 2.4.7 testing.)
 - **Admin ACL now resolves.** The config/menu ACL ids were inconsistent
   (`BoxLeaf_BannerSlider` vs `BoxLeafDigital_BannerSlider`, `config_boxleaf_*` vs
   `config_boxleafdigital_*`); unified so permissions apply correctly, and the grids are

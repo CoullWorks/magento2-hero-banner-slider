@@ -8,8 +8,8 @@
 
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
 	<menu>
-		<add id="CoullWorks_BannerSlider::banner_slider" module="CoullWorks_BannerSlider" parent="Magento_Backend::content" resource="Magento_Backend::content" sortOrder="80" title="CoullWorks Banner Slider"/>
-		<add action="coullworks_banner_slider/bannerslider/index" id="CoullWorks_BannerSlider::coullworks_banner_slider_bannerslider" module="CoullWorks_BannerSlider" parent="CoullWorks_BannerSlider::banner_slider" resource="CoullWorks_BannerSlider::BannerSlider" sortOrder="10" title="Banner Sliders"/>
-		<add action="coullworks_banner_slider/banners/index" id="CoullWorks_BannerSlider::coullworks_banner_slider_banners" module="CoullWorks_BannerSlider" parent="CoullWorks_BannerSlider::banner_slider" resource="CoullWorks_BannerSlider::Banners" sortOrder="20" title="Banners"/>
+		<add id="CoullWorks_BannerSlider::top_level" module="CoullWorks_BannerSlider" parent="Magento_Backend::content" resource="CoullWorks_BannerSlider::top_level" sortOrder="80" title="CoullWorks Banner Slider"/>
+		<add action="coullworks_banner_slider/bannerslider/index" id="CoullWorks_BannerSlider::coullworks_banner_slider_bannerslider" module="CoullWorks_BannerSlider" parent="CoullWorks_BannerSlider::top_level" resource="CoullWorks_BannerSlider::BannerSlider" sortOrder="10" title="Banner Sliders"/>
+		<add action="coullworks_banner_slider/banners/index" id="CoullWorks_BannerSlider::coullworks_banner_slider_banners" module="CoullWorks_BannerSlider" parent="CoullWorks_BannerSlider::top_level" resource="CoullWorks_BannerSlider::Banners" sortOrder="20" title="Banners"/>
 	</menu>
 </config>

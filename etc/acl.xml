@@ -1,35 +1,40 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 <!--
-  ~   @author     danrcoull <ttechitsolutions@gmail.com>
-  ~   @copyright  27/01/2020, 19:29 danrcoull
-  ~   @version   1.0.0
-  ~
-  -->
-
+/**
+ * CoullWorks Banner Slider for Magento 2.
+ *
+ * @author    danrcoull <ttechitsolutions@gmail.com>
+ * @copyright Copyright (c) 2020-2026 CoullWorks
+ * @license   Proprietary — see LICENSE.txt
+ * @link      https://github.com/CoullWorks/magento2-hero-banner-slider
+ */
+-->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
-	<acl>
-		<resources>
-			<resource id="Magento_Backend::admin">
-				<resource id="CoullWorks_BannerSlider::BannerSlider" sortOrder="10" title="BannerSlider">
-					<resource id="CoullWorks_BannerSlider::BannerSlider_save" sortOrder="10" title="Save BannerSlider"/>
-					<resource id="CoullWorks_BannerSlider::BannerSlider_delete" sortOrder="20" title="Delete BannerSlider"/>
-					<resource id="CoullWorks_BannerSlider::BannerSlider_update" sortOrder="30" title="Update BannerSlider"/>
-					<resource id="CoullWorks_BannerSlider::BannerSlider_view" sortOrder="40" title="View BannerSlider"/>
-				</resource>
-				<resource id="CoullWorks_BannerSlider::Banners" sortOrder="10" title="Banners">
-					<resource id="CoullWorks_BannerSlider::Banners_save" sortOrder="10" title="Save Banners"/>
-					<resource id="CoullWorks_BannerSlider::Banners_delete" sortOrder="20" title="Delete Banners"/>
-					<resource id="CoullWorks_BannerSlider::Banners_update" sortOrder="30" title="Update Banners"/>
-					<resource id="CoullWorks_BannerSlider::Banners_view" sortOrder="40" title="View Banners"/>
-				</resource>
-				<resource id="Magento_Backend::stores">
-					<resource id="Magento_Backend::stores_settings">
-						<resource id="Magento_Config::config">
-							<resource id="CoullWorks_BannerSlider::config_coullworks_banner_slider" title="banner_slider"/>
-						</resource>
-					</resource>
-				</resource>
-			</resource>
-		</resources>
-	</acl>
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="CoullWorks_BannerSlider::top_level" sortOrder="80" title="CoullWorks Banner Slider">
+                    <resource id="CoullWorks_BannerSlider::BannerSlider" sortOrder="10" title="Banner Sliders">
+                        <resource id="CoullWorks_BannerSlider::BannerSlider_save" sortOrder="10" title="Save Banner Slider"/>
+                        <resource id="CoullWorks_BannerSlider::BannerSlider_delete" sortOrder="20" title="Delete Banner Slider"/>
+                        <resource id="CoullWorks_BannerSlider::BannerSlider_update" sortOrder="30" title="Update Banner Slider"/>
+                        <resource id="CoullWorks_BannerSlider::BannerSlider_view" sortOrder="40" title="View Banner Slider"/>
+                    </resource>
+                    <resource id="CoullWorks_BannerSlider::Banners" sortOrder="20" title="Banners">
+                        <resource id="CoullWorks_BannerSlider::Banners_save" sortOrder="10" title="Save Banner"/>
+                        <resource id="CoullWorks_BannerSlider::Banners_delete" sortOrder="20" title="Delete Banner"/>
+                        <resource id="CoullWorks_BannerSlider::Banners_update" sortOrder="30" title="Update Banner"/>
+                        <resource id="CoullWorks_BannerSlider::Banners_view" sortOrder="40" title="View Banner"/>
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="CoullWorks_BannerSlider::config_coullworks_banner_slider" title="Banner Slider"/>
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
 </config>
