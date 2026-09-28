@@ -4,6 +4,16 @@ All notable changes to this project are documented here, based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.1] - 2026-09-28
+
+### Changed
+- **PHP 8.5 support, so the module installs on Magento 2.4.9.** Adobe Commerce and
+  Magento Open Source 2.4.9 run production on PHP 8.5, which the Composer constraint did
+  not allow, so the package would not install there. The constraint now includes
+  `~8.5.0`, and CI lints every PHP file on 8.5 as well as 8.2, 8.3 and 8.4. No code
+  changes were needed: every file lints clean on PHP 8.5.11, and none uses the casts,
+  backtick operator or `__sleep`/`__wakeup` that 8.5 deprecates.
+
 ## [2.0.0] - 2026-09-08
 
 The first CoullWorks release — a full rebrand and modernization of the original
@@ -76,4 +86,5 @@ automatically (see below).
 ## 1.0.3 - 2021-06-25
 - Final release under the original `boxleafdigital/module-bannerslider` name.
 
+[2.0.1]: https://github.com/CoullWorks/magento2-hero-banner-slider/releases/tag/v2.0.1
 [2.0.0]: https://github.com/CoullWorks/magento2-hero-banner-slider/releases/tag/v2.0.0

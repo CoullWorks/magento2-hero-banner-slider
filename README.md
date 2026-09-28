@@ -14,7 +14,7 @@
 <p align="center">
   <a href="https://github.com/CoullWorks/magento2-hero-banner-slider/releases/latest"><img src="https://img.shields.io/github/v/release/CoullWorks/magento2-hero-banner-slider?label=version&color=ff6a2c" alt="latest release"></a>
   <img src="https://img.shields.io/badge/Magento-2.4.7%20–%202.4.9-f46f25" alt="Magento 2.4.7–2.4.9">
-  <img src="https://img.shields.io/badge/PHP-8.2%20|%208.3%20|%208.4-777bb4" alt="PHP 8.2–8.4">
+  <img src="https://img.shields.io/badge/PHP-8.2%20|%208.3%20|%208.4%20|%208.5-777bb4" alt="PHP 8.2–8.5">
   <img src="https://img.shields.io/badge/license-proprietary-lightgrey" alt="proprietary">
 </p>
 
@@ -43,7 +43,7 @@ thumbnail navigation.
 - **Overlay content** — a WYSIWYG overlay per banner (headings, copy, buttons).
 - **Slider carousel** — autoplay, fade, and optional thumbnail tabs (Slick), **self-hosted
   — no third-party CDN**.
-- Built for **Magento 2.4.7–2.4.9 / PHP 8.2–8.4** with typed, DI-clean code.
+- Built for **Magento 2.4.7–2.4.9 / PHP 8.2–8.5** with typed, DI-clean code.
 
 ## Install
 
@@ -94,7 +94,7 @@ else is per banner/slider in the admin grids.
 | | |
 |---|---|
 | **Magento** | Open Source / Adobe Commerce 2.4.7, 2.4.8, 2.4.9 |
-| **PHP** | 8.2, 8.3, 8.4 |
+| **PHP** | 8.2, 8.3, 8.4, 8.5 |
 | **Page Builder** | Content types for Magento_PageBuilder (bundled with 2.4.x) |
 
 ## Third-party
