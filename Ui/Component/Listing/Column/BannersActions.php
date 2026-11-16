@@ -15,12 +15,18 @@ class BannersActions extends \Magento\Ui\Component\Listing\Columns\Column
     const URL_PATH_EDIT = 'coullworks_banner_slider/banners/edit';
     const URL_PATH_DELETE = 'coullworks_banner_slider/banners/delete';
     protected $urlBuilder;
+
+    /**
+     * @var \Magento\Framework\Escaper
+     */
+    private $escaper;
     const URL_PATH_DETAILS = 'coullworks_banner_slider/banners/details';
 
     /**
      * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context
      * @param \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory
      * @param \Magento\Framework\UrlInterface $urlBuilder
+     * @param \Magento\Framework\Escaper $escaper
      * @param array $components
      * @param array $data
      */
@@ -28,10 +34,12 @@ class BannersActions extends \Magento\Ui\Component\Listing\Columns\Column
         \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
         \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
         \Magento\Framework\UrlInterface $urlBuilder,
+        \Magento\Framework\Escaper $escaper,
         array $components = [],
         array $data = []
     ) {
         $this->urlBuilder = $urlBuilder;
+        $this->escaper = $escaper;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -46,6 +54,7 @@ class BannersActions extends \Magento\Ui\Component\Listing\Columns\Column
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
                 if (isset($item['banners_id'])) {
+                    $label = '"' . str_replace('$', '&#36;', $this->escaper->escapeHtml((string) ($item['banner_name'] ?? '#' . $item['banners_id']))) . '"';
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
@@ -65,8 +74,8 @@ class BannersActions extends \Magento\Ui\Component\Listing\Columns\Column
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete "${ $.$data.title }"'),
-                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.title }" record?')
+                                'title' => __('Delete %1', $label),
+                                'message' => __('Are you sure you want to delete %1?', $label)
                             ]
                         ]
                     ];
