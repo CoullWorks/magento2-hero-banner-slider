@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CoullWorks Banner Slider for Magento 2.
+ *
+ * @author    danrcoull <ttechitsolutions@gmail.com>
+ * @copyright Copyright (c) 2020-2026 CoullWorks
+ * @license   Proprietary - see LICENSE.txt
+ * @link      https://github.com/CoullWorks/magento2-hero-banner-slider
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\PageBuilder\Model\Stage\RendererPool">
+        <arguments>
+            <argument name="renderers" xsi:type="array">
+                <item name="coullworks_hero_banner" xsi:type="object">Magento\PageBuilder\Model\Stage\Renderer\WidgetDirective</item>
+                <item name="coullworks_banner_slider" xsi:type="object">Magento\PageBuilder\Model\Stage\Renderer\WidgetDirective</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="CoullWorksAppearanceSource" type="Magento\PageBuilder\Model\Source\VisualSelect">
+        <arguments>
+            <argument name="optionsSize" xsi:type="string">large</argument>
+            <argument name="optionsData" xsi:type="array">
+                <item name="0" xsi:type="array">
+                    <item name="value" xsi:type="string">default</item>
+                    <item name="title" xsi:type="string" translate="true">Default</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+</config>
