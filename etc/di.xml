@@ -29,7 +29,7 @@
 	<virtualType name="CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">coullworks_banner_slider_bannerslider</argument>
-			<argument name="resourceModel" xsi:type="string">CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider\Collection</argument>
+			<argument name="resourceModel" xsi:type="string">CoullWorks\BannerSlider\Model\ResourceModel\BannerSlider</argument>
 		</arguments>
 	</virtualType>
 	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
@@ -46,7 +46,7 @@
 	<virtualType name="CoullWorks\BannerSlider\Model\ResourceModel\Banners\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
 		<arguments>
 			<argument name="mainTable" xsi:type="string">coullworks_banner_slider_banners</argument>
-			<argument name="resourceModel" xsi:type="string">CoullWorks\BannerSlider\Model\ResourceModel\Banners\Collection</argument>
+			<argument name="resourceModel" xsi:type="string">CoullWorks\BannerSlider\Model\ResourceModel\Banners</argument>
 		</arguments>
 	</virtualType>
 

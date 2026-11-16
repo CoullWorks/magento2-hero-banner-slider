@@ -19,9 +19,15 @@ class BannerSliderActions extends \Magento\Ui\Component\Listing\Columns\Column
     protected $urlBuilder;
 
     /**
+     * @var \Magento\Framework\Escaper
+     */
+    private $escaper;
+
+    /**
      * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context
      * @param \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory
      * @param \Magento\Framework\UrlInterface $urlBuilder
+     * @param \Magento\Framework\Escaper $escaper
      * @param array $components
      * @param array $data
      */
@@ -29,10 +35,12 @@ class BannerSliderActions extends \Magento\Ui\Component\Listing\Columns\Column
         \Magento\Framework\View\Element\UiComponent\ContextInterface $context,
         \Magento\Framework\View\Element\UiComponentFactory $uiComponentFactory,
         \Magento\Framework\UrlInterface $urlBuilder,
+        \Magento\Framework\Escaper $escaper,
         array $components = [],
         array $data = []
     ) {
         $this->urlBuilder = $urlBuilder;
+        $this->escaper = $escaper;
         parent::__construct($context, $uiComponentFactory, $components, $data);
     }
 
@@ -47,6 +55,7 @@ class BannerSliderActions extends \Magento\Ui\Component\Listing\Columns\Column
         if (isset($dataSource['data']['items'])) {
             foreach ($dataSource['data']['items'] as & $item) {
                 if (isset($item['bannerslider_id'])) {
+                    $label = '"' . str_replace('$', '&#36;', $this->escaper->escapeHtml((string) ($item['slider_name'] ?? '#' . $item['bannerslider_id']))) . '"';
                     $item[$this->getData('name')] = [
                         'edit' => [
                             'href' => $this->urlBuilder->getUrl(
@@ -66,8 +75,8 @@ class BannerSliderActions extends \Magento\Ui\Component\Listing\Columns\Column
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete "${ $.$data.title }"'),
-                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.title }" record?')
+                                'title' => __('Delete %1', $label),
+                                'message' => __('Are you sure you want to delete %1?', $label)
                             ]
                         ]
                     ];

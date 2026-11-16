@@ -92,7 +92,7 @@
 				</validation>
 			</settings>
 		</field>
-		<field formElement="multiselect" name="slides" sortOrder="3">
+		<field formElement="multiselect" name="slides" sortOrder="3" component="CoullWorks_BannerSlider/js/form/element/ordered-multiselect">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
 					<item name="source" xsi:type="string">BannerSlider</item>
@@ -100,7 +100,8 @@
 			</argument>
 			<settings>
 				<dataType>text</dataType>
-				<label translate="true">slides</label>
+				<label translate="true">Slides</label>
+				<notice translate="true">Only enabled banners are shown. Banners play in the order you select them; to move one, deselect it and select it again.</notice>
 				<dataScope>slides</dataScope>
 				<validation>
 					<rule name="required-entry" xsi:type="boolean">false</rule>

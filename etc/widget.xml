@@ -7,7 +7,7 @@
 
 <widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
 	<widget class="CoullWorks\BannerSlider\Block\Widget\HeroBanner" id="coullworks_banner_slider_herobanner">
-		<label>Hero Banner</label>
+		<label>Hero Banner (CoullWorks)</label>
 		<description>heroBanner</description>
 		<parameters>
 			<parameter name="banner_id" sort_order="10" source_model="CoullWorks\BannerSlider\Model\Config\Source\Banners" visible="true" xsi:type="select">
@@ -26,7 +26,7 @@
 		</parameters>
 	</widget>
 	<widget class="CoullWorks\BannerSlider\Block\Widget\BannerSlider" id="coullworks_banner_slider_bannerslider">
-		<label>Banner Slider</label>
+		<label>Banner Slider (CoullWorks)</label>
 		<description>bannerSlider</description>
 		<parameters>
 			<parameter name="slider_id" sort_order="10" source_model="CoullWorks\BannerSlider\Model\Config\Source\BannerSlider" visible="true" xsi:type="select">

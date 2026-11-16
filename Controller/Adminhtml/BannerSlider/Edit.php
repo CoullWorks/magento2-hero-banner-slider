@@ -23,6 +23,11 @@ class Edit extends \CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider
 {
 
     /**
+     * Authorization level for this action.
+     */
+    public const ADMIN_RESOURCE = 'CoullWorks_BannerSlider::BannerSlider_view';
+
+    /**
      * @var PageFactory
      */
     protected $resultPageFactory;

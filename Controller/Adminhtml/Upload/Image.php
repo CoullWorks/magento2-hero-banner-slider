@@ -25,7 +25,13 @@ use Psr\Log\LoggerInterface;
  * Class Image
  * @package CoullWorks\BannerSlider\Controller\Adminhtml\Upload
  */
-class Image extends \Magento\Backend\App\Action {
+class Image extends \Magento\Backend\App\Action
+{
+    /**
+     * Authorization level for this action: uploading is part of saving a banner.
+     */
+    public const ADMIN_RESOURCE = 'CoullWorks_BannerSlider::Banners_save';
+
     /**
      * Image uploader
      *
@@ -95,16 +101,6 @@ class Image extends \Magento\Backend\App\Action {
         $this->storeManager = $storeManager;
         $this->coreFileStorageDatabase = $coreFileStorageDatabase;
         $this->logger = $logger;
-    }
-
-    /**
-     * Check admin permissions for this controller
-     *
-     * @return boolean
-     */
-    protected function _isAllowed()
-    {
-        return true;
     }
 
     /**

@@ -59,7 +59,7 @@ class BannerSliderTest extends TestCase
         $config = json_decode($this->block->getSliderConfig(), true);
 
         self::assertFalse($config['arrows']);
-        self::assertSame('.tabs', $config['asNavFor']);
+        self::assertSame('#' . $this->block->getTabsHtmlId(), $config['asNavFor']);
         self::assertTrue($config['autoplay']);
     }
 
@@ -75,8 +75,26 @@ class BannerSliderTest extends TestCase
     {
         $config = json_decode($this->block->getTabsConfig(), true);
 
-        self::assertSame('.slider', $config['asNavFor']);
+        self::assertSame('#' . $this->block->getHtmlId(), $config['asNavFor']);
         self::assertSame(4, $config['slidesToShow']);
         self::assertTrue($config['focusOnSelect']);
+    }
+
+    public function testEachSliderGetsItsOwnDomIds(): void
+    {
+        $other = (new ObjectManager($this))->getObject(BannerSlider::class, ['jsonSerializer' => new Json()]);
+
+        self::assertNotSame($this->block->getHtmlId(), $other->getHtmlId());
+        self::assertSame($this->block->getHtmlId(), $this->block->getHtmlId());
+        self::assertSame($this->block->getHtmlId() . '-tabs', $this->block->getTabsHtmlId());
+    }
+
+    public function testSliderAndTabsDoNotBindToGlobalSelectors(): void
+    {
+        $this->block->setData('show_tabs', 1);
+
+        self::assertStringNotContainsString('.slider', $this->block->getSliderConfig());
+        self::assertStringNotContainsString('.tabs', $this->block->getSliderConfig());
+        self::assertStringNotContainsString('.slider', $this->block->getTabsConfig());
     }
 }

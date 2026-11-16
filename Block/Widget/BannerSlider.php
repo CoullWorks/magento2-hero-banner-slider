@@ -18,14 +18,28 @@ use Magento\Framework\Api\SearchCriteriaBuilderFactory;
 use Magento\Framework\DataObject\IdentityInterface;
 use Magento\Framework\Serialize\Serializer\Json;
 use Magento\Framework\View\Element\Template;
+use Magento\Widget\Block\BlockInterface;
 
 /**
  * Class BannerSlider
  * @package CoullWorks\BannerSlider\Block\Widget
  */
-class BannerSlider extends Template implements IdentityInterface
+class BannerSlider extends Template implements IdentityInterface, BlockInterface
 {
+    use ChecksModuleEnabled;
+
     const CACHE_TAG = 'banner_s';
+
+    /**
+     * Cache tag shared with the banner model, so editing a banner refreshes the
+     * cached page of every slider that contains it.
+     */
+    public const BANNER_CACHE_TAG = 'banner_b';
+
+    /**
+     * @var string|null
+     */
+    private $htmlId;
 
     /**
      * @var string
@@ -145,7 +159,57 @@ class BannerSlider extends Template implements IdentityInterface
      */
     public function getIdentities()
     {
-        return [self::CACHE_TAG . '_' . $this->getData('slider_id')];
+        $identities = [self::CACHE_TAG . '_' . $this->getData('slider_id')];
+        $slider = $this->getSlider();
+        $slideIds = $slider ? $this->getSliderSlides($slider) : [];
+        foreach ((array) $slideIds as $slideId) {
+            $identities[] = self::BANNER_CACHE_TAG . '_' . $slideId;
+        }
+
+        return $identities;
+    }
+
+    /**
+     * Unique DOM id of the slider wrapper, so Slick binds to this instance only.
+     *
+     * @return string
+     */
+    public function getHtmlId(): string
+    {
+        if ($this->htmlId === null) {
+            $this->htmlId = 'cw-slider-' . bin2hex(random_bytes(4));
+        }
+
+        return $this->htmlId;
+    }
+
+    /**
+     * Unique DOM id of the tabs strip belonging to this slider.
+     *
+     * @return string
+     */
+    public function getTabsHtmlId(): string
+    {
+        return $this->getHtmlId() . '-tabs';
+    }
+
+    /**
+     * The banners to show: only banners that still exist and are enabled, in slider order.
+     *
+     * @param BannerSliderInterface $slider
+     * @return \CoullWorks\BannerSlider\Api\Data\BannersInterface[]
+     */
+    public function getActiveSlides($slider): array
+    {
+        $active = [];
+        foreach ((array) $this->getSliderSlides($slider) as $slideId) {
+            $slide = $this->getSlide($slideId);
+            if ($slide && $slide->getEnabled()) {
+                $active[] = $slide;
+            }
+        }
+
+        return $active;
     }
 
     /**
@@ -215,7 +279,7 @@ class BannerSlider extends Template implements IdentityInterface
         ];
 
         if ($this->showTabs()) {
-            $config['asNavFor'] = '.tabs';
+            $config['asNavFor'] = '#' . $this->getTabsHtmlId();
         }
 
         return  $this->jsonSerializer->serialize($config);
@@ -236,7 +300,7 @@ class BannerSlider extends Template implements IdentityInterface
             'autoplay' => true,
             'centerMode' => true,
             'focusOnSelect' => true,
-            'asNavFor' => '.slider'
+            'asNavFor' => '#' . $this->getHtmlId()
         ];
 
         return $this->jsonSerializer->serialize($config);

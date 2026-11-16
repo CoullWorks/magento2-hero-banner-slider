@@ -12,13 +12,14 @@ namespace CoullWorks\BannerSlider\Model;
 
 use CoullWorks\BannerSlider\Api\Data\BannerSliderInterface;
 use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\DataObject\IdentityInterface;
 use CoullWorks\BannerSlider\Api\Data\BannerSliderInterfaceFactory;
 
 /**
  * Class BannerSlider
  * @package CoullWorks\BannerSlider\Model
  */
-class BannerSlider extends \Magento\Framework\Model\AbstractModel
+class BannerSlider extends \Magento\Framework\Model\AbstractModel implements IdentityInterface
 {
 
     protected $dataObjectHelper;
@@ -66,5 +67,15 @@ class BannerSlider extends \Magento\Framework\Model\AbstractModel
         );
 
         return $bannersliderDataObject;
+    }
+
+    /**
+     * Cache tag of page cache entries showing this slider.
+     *
+     * @return string[]
+     */
+    public function getIdentities()
+    {
+        return [\CoullWorks\BannerSlider\Block\Widget\BannerSlider::CACHE_TAG . '_' . $this->getId()];
     }
 }

@@ -1,0 +1,30 @@
+{
+    "coullworks_banner_slider_bannerslider": {
+        "column": {
+            "bannerslider_id": true,
+            "enabled": true,
+            "slider_name": true,
+            "slides": true,
+            "full_width": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "coullworks_banner_slider_banners": {
+        "column": {
+            "banners_id": true,
+            "enabled": true,
+            "banner_name": true,
+            "show_banner_overlay": true,
+            "full_width": true,
+            "banner_overlay_content": true,
+            "banner_image": true,
+            "banner_image_mobile": true,
+            "banner_link": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

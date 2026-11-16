@@ -111,7 +111,7 @@
 
 		<field name="banner_image" formElement="imageUploader"  sortOrder="60">
 			<settings>
-				<notice translate="true">Some notice.</notice>
+				<notice translate="true">JPG, JPEG, GIF or PNG, up to 2 MB. Shown on screens 768px wide and up, and on phones too if no mobile image is set.</notice>
 				<label translate="true">Banner Image</label>
 				<componentType>imageUploader</componentType>
 				<dataScope>banner_image</dataScope>
@@ -133,7 +133,7 @@
 
 		<field name="banner_image_mobile" formElement="imageUploader"  sortOrder="70">
 			<settings>
-				<notice translate="true">Some notice.</notice>
+				<notice translate="true">Optional. JPG, JPEG, GIF or PNG, up to 2 MB. Shown on screens narrower than 768px; the banner image is used when this is empty.</notice>
 				<label translate="true">Mobile Banner Image</label>
 				<componentType>imageUploader</componentType>
 				<dataScope>banner_image_mobile</dataScope>

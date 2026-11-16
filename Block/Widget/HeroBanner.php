@@ -22,9 +22,14 @@ use Magento\Widget\Block\BlockInterface;
  * Class HeroBanner
  * @package CoullWorks\BannerSlider\Block\Widget
  */
-class HeroBanner extends Template implements IdentityInterface
+class HeroBanner extends Template implements IdentityInterface, BlockInterface
 {
+    use ChecksModuleEnabled;
 
+    /**
+     * @var string|null
+     */
+    private $htmlId;
 
     const CACHE_TAG = 'banner_h';
 
@@ -157,6 +162,23 @@ class HeroBanner extends Template implements IdentityInterface
      */
     public function getIdentities()
     {
-        return [$this->_cacheTag . '_' . $this->getData('banner_id')];
+        return [
+            $this->_cacheTag . '_' . $this->getData('banner_id'),
+            BannerSlider::BANNER_CACHE_TAG . '_' . $this->getData('banner_id'),
+        ];
+    }
+
+    /**
+     * Unique DOM id of the hero wrapper, so parallax binds to this instance only.
+     *
+     * @return string
+     */
+    public function getHtmlId(): string
+    {
+        if ($this->htmlId === null) {
+            $this->htmlId = 'cw-hero-' . bin2hex(random_bytes(4));
+        }
+
+        return $this->htmlId;
     }
 }

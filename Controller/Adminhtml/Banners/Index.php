@@ -17,6 +17,11 @@ namespace CoullWorks\BannerSlider\Controller\Adminhtml\Banners;
 class Index extends \Magento\Backend\App\Action
 {
 
+    /**
+     * Authorization level for this action.
+     */
+    public const ADMIN_RESOURCE = 'CoullWorks_BannerSlider::Banners_view';
+
     protected $resultPageFactory;
 
     /**

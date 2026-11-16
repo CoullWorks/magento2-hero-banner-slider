@@ -11,77 +11,73 @@
  * @var \Magento\Framework\Escaper $escaper
  */
 $slider = $block->getSlider();
-
+$slides = ($slider && $slider->getEnabled()) ? $block->getActiveSlides($slider) : [];
+$sliderId = $block->getHtmlId();
+$tabsId = $block->getTabsHtmlId();
 ?>
-<?php if($slider): ?>
-    <?php if($slider->getEnabled()) : ?>
-        <div class="slider <?= $escaper->escapeHtmlAttr($block->getClass()); ?>">
-
-            <?php $slides = $block->getSliderSlides($slider); ?>
-            <?php if($slides != false) : ?>
-
-                <?php foreach ($slides as $slideIndex => $slideId) : ?>
-                <?php
-                /** @var $slide \CoullWorks\BannerSlider\Api\Data\BannersInterface */
-                $slide = $block->getSlide($slideId);
-                $desktopImg = (string)$slide->getBannerImage();
-                $mobileImg = $slide->getBannerImageMobile() ? (string)$slide->getBannerImageMobile() : $desktopImg;
-                $eager = $slideIndex === 0;
-                ?>
-                <div class="slide">
-                    <?php if($slide->getBannerLink()) :?>
-                    <a href="<?= $escaper->escapeUrl($slide->getBannerLink());?>" title="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>">
-                        <?php endif; ?>
-                        <picture class="<?= $escaper->escapeHtmlAttr($block->getImageClass()); ?>">
-                            <source media="(min-width: 768px)" type="image/webp" srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($desktopImg, 1920, 'webp')); ?>">
-                            <source media="(min-width: 768px)" srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($desktopImg, 1920, '')); ?>">
-                            <source type="image/webp" srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($mobileImg, 828, 'webp')); ?>">
-                            <img src="<?= $escaper->escapeUrl($block->getOptimizedUrl($mobileImg, 828, '')); ?>" alt="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>" loading="<?= $eager ? 'eager' : 'lazy' ?>"<?= $eager ? ' fetchpriority="high"' : '' ?> decoding="async" style="width:auto;">
-                        </picture>
-
-                        <?php if($slide->getShowBannerOverlay()) : ?>
-                            <div class="overlay">
-                                <div class="inner">
-                                    <?= /* @noEscape */ $block->processContent($slide->getBannerOverlayContent()); ?>
-                                </div>
-                            </div>
-                        <?php endif; ?>
-                        <?php if($slide->getBannerLink()) :?>
-                    </a>
+<?php if ($slides) : ?>
+    <div id="<?= $escaper->escapeHtmlAttr($sliderId); ?>" class="slider <?= $escaper->escapeHtmlAttr($block->getClass()); ?>">
+        <?php foreach ($slides as $slideIndex => $slide) : ?>
+            <?php
+            /** @var $slide \CoullWorks\BannerSlider\Api\Data\BannersInterface */
+            $desktopImg = (string)$slide->getBannerImage();
+            $mobileImg = $slide->getBannerImageMobile() ? (string)$slide->getBannerImageMobile() : $desktopImg;
+            $eager = $slideIndex === 0;
+            ?>
+            <div class="slide">
+                <?php if ($slide->getBannerLink()) : ?>
+                <a href="<?= $escaper->escapeUrl($slide->getBannerLink());?>" title="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>">
                 <?php endif; ?>
+                    <picture class="<?= $escaper->escapeHtmlAttr($block->getImageClass()); ?>">
+                        <source media="(min-width: 768px)" type="image/webp" srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($desktopImg, 1920, 'webp')); ?>">
+                        <source media="(min-width: 768px)" srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($desktopImg, 1920, '')); ?>">
+                        <source type="image/webp" srcset="<?= $escaper->escapeUrl($block->getOptimizedUrl($mobileImg, 828, 'webp')); ?>">
+                        <img src="<?= $escaper->escapeUrl($block->getOptimizedUrl($mobileImg, 828, '')); ?>" alt="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>" loading="<?= $eager ? 'eager' : 'lazy' ?>"<?= $eager ? ' fetchpriority="high"' : '' ?> decoding="async" style="width:auto;">
+                    </picture>
+
+                    <?php if ($slide->getShowBannerOverlay()) : ?>
+                        <div class="overlay">
+                            <div class="inner">
+                                <?= /* @noEscape */ $block->processContent($slide->getBannerOverlayContent()); ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                <?php if ($slide->getBannerLink()) : ?>
+                </a>
+                <?php endif; ?>
+            </div>
+        <?php endforeach; ?>
+    </div>
+    <script type="text/x-magento-init">
+    {
+        "#<?= $escaper->escapeJs($sliderId); ?>": {
+            "slider": <?= /* @noEscape */ $block->getSliderConfig(); ?>
+        }
+    }
+    </script>
+    <?php if ($block->getData('is_parallax')) : ?>
+        <script type="text/x-magento-init">
+        {
+            "#<?= $escaper->escapeJs($sliderId); ?> .img-parallax": {
+                "parallax": {}
+            }
+        }
+        </script>
+    <?php endif; ?>
+    <?php if ($block->showTabs()) : ?>
+        <div id="<?= $escaper->escapeHtmlAttr($tabsId); ?>" class="tabs full-width">
+            <?php foreach ($slides as $slide) : ?>
+                <div class="tab">
+                    <h4><?= $escaper->escapeHtml($slide->getBannerName());?></h4>
                 </div>
             <?php endforeach; ?>
-
-                <script type="text/x-magento-init">
-                {
-                   ".slider": {
-                      "slider": <?= /* @noEscape */ $block->getSliderConfig(); ?>
-                   }
-                }
-                </script>
-            <?php endif; ?>
         </div>
-        <?php if($block->showTabs()) : ?>
-            <div class="tabs full-width">
-                <?php foreach ($slides as $slide) : ?>
-
-                    <?php
-                    /**
-                     * @var $slide \CoullWorks\BannerSlider\Api\Data\BannersInterface
-                     */
-                    $slide = $block->getSlide($slide) ; ?>
-                    <div class="tab">
-                        <h4><?= $escaper->escapeHtml($slide->getBannerName());?></h4>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <script type="text/x-magento-init">
-                {
-                   ".tabs": {
-                       "slider": <?= /* @noEscape */ $block->getTabsConfig(); ?>
-                   }
-                }
-                </script>
-        <?php endif; ?>
+        <script type="text/x-magento-init">
+        {
+            "#<?= $escaper->escapeJs($tabsId); ?>": {
+                "slider": <?= /* @noEscape */ $block->getTabsConfig(); ?>
+            }
+        }
+        </script>
     <?php endif; ?>
 <?php endif; ?>

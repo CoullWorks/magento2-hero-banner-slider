@@ -12,13 +12,14 @@ namespace CoullWorks\BannerSlider\Model;
 
 use CoullWorks\BannerSlider\Api\Data\BannersInterface;
 use Magento\Framework\Api\DataObjectHelper;
+use Magento\Framework\DataObject\IdentityInterface;
 use CoullWorks\BannerSlider\Api\Data\BannersInterfaceFactory;
 
 /**
  * Class Banners
  * @package CoullWorks\BannerSlider\Model
  */
-class Banners extends \Magento\Framework\Model\AbstractModel
+class Banners extends \Magento\Framework\Model\AbstractModel implements IdentityInterface
 {
 
     protected $dataObjectHelper;
@@ -68,5 +69,17 @@ class Banners extends \Magento\Framework\Model\AbstractModel
         return $bannersDataObject;
     }
 
-
+    /**
+     * Cache tags that page cache entries showing this banner carry, so saving or
+     * deleting a banner refreshes every hero and slider that displays it.
+     *
+     * @return string[]
+     */
+    public function getIdentities()
+    {
+        return [
+            \CoullWorks\BannerSlider\Block\Widget\BannerSlider::BANNER_CACHE_TAG . '_' . $this->getId(),
+            \CoullWorks\BannerSlider\Block\Widget\HeroBanner::CACHE_TAG . '_' . $this->getId(),
+        ];
+    }
 }

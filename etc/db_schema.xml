@@ -13,7 +13,6 @@
 		<column name="enabled" nullable="true" xsi:type="boolean"/>
 		<column length="255" name="slider_name" nullable="true" xsi:type="varchar"/>
 		<column length="255" name="slides" nullable="true" xsi:type="varchar"/>
-		<column name="full_width" nullable="true" xsi:type="boolean"/>
 	</table>
 	<table comment="coullworks_banner_slider_banners Table" engine="innodb" name="coullworks_banner_slider_banners" resource="default">
 		<column comment="Entity Id" identity="true" name="banners_id" nullable="false" padding="6" unsigned="false" xsi:type="smallint"/>
@@ -23,7 +22,6 @@
 		<column name="enabled" nullable="false" xsi:type="boolean"/>
 		<column length="255" name="banner_name" nullable="true" xsi:type="varchar"/>
 		<column name="show_banner_overlay" nullable="true" xsi:type="boolean"/>
-		<column name="full_width" nullable="true" xsi:type="boolean"/>
 		<column name="banner_overlay_content" nullable="true" xsi:type="text"/>
 		<column length="255" name="banner_image" nullable="true" xsi:type="varchar"/>
 		<column length="255" name="banner_image_mobile" nullable="true" xsi:type="varchar"/>

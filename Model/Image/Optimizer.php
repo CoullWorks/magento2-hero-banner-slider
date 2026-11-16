@@ -26,6 +26,7 @@ use Psr\Log\LoggerInterface;
 class Optimizer
 {
     private const CACHE_DIR = 'banner/image/cache';
+    private const QUALITY = 82;
 
     /**
      * @var \Magento\Framework\Filesystem\Directory\WriteInterface
@@ -64,7 +65,7 @@ class Optimizer
             }
 
             $cacheRelative = $this->cachePath($relativePath, $width, $format);
-            if (!$this->mediaDirectory->isExist($cacheRelative)) {
+            if (!$this->isUsableCache($cacheRelative, $format)) {
                 $this->generate($relativePath, $cacheRelative, $width, $format);
             }
 
@@ -77,19 +78,88 @@ class Optimizer
     }
 
     /**
-     * Generate the resized/re-encoded file.
+     * Whether a cached file can be served. WebP files written by 2.0.0 and 2.0.1 were
+     * really JPEG data with a .webp name, so those are regenerated.
+     */
+    private function isUsableCache(string $relative, string $format): bool
+    {
+        if (!$this->mediaDirectory->isExist($relative)) {
+            return false;
+        }
+        if ($format !== 'webp') {
+            return true;
+        }
+
+        $head = (string) file_get_contents($this->mediaDirectory->getAbsolutePath($relative), false, null, 0, 12);
+
+        return strlen($head) === 12 && str_starts_with($head, 'RIFF') && substr($head, 8, 4) === 'WEBP';
+    }
+
+    /**
+     * Generate the resized file. The image adapter always writes the source format
+     * whatever the target extension is, so WebP is produced from the resized original
+     * with GD or Imagick instead of being renamed.
      */
     private function generate(string $source, string $target, int $width, string $format): void
     {
+        if ($format === 'webp') {
+            $resized = $this->cachePath($source, $width, '');
+            if (!$this->mediaDirectory->isExist($resized)) {
+                $this->generate($source, $resized, $width, '');
+            }
+            $this->encodeWebp(
+                $this->mediaDirectory->getAbsolutePath($resized),
+                $this->mediaDirectory->getAbsolutePath($target)
+            );
+
+            return;
+        }
+
         $this->mediaDirectory->create(dirname($target));
 
         $adapter = $this->adapterFactory->create();
         $adapter->open($this->mediaDirectory->getAbsolutePath($source));
         $adapter->constrainOnly(true);        // never upscale
         $adapter->keepAspectRatio(true);
-        $adapter->quality(82);
+        $adapter->quality(self::QUALITY);
         $adapter->resize($width, null);
         $adapter->save($this->mediaDirectory->getAbsolutePath($target));
+    }
+
+    /**
+     * Re-encode an image file as real WebP.
+     *
+     * @throws \RuntimeException when neither GD nor Imagick can write WebP
+     */
+    private function encodeWebp(string $from, string $to): void
+    {
+        $this->mediaDirectory->create(dirname($this->mediaDirectory->getRelativePath($to)));
+
+        if (function_exists('imagewebp')) {
+            $image = imagecreatefromstring((string) file_get_contents($from));
+            if ($image !== false) {
+                imagepalettetotruecolor($image);
+                imagealphablending($image, false);
+                imagesavealpha($image, true);
+                $written = imagewebp($image, $to, self::QUALITY);
+                imagedestroy($image);
+                if ($written) {
+                    return;
+                }
+            }
+        }
+
+        if (class_exists(\Imagick::class) && in_array('WEBP', \Imagick::queryFormats('WEBP'), true)) {
+            $imagick = new \Imagick($from);
+            $imagick->setImageFormat('webp');
+            $imagick->setImageCompressionQuality(self::QUALITY);
+            $imagick->writeImage($to);
+            $imagick->clear();
+
+            return;
+        }
+
+        throw new \RuntimeException('No WebP encoder (GD imagewebp or Imagick) is available.');
     }
 
     /**
