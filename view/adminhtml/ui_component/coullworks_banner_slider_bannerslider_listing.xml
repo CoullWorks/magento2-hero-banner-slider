@@ -27,6 +27,9 @@
 	</settings>
 	<dataSource component="Magento_Ui/js/grid/provider" name="coullworks_banner_slider_bannerslider_listing_data_source">
 		<settings>
+			<storageConfig>
+				<param name="indexField" xsi:type="string">bannerslider_id</param>
+			</storageConfig>
 			<updateUrl path="mui/index/render"/>
 		</settings>
 		<aclResource>CoullWorks_BannerSlider::BannerSlider</aclResource>
