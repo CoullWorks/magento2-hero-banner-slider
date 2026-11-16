@@ -19,29 +19,36 @@
 
 /**
  * Page Builder stage preview of the Hero Banner and Banner Slider content types.
+ * The stage renders the storefront markup without the storefront styles or Slick,
+ * so the banner is laid out here: one banner image with its overlay, links inert.
  */
-.pagebuilder-coullworks-hero-banner .cw-stage-banner,
-.pagebuilder-coullworks-banner-slider .cw-stage-banner {
+.pagebuilder-coullworks-hero-banner .rendered-content .banner,
+.pagebuilder-coullworks-banner-slider .rendered-content .slide {
     position: relative;
     overflow: hidden;
     line-height: 1.2;
 }
 
-.pagebuilder-coullworks-hero-banner .cw-stage-banner picture,
-.pagebuilder-coullworks-banner-slider .cw-stage-banner picture {
+.pagebuilder-coullworks-banner-slider .rendered-content .slide ~ .slide,
+.pagebuilder-coullworks-banner-slider .rendered-content .tabs {
+    display: none;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content picture,
+.pagebuilder-coullworks-banner-slider .rendered-content picture {
     display: block;
 }
 
-.pagebuilder-coullworks-hero-banner .cw-stage-banner img,
-.pagebuilder-coullworks-banner-slider .cw-stage-banner img {
+.pagebuilder-coullworks-hero-banner .rendered-content picture img,
+.pagebuilder-coullworks-banner-slider .rendered-content picture img {
     display: block;
     width: 100%;
     max-height: 420px;
     object-fit: cover;
 }
 
-.pagebuilder-coullworks-hero-banner .cw-stage-overlay,
-.pagebuilder-coullworks-banner-slider .cw-stage-overlay {
+.pagebuilder-coullworks-hero-banner .rendered-content .overlay,
+.pagebuilder-coullworks-banner-slider .rendered-content .overlay {
     position: absolute;
     top: 0;
     right: 0;
@@ -55,23 +62,26 @@
     text-shadow: 0 1px 3px rgba(0, 0, 0, .6);
 }
 
-.pagebuilder-coullworks-hero-banner .cw-stage-overlay h1,
-.pagebuilder-coullworks-hero-banner .cw-stage-overlay h2,
-.pagebuilder-coullworks-hero-banner .cw-stage-overlay h3,
-.pagebuilder-coullworks-hero-banner .cw-stage-overlay h4,
-.pagebuilder-coullworks-banner-slider .cw-stage-overlay h1,
-.pagebuilder-coullworks-banner-slider .cw-stage-overlay h2,
-.pagebuilder-coullworks-banner-slider .cw-stage-overlay h3,
-.pagebuilder-coullworks-banner-slider .cw-stage-overlay h4 {
+.pagebuilder-coullworks-hero-banner .rendered-content .overlay :is(h1, h2, h3, h4, h5),
+.pagebuilder-coullworks-banner-slider .rendered-content .overlay :is(h1, h2, h3, h4, h5) {
     margin: 0 0 .3em;
     max-width: 60%;
     color: #fff;
-    font-size: 32px;
     text-transform: uppercase;
 }
 
-.pagebuilder-coullworks-hero-banner .cw-stage-overlay a,
-.pagebuilder-coullworks-banner-slider .cw-stage-overlay a {
+.pagebuilder-coullworks-hero-banner .rendered-content .overlay :is(h1, h2),
+.pagebuilder-coullworks-banner-slider .rendered-content .overlay :is(h1, h2) {
+    font-size: 32px;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content .overlay :is(h3, h4, h5),
+.pagebuilder-coullworks-banner-slider .rendered-content .overlay :is(h3, h4, h5) {
+    font-size: 18px;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content .overlay a,
+.pagebuilder-coullworks-banner-slider .rendered-content .overlay a {
     display: inline-block;
     align-self: flex-start;
     padding: 8px 20px;
@@ -82,13 +92,12 @@
     text-shadow: none;
 }
 
-.pagebuilder-coullworks-banner-slider .cw-stage-count {
-    position: absolute;
-    right: 10px;
-    bottom: 10px;
-    padding: 2px 10px;
-    border-radius: 10px;
-    background: rgba(0, 0, 0, .65);
-    color: #fff;
-    font-size: 12px;
+.pagebuilder-coullworks-hero-banner .rendered-content a,
+.pagebuilder-coullworks-banner-slider .rendered-content a {
+    pointer-events: none;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content .banner-link,
+.pagebuilder-coullworks-banner-slider .rendered-content .banner-link {
+    display: none;
 }
