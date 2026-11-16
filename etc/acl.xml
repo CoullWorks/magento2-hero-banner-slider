@@ -13,18 +13,20 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="CoullWorks_BannerSlider::top_level" sortOrder="80" title="CoullWorks Banner Slider">
-                    <resource id="CoullWorks_BannerSlider::BannerSlider" sortOrder="10" title="Banner Sliders">
-                        <resource id="CoullWorks_BannerSlider::BannerSlider_save" sortOrder="10" title="Save Banner Slider"/>
-                        <resource id="CoullWorks_BannerSlider::BannerSlider_delete" sortOrder="20" title="Delete Banner Slider"/>
-                        <resource id="CoullWorks_BannerSlider::BannerSlider_update" sortOrder="30" title="Update Banner Slider"/>
-                        <resource id="CoullWorks_BannerSlider::BannerSlider_view" sortOrder="40" title="View Banner Slider"/>
-                    </resource>
-                    <resource id="CoullWorks_BannerSlider::Banners" sortOrder="20" title="Banners">
-                        <resource id="CoullWorks_BannerSlider::Banners_save" sortOrder="10" title="Save Banner"/>
-                        <resource id="CoullWorks_BannerSlider::Banners_delete" sortOrder="20" title="Delete Banner"/>
-                        <resource id="CoullWorks_BannerSlider::Banners_update" sortOrder="30" title="Update Banner"/>
-                        <resource id="CoullWorks_BannerSlider::Banners_view" sortOrder="40" title="View Banner"/>
+                <resource id="Magento_Backend::content">
+                    <resource id="CoullWorks_BannerSlider::top_level" sortOrder="80" title="CoullWorks Banner Slider">
+                        <resource id="CoullWorks_BannerSlider::BannerSlider" sortOrder="10" title="Banner Sliders">
+                            <resource id="CoullWorks_BannerSlider::BannerSlider_save" sortOrder="10" title="Save Banner Slider"/>
+                            <resource id="CoullWorks_BannerSlider::BannerSlider_delete" sortOrder="20" title="Delete Banner Slider"/>
+                            <resource id="CoullWorks_BannerSlider::BannerSlider_update" sortOrder="30" title="Update Banner Slider"/>
+                            <resource id="CoullWorks_BannerSlider::BannerSlider_view" sortOrder="40" title="View Banner Slider"/>
+                        </resource>
+                        <resource id="CoullWorks_BannerSlider::Banners" sortOrder="20" title="Banners">
+                            <resource id="CoullWorks_BannerSlider::Banners_save" sortOrder="10" title="Save Banner"/>
+                            <resource id="CoullWorks_BannerSlider::Banners_delete" sortOrder="20" title="Delete Banner"/>
+                            <resource id="CoullWorks_BannerSlider::Banners_update" sortOrder="30" title="Update Banner"/>
+                            <resource id="CoullWorks_BannerSlider::Banners_view" sortOrder="40" title="View Banner"/>
+                        </resource>
                     </resource>
                 </resource>
                 <resource id="Magento_Backend::stores">
