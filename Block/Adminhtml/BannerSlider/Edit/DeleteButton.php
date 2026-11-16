@@ -10,6 +10,10 @@ declare(strict_types=1);
 
 namespace CoullWorks\BannerSlider\Block\Adminhtml\BannerSlider\Edit;
 
+use CoullWorks\BannerSlider\Api\BannerSliderRepositoryInterface;
+use Magento\Backend\Block\Widget\Context;
+use Magento\Framework\Escaper;
+use Magento\Framework\Exception\NoSuchEntityException;
 use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
 
 /**
@@ -18,6 +22,22 @@ use Magento\Framework\View\Element\UiComponent\Control\ButtonProviderInterface;
  */
 class DeleteButton extends GenericButton implements ButtonProviderInterface
 {
+    /**
+     * @var BannerSliderRepositoryInterface
+     */
+    private $repository;
+
+    /**
+     * @var Escaper
+     */
+    private $escaper;
+
+    public function __construct(Context $context, BannerSliderRepositoryInterface $repository, Escaper $escaper)
+    {
+        parent::__construct($context);
+        $this->repository = $repository;
+        $this->escaper = $escaper;
+    }
 
     /**
      * @return array
@@ -29,13 +49,31 @@ class DeleteButton extends GenericButton implements ButtonProviderInterface
             $data = [
                 'label' => __('Delete Bannerslider'),
                 'class' => 'delete',
-                'on_click' => 'deleteConfirm(\'' . __(
-                    'Are you sure you want to do this?'
-                ) . '\', \'' . $this->getDeleteUrl() . '\')',
+                'on_click' => 'deleteConfirm(\'' . $this->getConfirmMessage() . '\', \'' . $this->getDeleteUrl() . '\')',
                 'sort_order' => 20,
             ];
         }
         return $data;
+    }
+
+    /**
+     * Confirmation text naming the record, as the grid dialog does, safe inside a JS string.
+     *
+     * @return string
+     */
+    private function getConfirmMessage(): string
+    {
+        try {
+            $name = (string) $this->repository->get($this->getModelId())->getSliderName();
+        } catch (NoSuchEntityException $e) {
+            $name = '';
+        }
+        if ($name === '') {
+            $name = '#' . $this->getModelId();
+        }
+        return $this->escaper->escapeJs(
+            (string) __('Delete "%1"?', $this->escaper->escapeHtml($name))
+        );
     }
 
     /**

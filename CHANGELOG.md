@@ -4,6 +4,20 @@ All notable changes to this project are documented here, based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.2] - 2026-11-16
+
+A small fix release, checked in a browser on a live Magento 2.4.9 install.
+
+### Fixed
+- **Slider arrows were effectively invisible on Luma.** They were white at 75 percent
+  opacity and sat 25px outside the slider, so they landed on the white page margin. They now
+  sit inside the slider on a solid, semi-opaque dark disc with a white glyph (40px, 36px on a
+  phone), with a hover state and a focus ring, and read on a light page and over dark
+  photographs. The markup and the CSS class names are unchanged; with tabs on there are still
+  no arrows.
+- **The delete dialog on the Banner and Slider forms used stock text** ("Are you sure you
+  want to do this?"). It now names the record, as the grid dialog does: `Delete "<name>"?`.
+
 ## [2.1.1] - 2026-11-16
 
 A defect-fix release. Every fix below was checked in a browser on a live Magento 2.4.9
