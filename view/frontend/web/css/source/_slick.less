@@ -19,135 +19,137 @@
         src: url('@{baseDir}CoullWorks_BannerSlider/fonts/slick.eot?#iefix') format('embedded-opentype'), url('@{baseDir}CoullWorks_BannerSlider/fonts/slick.woff') format('woff'), url('@{baseDir}CoullWorks_BannerSlider/fonts/slick.ttf') format('truetype'), url('@{baseDir}CoullWorks_BannerSlider/fonts/slick.svg#slick') format('svg');
     }
 
-    .slick-prev {
-        -ms-transform: translate(0, -50%);
+    // Arrows sit inside the slider, on a solid semi-opaque dark disc with a white glyph, so they
+    // read on a light page and on top of dark or light photographs alike (white on rgba(17,17,17,.72)
+    // is about 7:1 even over a white backdrop).
+    @arrow-size: 40px;
+    @arrow-offset: 16px;
+
+    .slick-prev,
+    .slick-next {
         -webkit-transform: translate(0, -50%);
-        background: transparent;
-        border: none;
-        color: transparent;
+        -ms-transform: translate(0, -50%);
+        align-items: center;
+        background: rgba(17, 17, 17, .72);
+        border: 0;
+        border-radius: 50%;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, .35);
+        box-sizing: border-box;
+        color: #ffffff;
         cursor: pointer;
-        display: block;
+        display: -webkit-flex;
+        display: flex;
         font-size: 0;
-        height: @height0;
-        left: -25px;
+        height: @arrow-size;
+        justify-content: center;
         line-height: 0;
+        margin: 0;
+        min-width: @arrow-size;
         outline: none;
         padding: 0;
         position: absolute;
         top: 50%;
         transform: translate(0, -50%);
-        width: @width0;
+        transition: background-color .15s ease;
+        width: @arrow-size;
+        z-index: 10;
 
         &:hover {
-            background: transparent;
-            color: transparent;
-            outline: none;
-
-            before {
-                opacity: 1;
-            }
+            background: rgba(0, 0, 0, .92);
+            border: 0;
+            color: #ffffff;
         }
 
         &:focus {
-            background: transparent;
-            color: transparent;
-            outline: none;
+            background: rgba(0, 0, 0, .92);
+            border: 0;
+            color: #ffffff;
+        }
 
-            before {
-                opacity: 1;
-            }
+        &:focus-visible {
+            outline: 2px solid #ffffff;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 5px rgba(0, 0, 0, .85);
+        }
+
+        &:active {
+            background: #000000;
+            border: 0;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, .35);
         }
 
         &:before {
             -moz-osx-font-smoothing: grayscale;
             -webkit-font-smoothing: antialiased;
-            color: white;
-            content: '\2190';
+            color: #ffffff;
             font-family: 'slick';
             font-size: 20px;
             line-height: 1;
-            opacity: .75;
+            opacity: 1;
+        }
+    }
+
+    .slick-prev {
+        left: @arrow-offset;
+
+        &:before {
+            content: '\2190';
         }
     }
 
     .slick-next {
-        -ms-transform: translate(0, -50%);
-        -webkit-transform: translate(0, -50%);
-        background: transparent;
-        border: none;
-        color: transparent;
-        cursor: pointer;
-        display: block;
-        font-size: 0;
-        height: @height0;
-        line-height: 0;
-        outline: none;
-        padding: 0;
-        position: absolute;
-        right: -25px;
-        top: 50%;
-        transform: translate(0, -50%);
-        width: @width0;
-
-        &:hover {
-            background: transparent;
-            color: transparent;
-            outline: none;
-
-            before {
-                opacity: 1;
-            }
-        }
-
-        &:focus {
-            background: transparent;
-            color: transparent;
-            outline: none;
-
-            before {
-                opacity: 1;
-            }
-        }
+        right: @arrow-offset;
 
         &:before {
-            -moz-osx-font-smoothing: grayscale;
-            -webkit-font-smoothing: antialiased;
-            color: white;
             content: '\2192';
-            font-family: 'slick';
-            font-size: 20px;
-            line-height: 1;
-            opacity: .75;
         }
     }
 
-    .slick-prev.slick-disabled {
-        &:before {
-            opacity: .25;
-        }
+    .slick-prev.slick-hidden,
+    .slick-next.slick-hidden {
+        display: none;
     }
 
+    .slick-prev.slick-disabled,
     .slick-next.slick-disabled {
-        &:before {
-            opacity: .25;
-        }
+        cursor: default;
+        opacity: .45;
     }
 
-    [dir='rtl'].slick-prev {
+    [dir='rtl'] .slick-prev,
+    .slick-prev[dir='rtl'] {
         left: auto;
-        right: -25px;
+        right: @arrow-offset;
 
         &:before {
             content: '\2192';
         }
     }
 
-    [dir='rtl'].slick-next {
-        left: -25px;
+    [dir='rtl'] .slick-next,
+    .slick-next[dir='rtl'] {
+        left: @arrow-offset;
         right: auto;
 
         &:before {
             content: '\2190';
+        }
+    }
+
+    @media (max-width: 767px) {
+        .slick-prev,
+        .slick-next {
+            height: 36px;
+            min-width: 36px;
+            width: 36px;
+        }
+
+        .slick-prev {
+            left: 8px;
+        }
+
+        .slick-next {
+            right: 8px;
         }
     }
 
