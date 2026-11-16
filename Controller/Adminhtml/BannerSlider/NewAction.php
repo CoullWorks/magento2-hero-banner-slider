@@ -22,6 +22,11 @@ class NewAction extends \CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlid
 {
 
     /**
+     * Authorization level for this action.
+     */
+    public const ADMIN_RESOURCE = 'CoullWorks_BannerSlider::BannerSlider_save';
+
+    /**
      * @var ForwardFactory
      */
     protected $resultForwardFactory;

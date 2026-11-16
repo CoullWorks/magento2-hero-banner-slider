@@ -22,6 +22,11 @@ class Delete extends \CoullWorks\BannerSlider\Controller\Adminhtml\BannerSlider
 {
 
     /**
+     * Authorization level for this action.
+     */
+    public const ADMIN_RESOURCE = 'CoullWorks_BannerSlider::BannerSlider_delete';
+
+    /**
      * @var BannerSliderFactory
      */
     private $bannerSliderFactory;

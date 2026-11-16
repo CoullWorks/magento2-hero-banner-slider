@@ -25,6 +25,11 @@ class Save extends \Magento\Backend\App\Action
 {
 
     /**
+     * Authorization level for this action.
+     */
+    public const ADMIN_RESOURCE = 'CoullWorks_BannerSlider::Banners_save';
+
+    /**
      * @param Context $context
      * @param DataPersistorInterface $dataPersistor
      * @param StoreManagerInterface $storeManager
