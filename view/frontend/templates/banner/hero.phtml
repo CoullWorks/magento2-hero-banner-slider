@@ -10,12 +10,16 @@
  * @var \Magento\Framework\Escaper $escaper
  */
 $slide = $block->getSlide();
+$overlayHtml = ($slide && $slide->getShowBannerOverlay()) ? (string)$block->processContent($slide->getBannerOverlayContent()) : '';
+// An anchor cannot contain another anchor: when the overlay has its own links the banner link becomes a stretched link.
+$stretchLink = $slide && $slide->getBannerLink() && preg_match('/<a[\s>]/i', $overlayHtml) === 1;
+$wrapLink = $slide && $slide->getBannerLink() && !$stretchLink;
 ?>
 <?php if($slide): ?>
     <?php if($slide->getEnabled()) : ?>
         <div id="<?= $escaper->escapeHtmlAttr($block->getHtmlId()); ?>" class="hero <?= $escaper->escapeHtmlAttr($block->getClass()); ?>">
-            <div class="banner">
-                <?php if($slide->getBannerLink()) :?>
+            <div class="banner<?= $stretchLink ? ' has-stretched-link' : '' ?>">
+                <?php if($wrapLink) :?>
                     <a href="<?= $escaper->escapeUrl($slide->getBannerLink());?>" title="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>">
                 <?php endif; ?>
                 <?php
@@ -37,12 +41,14 @@ $slide = $block->getSlide();
                 <?php if($slide->getShowBannerOverlay()) : ?>
                     <div class="overlay">
                         <div class="inner">
-                            <?= /* @noEscape */ $block->processContent($slide->getBannerOverlayContent()); ?>
+                            <?= /* @noEscape */ $overlayHtml; ?>
                         </div>
                     </div>
                 <?php endif; ?>
-                <?php if($slide->getBannerLink()) :?>
+                <?php if($wrapLink) :?>
                     </a>
+                <?php elseif($stretchLink) :?>
+                    <a class="banner-link" href="<?= $escaper->escapeUrl($slide->getBannerLink());?>" title="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>" aria-label="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>"></a>
                 <?php endif; ?>
             </div>
         </div>
