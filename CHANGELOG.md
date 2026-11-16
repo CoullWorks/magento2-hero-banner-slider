@@ -4,6 +4,51 @@ All notable changes to this project are documented here, based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.1] - 2026-11-16
+
+A defect-fix release. Every fix below was checked in a browser on a live Magento 2.4.9
+install.
+
+### Upgrade notes
+- **Page Builder works from this release.** In 2.1.0 the Hero Banner and Banner Slider
+  content types could be dropped on the stage, but their settings could not be opened and
+  the stage preview stayed empty, so the 2.1.0 notes and README overstated Page Builder
+  support. Both now work end to end (see Fixed).
+- The module's resources now sit under *Content* in the roles tree. Existing roles keep
+  what they had; a role that sees the menu today still sees it. A new role only needs the
+  module's *View* resource ticked, because the tree selects *Content* with it.
+- Hyvä is not supported: the module is jQuery and RequireJS only.
+
+### Fixed
+- **Page Builder settings could not be opened.** Opening the settings of a dropped Hero
+  Banner or Banner Slider threw "Cannot read properties of undefined (reading
+  'breakpoints')". Both forms now carry the `appearance` field Page Builder expects, and
+  each has the `pagebuilder_coullworks_<type>_form` layout handle Page Builder loads the
+  form from, so the full settings panel (the module's options plus the standard
+  alignment, border, margin, padding and CSS class settings) opens and saves.
+- **Page Builder stage preview was empty.** A stage renderer is now registered for both
+  content types, so the chosen banner or slider shows on the stage, with admin styles for
+  the preview.
+- **Both admin grids showed every row as the last record** on Magento 2.4.9. The listings
+  now set the data storage `indexField`, so each row is its own record.
+- **The Slides list offered disabled banners** while saying "Only enabled banners are
+  shown". It now lists only enabled banners, as does the banner picker in Page Builder.
+  A banner that is disabled after being added to a slider drops out of the list the next
+  time the slider is saved.
+- **Slider arrows were blank.** The Slick font files shipped as empty files and the
+  stylesheet pointed at the theme's `fonts/` and `images/` folders, which 404. The real
+  Slick font files (MIT) are now bundled and referenced from the module, with no CDN, and
+  the arrow and dot glyphs are written as CSS escapes.
+- **A link inside a banner overlay broke the layout** when the banner also had its own
+  link, because anchors cannot nest. The banner link is now a stretched link behind the
+  overlay in that case, so both the banner and the overlay button work.
+- **The menu item needed an extra permission.** The module's menu sits under *Content*,
+  but its permission node did not, so a role also needed *Content* ticked by hand. The
+  permission tree now nests the module under *Content*.
+- **Admin page titles**: the Banner Sliders grid was titled "BannerSlider" and the edit
+  pages "Bannersliders" and "Bannerss"; they now read "Banner Sliders", "Edit Banner
+  Slider", "Banners" and "Edit Banner".
+
 ## [2.1.0] - 2026-11-16
 
 A defect-fix release found by auditing the module against a live Magento 2.4.9 install.
