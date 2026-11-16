@@ -66,7 +66,8 @@ Upgrading from the old `boxleafdigital/module-bannerslider`? See
 image, mobile image, link, and (optionally) an overlay with WYSIWYG content.
 
 **Content → CoullWorks Banner Slider → Banner Sliders** — create a slider: name, enable,
-and pick the banners it contains (in order).
+and pick the banners it contains. They play in the order you select them; to move one,
+deselect it and select it again. Disabled banners are skipped.
 
 ## Placing them
 
@@ -86,8 +87,17 @@ tabs) in the panel.
 
 ## Configuration
 
-**Stores → Configuration → CoullWorks → Banner Slider** — a global enable toggle. Everything
-else is per banner/slider in the admin grids.
+**Stores → Configuration → CoullWorks → Banner Slider → General → Enable** — a global switch.
+Set to No, the hero, slider and both Page Builder content types render nothing on the
+storefront (the admin and the Page Builder preview still work). Everything else is per
+banner/slider in the admin grids.
+
+## Permissions
+
+Under *System → Permissions → User Roles*, the resources are *CoullWorks Banner Slider →
+Banner Sliders* and *Banners*, each with View, Save, Update and Delete. Opening a grid or
+form needs View; creating, saving and uploading images needs Save; inline editing needs
+Update; deleting needs Delete.
 
 ## Compatibility
 
@@ -96,6 +106,8 @@ else is per banner/slider in the admin grids.
 | **Magento** | Open Source / Adobe Commerce 2.4.7, 2.4.8, 2.4.9 |
 | **PHP** | 8.2, 8.3, 8.4, 8.5 |
 | **Page Builder** | Content types for Magento_PageBuilder (bundled with 2.4.x) |
+| **Hyvä** | Not supported. The module uses jQuery and RequireJS. |
+| **Image encoding** | WebP needs PHP GD with WebP support or Imagick; without either the original format is served. |
 
 ## Third-party
 

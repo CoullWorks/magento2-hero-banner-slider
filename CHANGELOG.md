@@ -4,6 +4,62 @@ All notable changes to this project are documented here, based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.0] - 2026-11-16
+
+A defect-fix release found by auditing the module against a live Magento 2.4.9 install.
+Every change below was checked in a browser on that install, including the upgrade from
+2.0.1.
+
+### Upgrade notes
+- **Roles now need the per-action permissions.** The admin controllers used to check only
+  the top-level resource. They now check View, Save, Update and Delete (for banners and
+  sliders separately), and image upload needs Banner > Save. Non-administrator roles that
+  worked before must be given the resources they need under *System > Permissions > User
+  Roles*.
+- `setup:upgrade` drops the unused `full_width` column from both tables. Nothing read it.
+  Banners and sliders are otherwise untouched.
+- Hyvä is not supported: the module is jQuery and RequireJS only.
+
+### Fixed
+- **Widgets and Page Builder content types rendered nothing.** The blocks did not
+  implement the widget `BlockInterface`, so Magento's widget filter dropped them. They
+  now render.
+- **The Enable setting did nothing.** With *Stores > Configuration > CoullWorks > Banner
+  Slider > Enable* set to No, the hero, slider widget and both Page Builder content
+  types now render nothing on the storefront. The admin still opens, and the Page Builder
+  stage preview still shows the banner.
+- **A disabled banner no longer shows inside an enabled slider**, nor does a banner that
+  has been deleted (which used to be a fatal error). The tabs strip matches.
+- **Two sliders on one page now work.** Slick was bound to the global `.slider` and
+  `.tabs` selectors; each hero and slider now has its own id and is initialised alone.
+- **Parallax now runs on sliders** as well as on the hero, and applies once on load
+  (it used a jQuery `ready` event that never fires).
+- **WebP files were not WebP.** The image adapter wrote JPEG data under a `.webp` name.
+  Files are now encoded as real WebP with GD or Imagick, and cached files from earlier
+  versions are regenerated.
+- **Editing a banner now refreshes cached pages** that show it, including every slider
+  that contains it. Saving a slider refreshes pages that show the slider.
+- **Admin grids showed duplicated rows.** The grid data sources named the collection as
+  their resource model, so rows came back without an id.
+- **Admin permissions are enforced per action** (see the upgrade notes), and the image
+  upload endpoint no longer allows any administrator.
+- **Banner Sliders grid**: the Enabled column was labelled "Slider Name" and is now a
+  Yes/No column. The delete confirmation dialogs on both grids named a field that does
+  not exist; they now name the record.
+- **Banner form**: both image fields showed the placeholder "Some notice."; they now
+  give the real file rules and the 768px breakpoint.
+- **Slider form**: banners keep the order you select them in. Before, they were saved in
+  list order whatever you clicked, although the README promised an order.
+- **Widget list**: the widgets are labelled "Hero Banner (CoullWorks)" and "Banner Slider
+  (CoullWorks)" so they can be told apart from other modules.
+
+### Changed
+- Removed the unused `full_width` database column from both tables, through the module's
+  declarative schema (the whitelist is now shipped).
+- Migrated banners from `boxleafdigital/module-bannerslider` keep their images: the old
+  module used the same `banner/image/` media folder, and a leading slash in an old mobile
+  image path is handled.
+
 ## [2.0.1] - 2026-09-28
 
 ### Changed
