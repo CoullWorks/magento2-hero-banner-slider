@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * CoullWorks Banner Slider for Magento 2.
+ *
+ * @author    danrcoull <ttechitsolutions@gmail.com>
+ * @copyright Copyright (c) 2020-2026 CoullWorks
+ * @license   Proprietary - see LICENSE.txt
+ * @link      https://github.com/CoullWorks/magento2-hero-banner-slider
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles"/>
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="pagebuilder_coullworks_hero_banner_form"/>
+        </referenceContainer>
+    </body>
+</page>

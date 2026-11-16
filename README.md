@@ -73,7 +73,9 @@ deselect it and select it again. Disabled banners are skipped.
 
 **Page Builder** — in the editor's left panel, drag **Hero Banner** or **Banner Slider**
 onto the stage, then choose the banner/slider and options (full width/height, parallax,
-tabs) in the panel.
+tabs) in the panel. The stage shows the chosen banner, with its overlay. Page Builder
+support works from 2.1.1; in 2.1.0 the settings panel did not open and the stage preview
+was empty.
 
 **Widget** — Content → Widgets → Add Widget → *Hero Banner (CoullWorks)* or
 *Banner Slider (CoullWorks)*; or via layout XML / a `{{widget}}` directive in a CMS block.

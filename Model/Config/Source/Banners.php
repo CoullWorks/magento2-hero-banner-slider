@@ -11,6 +11,7 @@ declare(strict_types=1);
 namespace CoullWorks\BannerSlider\Model\Config\Source;
 
 use CoullWorks\BannerSlider\Api\BannersRepositoryInterface;
+use CoullWorks\BannerSlider\Api\Data\BannersInterface;
 use Magento\Framework\Api\SearchCriteriaBuilder;
 use Magento\Framework\Data\OptionSourceInterface;
 
@@ -43,12 +44,16 @@ class Banners implements OptionSourceInterface {
     }
 
     /**
+     * Enabled banners only, so the Slides list and the Page Builder picker match the notice shown above them.
+     *
      * @return array
      * @throws \Magento\Framework\Exception\LocalizedException
      */
     public function toOptionArray()
     {
-        $searchCriteria = $this->searchCriteriaBuilder->create();
+        $searchCriteria = $this->searchCriteriaBuilder
+            ->addFilter(BannersInterface::ENABLED, 1)
+            ->create();
        $items = $this->_bannersRepository->getList($searchCriteria);
        $options = [];
        if($items->getTotalCount() > 0)

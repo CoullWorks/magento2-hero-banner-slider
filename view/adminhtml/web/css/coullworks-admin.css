@@ -1,10 +1,10 @@
 /**
- * CoullWorks Catalog Infinite Scroll for Magento 2.
+ * CoullWorks Banner Slider for Magento 2.
  *
  * @author    danrcoull <ttechitsolutions@gmail.com>
  * @copyright Copyright (c) 2020-2026 CoullWorks
- * @license   MIT
- * @link      https://github.com/CoullWorks/magento2-catalog-infinite-scroll
+ * @license   Proprietary - see LICENSE.txt
+ * @link      https://github.com/CoullWorks/magento2-hero-banner-slider
  *
  * Brands the "CoullWorks" tab in Stores > Configuration with the logo.
  */
@@ -15,4 +15,94 @@
     background: url('../images/coullworks-logo.svg') no-repeat left center;
     background-size: 18px 18px;
     line-height: 18px;
+}
+
+/**
+ * Page Builder stage preview of the Hero Banner and Banner Slider content types.
+ * The stage renders the storefront markup without the storefront styles or Slick,
+ * so the banner is laid out here: one banner image with its overlay, links inert.
+ */
+.pagebuilder-coullworks-hero-banner .rendered-content .banner,
+.pagebuilder-coullworks-banner-slider .rendered-content .slide {
+    position: relative;
+    overflow: hidden;
+    line-height: 1.2;
+}
+
+.pagebuilder-coullworks-banner-slider .rendered-content .slide ~ .slide,
+.pagebuilder-coullworks-banner-slider .rendered-content .tabs {
+    display: none;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content picture,
+.pagebuilder-coullworks-banner-slider .rendered-content picture {
+    display: block;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content picture img,
+.pagebuilder-coullworks-banner-slider .rendered-content picture img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content .overlay,
+.pagebuilder-coullworks-banner-slider .rendered-content .overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 40px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content .overlay :is(h1, h2, h3, h4, h5),
+.pagebuilder-coullworks-banner-slider .rendered-content .overlay :is(h1, h2, h3, h4, h5) {
+    margin: 0 0 .3em;
+    max-width: 60%;
+    color: #fff;
+    text-transform: uppercase;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content .overlay :is(h1, h2),
+.pagebuilder-coullworks-banner-slider .rendered-content .overlay :is(h1, h2) {
+    font-size: 32px;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content .overlay :is(h3, h4, h5),
+.pagebuilder-coullworks-banner-slider .rendered-content .overlay :is(h3, h4, h5) {
+    font-size: 18px;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content .overlay a,
+.pagebuilder-coullworks-banner-slider .rendered-content .overlay a {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 8px 20px;
+    border-radius: 4px;
+    background: #fff;
+    color: #222;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content a,
+.pagebuilder-coullworks-banner-slider .rendered-content a {
+    pointer-events: none;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content .banner-link,
+.pagebuilder-coullworks-banner-slider .rendered-content .banner-link {
+    display: none;
+}
+
+.pagebuilder-coullworks-hero-banner .rendered-content .hero,
+.pagebuilder-coullworks-banner-slider .rendered-content .slider {
+    display: block;
+    width: 100%;
 }

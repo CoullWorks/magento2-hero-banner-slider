@@ -80,11 +80,11 @@ class Edit extends \CoullWorks\BannerSlider\Controller\Adminhtml\Banners
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
         $this->initPage($resultPage)->addBreadcrumb(
-            $id ? __('Edit Banners') : __('New Banners'),
-            $id ? __('Edit Banners') : __('New Banners')
+            $id ? __('Edit Banners') : __('New Banner'),
+            $id ? __('Edit Banners') : __('New Banner')
         );
-        $resultPage->getConfig()->getTitle()->prepend(__('Bannerss'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? __('Edit Banners %1', $model->getId()) : __('New Banners'));
+        $resultPage->getConfig()->getTitle()->prepend(__('Banners'));
+        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? __('Edit Banner %1', $model->getId()) : __('New Banner'));
         return $resultPage;
     }
 }

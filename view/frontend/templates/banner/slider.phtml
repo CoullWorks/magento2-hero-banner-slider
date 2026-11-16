@@ -23,9 +23,13 @@ $tabsId = $block->getTabsHtmlId();
             $desktopImg = (string)$slide->getBannerImage();
             $mobileImg = $slide->getBannerImageMobile() ? (string)$slide->getBannerImageMobile() : $desktopImg;
             $eager = $slideIndex === 0;
+            $overlayHtml = $slide->getShowBannerOverlay() ? (string)$block->processContent($slide->getBannerOverlayContent()) : '';
+            // An anchor cannot contain another anchor: when the overlay has its own links the banner link becomes a stretched link.
+            $stretchLink = $slide->getBannerLink() && preg_match('/<a[\s>]/i', $overlayHtml) === 1;
+            $wrapLink = $slide->getBannerLink() && !$stretchLink;
             ?>
-            <div class="slide">
-                <?php if ($slide->getBannerLink()) : ?>
+            <div class="slide<?= $stretchLink ? ' has-stretched-link' : '' ?>">
+                <?php if ($wrapLink) : ?>
                 <a href="<?= $escaper->escapeUrl($slide->getBannerLink());?>" title="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>">
                 <?php endif; ?>
                     <picture class="<?= $escaper->escapeHtmlAttr($block->getImageClass()); ?>">
@@ -38,12 +42,14 @@ $tabsId = $block->getTabsHtmlId();
                     <?php if ($slide->getShowBannerOverlay()) : ?>
                         <div class="overlay">
                             <div class="inner">
-                                <?= /* @noEscape */ $block->processContent($slide->getBannerOverlayContent()); ?>
+                                <?= /* @noEscape */ $overlayHtml; ?>
                             </div>
                         </div>
                     <?php endif; ?>
-                <?php if ($slide->getBannerLink()) : ?>
+                <?php if ($wrapLink) : ?>
                 </a>
+                <?php elseif ($stretchLink) : ?>
+                <a class="banner-link" href="<?= $escaper->escapeUrl($slide->getBannerLink());?>" title="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>" aria-label="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>"></a>
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>

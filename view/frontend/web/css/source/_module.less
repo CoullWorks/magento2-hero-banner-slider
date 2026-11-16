@@ -227,6 +227,29 @@
         z-index: 1 !important;
     }
 
+    //  Stretched banner link: used when the overlay holds its own links (anchors cannot nest).
+    .hero, .slider {
+        .banner, .slide {
+            &.has-stretched-link {
+                position: relative;
+
+                .banner-link {
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    z-index: 1;
+                }
+
+                .overlay .inner a {
+                    position: relative;
+                    z-index: 2;
+                }
+            }
+        }
+    }
+
     //  Image safety: never overflow the container, keep the natural aspect.
     .hero, .slider {
         .banner, .slide {
