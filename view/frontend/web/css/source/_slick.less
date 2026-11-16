@@ -25,8 +25,10 @@
     @arrow-size: 40px;
     @arrow-offset: 16px;
 
-    .slick-prev,
-    .slick-next {
+    // The Luma theme styles .slick-prev/.slick-next itself (and a :not(.primary) rule that wins on
+    // specificity), so every arrow rule is scoped under .slick-slider and .slick-arrow.
+    .slick-slider .slick-prev.slick-arrow,
+    .slick-slider .slick-next.slick-arrow {
         -webkit-transform: translate(0, -50%);
         -ms-transform: translate(0, -50%);
         align-items: center;
@@ -86,38 +88,20 @@
             font-size: 20px;
             line-height: 1;
             opacity: 1;
+            padding: 0;
         }
     }
 
-    .slick-prev {
+    .slick-slider .slick-prev.slick-arrow {
         left: @arrow-offset;
+        right: auto;
 
         &:before {
             content: '\2190';
         }
     }
 
-    .slick-next {
-        right: @arrow-offset;
-
-        &:before {
-            content: '\2192';
-        }
-    }
-
-    .slick-prev.slick-hidden,
-    .slick-next.slick-hidden {
-        display: none;
-    }
-
-    .slick-prev.slick-disabled,
-    .slick-next.slick-disabled {
-        cursor: default;
-        opacity: .45;
-    }
-
-    [dir='rtl'] .slick-prev,
-    .slick-prev[dir='rtl'] {
+    .slick-slider .slick-next.slick-arrow {
         left: auto;
         right: @arrow-offset;
 
@@ -126,8 +110,29 @@
         }
     }
 
-    [dir='rtl'] .slick-next,
-    .slick-next[dir='rtl'] {
+    .slick-slider .slick-prev.slick-arrow.slick-hidden,
+    .slick-slider .slick-next.slick-arrow.slick-hidden {
+        display: none;
+    }
+
+    .slick-slider .slick-prev.slick-arrow.slick-disabled,
+    .slick-slider .slick-next.slick-arrow.slick-disabled {
+        cursor: default;
+        opacity: .45;
+    }
+
+    [dir='rtl'] .slick-slider .slick-prev.slick-arrow,
+    .slick-slider .slick-prev.slick-arrow[dir='rtl'] {
+        left: auto;
+        right: @arrow-offset;
+
+        &:before {
+            content: '\2192';
+        }
+    }
+
+    [dir='rtl'] .slick-slider .slick-next.slick-arrow,
+    .slick-slider .slick-next.slick-arrow[dir='rtl'] {
         left: @arrow-offset;
         right: auto;
 
@@ -137,18 +142,18 @@
     }
 
     @media (max-width: 767px) {
-        .slick-prev,
-        .slick-next {
+        .slick-slider .slick-prev.slick-arrow,
+        .slick-slider .slick-next.slick-arrow {
             height: 36px;
             min-width: 36px;
             width: 36px;
         }
 
-        .slick-prev {
+        .slick-slider .slick-prev.slick-arrow {
             left: 8px;
         }
 
-        .slick-next {
+        .slick-slider .slick-next.slick-arrow {
             right: 8px;
         }
     }
