@@ -1,10 +1,10 @@
 /**
- * CoullWorks Catalog Infinite Scroll for Magento 2.
+ * CoullWorks Banner Slider for Magento 2.
  *
  * @author    danrcoull <ttechitsolutions@gmail.com>
  * @copyright Copyright (c) 2020-2026 CoullWorks
- * @license   MIT
- * @link      https://github.com/CoullWorks/magento2-catalog-infinite-scroll
+ * @license   Proprietary - see LICENSE.txt
+ * @link      https://github.com/CoullWorks/magento2-hero-banner-slider
  *
  * Brands the "CoullWorks" tab in Stores > Configuration with the logo.
  */
@@ -15,4 +15,80 @@
     background: url('../images/coullworks-logo.svg') no-repeat left center;
     background-size: 18px 18px;
     line-height: 18px;
+}
+
+/**
+ * Page Builder stage preview of the Hero Banner and Banner Slider content types.
+ */
+.pagebuilder-coullworks-hero-banner .cw-stage-banner,
+.pagebuilder-coullworks-banner-slider .cw-stage-banner {
+    position: relative;
+    overflow: hidden;
+    line-height: 1.2;
+}
+
+.pagebuilder-coullworks-hero-banner .cw-stage-banner picture,
+.pagebuilder-coullworks-banner-slider .cw-stage-banner picture {
+    display: block;
+}
+
+.pagebuilder-coullworks-hero-banner .cw-stage-banner img,
+.pagebuilder-coullworks-banner-slider .cw-stage-banner img {
+    display: block;
+    width: 100%;
+    max-height: 420px;
+    object-fit: cover;
+}
+
+.pagebuilder-coullworks-hero-banner .cw-stage-overlay,
+.pagebuilder-coullworks-banner-slider .cw-stage-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 40px;
+    color: #fff;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .6);
+}
+
+.pagebuilder-coullworks-hero-banner .cw-stage-overlay h1,
+.pagebuilder-coullworks-hero-banner .cw-stage-overlay h2,
+.pagebuilder-coullworks-hero-banner .cw-stage-overlay h3,
+.pagebuilder-coullworks-hero-banner .cw-stage-overlay h4,
+.pagebuilder-coullworks-banner-slider .cw-stage-overlay h1,
+.pagebuilder-coullworks-banner-slider .cw-stage-overlay h2,
+.pagebuilder-coullworks-banner-slider .cw-stage-overlay h3,
+.pagebuilder-coullworks-banner-slider .cw-stage-overlay h4 {
+    margin: 0 0 .3em;
+    max-width: 60%;
+    color: #fff;
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
+.pagebuilder-coullworks-hero-banner .cw-stage-overlay a,
+.pagebuilder-coullworks-banner-slider .cw-stage-overlay a {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 8px 20px;
+    border-radius: 4px;
+    background: #fff;
+    color: #222;
+    text-decoration: none;
+    text-shadow: none;
+}
+
+.pagebuilder-coullworks-banner-slider .cw-stage-count {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    padding: 2px 10px;
+    border-radius: 10px;
+    background: rgba(0, 0, 0, .65);
+    color: #fff;
+    font-size: 12px;
 }
