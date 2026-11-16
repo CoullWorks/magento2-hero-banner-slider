@@ -101,3 +101,9 @@
 .pagebuilder-coullworks-banner-slider .rendered-content .banner-link {
     display: none;
 }
+
+.pagebuilder-coullworks-hero-banner .rendered-content .hero,
+.pagebuilder-coullworks-banner-slider .rendered-content .slider {
+    display: block;
+    width: 100%;
+}
