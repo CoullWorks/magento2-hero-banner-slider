@@ -15,14 +15,10 @@ define(['uiComponent', 'jquery'], function (Component, $) {
                 img = $(node),
                 imgParent = img.parent();
 
-            $(document).on({
-                scroll: function () {
-                    self.parallaxImage(img, imgParent);
-                },
-                ready: function () {
-                    self.parallaxImage(img, imgParent);
-                }
+            $(document).on('scroll', function () {
+                self.parallaxImage(img, imgParent);
             });
+            self.parallaxImage(img, imgParent);
         },
 
         parallaxImage: function (img, imgParent) {

@@ -13,7 +13,7 @@ $slide = $block->getSlide();
 ?>
 <?php if($slide): ?>
     <?php if($slide->getEnabled()) : ?>
-        <div class="hero <?= $escaper->escapeHtmlAttr($block->getClass()); ?>">
+        <div id="<?= $escaper->escapeHtmlAttr($block->getHtmlId()); ?>" class="hero <?= $escaper->escapeHtmlAttr($block->getClass()); ?>">
             <div class="banner">
                 <?php if($slide->getBannerLink()) :?>
                     <a href="<?= $escaper->escapeUrl($slide->getBannerLink());?>" title="<?= $escaper->escapeHtmlAttr($slide->getBannerName()); ?>">
@@ -46,12 +46,14 @@ $slide = $block->getSlide();
                 <?php endif; ?>
             </div>
         </div>
+        <?php if ($block->getData('is_parallax')) : ?>
         <script type="text/x-magento-init">
         {
-           ".img-parallax": {
+           "#<?= $escaper->escapeJs($block->getHtmlId()); ?> .img-parallax": {
                "parallax": {}
            }
         }
         </script>
+        <?php endif; ?>
     <?php endif; ?>
 <?php endif; ?>
