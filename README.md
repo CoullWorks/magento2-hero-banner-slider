@@ -101,6 +101,10 @@ Banner Sliders* and *Banners*, each with View, Save, Update and Delete. Opening 
 form needs View; creating, saving and uploading images needs Save; inline editing needs
 Update; deleting needs Delete.
 
+## Documentation
+
+Guides and reference for Hero Banner Slider are in [docs/README.md](docs/README.md). The same pages are online at <https://www.coullworks.com/docs/magento/hero-banner-slider>.
+
 ## Compatibility
 
 | | |

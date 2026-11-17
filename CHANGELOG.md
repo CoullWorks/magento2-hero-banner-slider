@@ -4,6 +4,12 @@ All notable changes to this project are documented here, based on
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.1.3] - 2026-11-17
+
+### Added
+- A `docs/` folder with the full documentation as plain markdown, with screenshots, so it can be read on GitHub as well as on coullworks.com.
+- A `.gitattributes` so the Composer package leaves out the docs and development files.
+
 ## [2.1.2] - 2026-11-16
 
 A small fix release, checked in a browser on a live Magento 2.4.9 install.
